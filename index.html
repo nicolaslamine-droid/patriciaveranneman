@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Patricia Veranneman — Peinture &amp; Céramique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--w:#fff;--off:#F7F6F4;--k:#0D0D0D;--g:#888;--l:#E2DFDB;--S:'Cormorant Garamond',serif;--s:'Jost',sans-serif}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--w);color:var(--k);font-family:var(--s);font-weight:300;overflow-x:hidden;cursor:none}
+    img{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+
+    /* CURSOR */
+    #cur{position:fixed;top:0;left:0;width:7px;height:7px;background:var(--k);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s,background .2s}
+    #cur.h{transform:translate(-50%,-50%) scale(4);background:#aaa;opacity:.5}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;background:rgba(255,255,255,.97);border-bottom:1px solid var(--l);display:flex;justify-content:space-between;align-items:center;padding:0 3.5rem}
+    .nlogo{font-family:var(--S);font-size:1.05rem;font-weight:400;letter-spacing:.04em}
+    .nlinks{display:flex;gap:2.2rem;list-style:none}
+    .nlinks a{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;opacity:.4;transition:opacity .2s}
+    .nlinks a:hover{opacity:1}
+
+    /* HERO */
+    .hero{min-height:100vh;padding-top:60px;display:grid;grid-template-columns:55% 45%}
+    .hi{overflow:hidden;position:relative}
+    .hi img{width:100%;height:100%;object-fit:cover;filter:grayscale(8%);opacity:0;animation:fin 2s ease .2s forwards}
+    .ht{display:flex;flex-direction:column;justify-content:center;padding:5rem 4.5rem 5rem 3.5rem;border-left:1px solid var(--l)}
+    .hsup{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--g);margin-bottom:2.5rem;opacity:0;animation:up .9s ease .6s forwards}
+    .hh1{font-family:var(--S);font-size:clamp(3.8rem,5.5vw,7rem);font-weight:300;line-height:.9;letter-spacing:-.02em;margin-bottom:3rem;opacity:0;animation:up .9s ease .8s forwards}
+    .hh1 em{font-style:italic}
+    .hbio{font-size:.82rem;line-height:2;color:#555;max-width:320px;opacity:0;animation:up .9s ease 1s forwards}
+    .htags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:2.5rem;opacity:0;animation:up .9s ease 1.2s forwards}
+    .htag{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .8rem;border:1px solid var(--l);color:var(--g)}
+    .hscr{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fin 1s ease 2s forwards}
+    .hscr span{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g)}
+    .vl{width:1px;height:44px;background:var(--l);animation:pulse 2s ease-in-out infinite}
+
+    /* TICKER */
+    .ticker{border-top:1px solid var(--l);border-bottom:1px solid var(--l);overflow:hidden;padding:.8rem 0}
+    .ti{display:flex;gap:4rem;white-space:nowrap;animation:tick 30s linear infinite}
+    .ti span{font-family:var(--S);font-size:.9rem;font-style:italic;color:var(--g);flex-shrink:0}
+    .ti span.dot{font-family:var(--s);font-style:normal;color:var(--l)}
+
+    /* SECTION HEADER */
+    .sh{padding:5.5rem 3.5rem 0;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--l)}
+    .sh+.sh{margin-top:0}
+    .snum{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g);display:block;margin-bottom:.7rem}
+    .stitle{font-family:var(--S);font-size:clamp(2.2rem,3vw,3.5rem);font-weight:300;line-height:1}
+    .stitle em{font-style:italic}
+    .shint{font-size:.65rem;letter-spacing:.1em;color:var(--g);text-align:right;line-height:1.8}
+
+    /* FILTER TABS */
+    .tabs{padding:2.5rem 3.5rem;display:flex;gap:0;width:fit-content;border:1px solid var(--l)}
+    .fb{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 1.1rem;background:none;border:none;border-right:1px solid var(--l);color:var(--g);cursor:pointer;transition:all .2s}
+    .fb:last-child{border-right:none}
+    .fb.on,.fb:hover{background:var(--k);color:var(--w)}
+
+    /* WORKS GRID — 3 cols, bordered */
+    .wgrid{display:grid;grid-template-columns:repeat(3,1fr);border-left:1px solid var(--l);border-top:1px solid var(--l);margin:0 3.5rem 6rem}
+    .work{border-right:1px solid var(--l);border-bottom:1px solid var(--l);opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s}
+    .work.in{opacity:1;transform:translateY(0)}
+    .work.hidden{display:none}
+    .work.wide{grid-column:span 2}
+    .wimg{overflow:hidden;background:var(--off)}
+    .work:not(.wide) .wimg{aspect-ratio:4/3}
+    .work.wide .wimg{aspect-ratio:21/9}
+    .wimg img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+    .work:hover .wimg img{transform:scale(1.04)}
+    .wcap{padding:.9rem 1rem 1.1rem;background:var(--w);border-top:1px solid var(--l)}
+    .wtitle{font-family:var(--S);font-size:.95rem;font-style:italic;display:block;margin-bottom:.2rem}
+    .wmeta{font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--g);display:block}
+
+    /* CERAMICS GRID — 4 cols */
+    .cgrid{display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--l);border-top:1px solid var(--l);margin:0 3.5rem 6rem}
+    .cwork{border-right:1px solid var(--l);border-bottom:1px solid var(--l);opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s}
+    .cwork.in{opacity:1;transform:translateY(0)}
+    .cwork.wide2{grid-column:span 2}
+    .cwimg{overflow:hidden;background:var(--off)}
+    .cwork:not(.wide2) .cwimg{aspect-ratio:1/1}
+    .cwork.wide2 .cwimg{aspect-ratio:2/1}
+    .cwimg img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+    .cwork:hover .cwimg img{transform:scale(1.04)}
+    .ccap{padding:.9rem 1rem 1.1rem;background:var(--w);border-top:1px solid var(--l)}
+
+    /* EXPO */
+    .expo{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--l)}
+    .eimg{overflow:hidden;aspect-ratio:4/3}
+    .eimg img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+    .eimg:hover img{transform:scale(1.03)}
+    .etxt{padding:5rem;border-left:1px solid var(--l);display:flex;flex-direction:column;justify-content:center}
+    .etxt p{font-size:.85rem;line-height:2;color:#555;margin-top:1.5rem;max-width:420px}
+    .etxt blockquote{font-family:var(--S);font-size:1.35rem;font-style:italic;line-height:1.6;border-left:1px solid var(--k);padding-left:1.5rem;margin-top:2.5rem}
+
+    /* INSTALL */
+    .install{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--l)}
+    .iimg{overflow:hidden}
+    .iimg img{width:100%;height:100%;min-height:460px;object-fit:cover;filter:grayscale(10%);transition:transform .6s}
+    .iimg:hover img{transform:scale(1.02)}
+    .itxt{padding:5rem;background:var(--off);border-left:1px solid var(--l);display:flex;flex-direction:column;justify-content:center}
+    .itxt p{font-size:.85rem;line-height:2;color:#555;margin-top:1.5rem;max-width:380px}
+
+    /* ABOUT */
+    .about{display:grid;grid-template-columns:360px 1fr;border-top:1px solid var(--l)}
+    .aimg{border-right:1px solid var(--l);overflow:hidden}
+    .aimg img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(5%)}
+    .atxt{padding:5.5rem;display:flex;flex-direction:column;justify-content:center}
+    .atxt p{font-size:.88rem;line-height:2.1;color:#444;margin-top:1.5rem;max-width:500px}
+    .asig{font-family:var(--S);font-size:2.5rem;font-style:italic;font-weight:300;margin-top:3rem;display:block}
+
+    /* CONTACT */
+    .contact{padding:7rem 3.5rem;text-align:center;border-top:1px solid var(--l)}
+    .cth{font-family:var(--S);font-size:clamp(3rem,5vw,6rem);font-weight:300;line-height:1;margin:1.5rem 0 5rem}
+    .cth em{font-style:italic}
+    .ctrow{display:flex;justify-content:center;gap:0;border:1px solid var(--l);width:fit-content;margin:0 auto}
+    .ci{padding:2rem 3.5rem;border-right:1px solid var(--l);transition:background .2s}
+    .ci:last-child{border-right:none}
+    .ci:hover{background:var(--off)}
+    .cil{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g);display:block;margin-bottom:.6rem}
+    .civ{font-family:var(--S);font-size:1.1rem;font-style:italic}
+
+    /* FOOTER */
+    footer{padding:1.5rem 3.5rem;border-top:1px solid var(--l);display:flex;justify-content:space-between;align-items:center}
+    footer p{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g)}
+
+    /* ANIMATIONS */
+    @keyframes fin{from{opacity:0}to{opacity:1}}
+    @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+    @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* RESPONSIVE */
+    @media(max-width:1024px){
+      nav{padding:0 2rem}.nlinks{display:none}
+      .hero{grid-template-columns:1fr}.hi{height:55vw}.ht{padding:3.5rem 2rem}
+      .sh{padding:4rem 2rem 0;flex-direction:column;gap:1rem;align-items:flex-start}
+      .tabs{margin:2rem 2rem 0}
+      .wgrid{grid-template-columns:1fr 1fr;margin:0 2rem 4rem}.work.wide{grid-column:span 2}.work.wide .wimg{aspect-ratio:16/7}
+      .cgrid{grid-template-columns:1fr 1fr;margin:0 2rem 4rem}
+      .expo{grid-template-columns:1fr}.etxt{border-left:none;border-top:1px solid var(--l);padding:3rem 2rem}
+      .install{grid-template-columns:1fr}.itxt{border-left:none;border-top:1px solid var(--l);padding:3rem 2rem}.iimg img{min-height:300px}
+      .about{grid-template-columns:1fr}.aimg img{max-height:400px}.atxt{padding:3rem 2rem}
+      .contact{padding:5rem 2rem}.ctrow{flex-direction:column;width:100%;max-width:320px}.ci{border-right:none;border-bottom:1px solid var(--l)}.ci:last-child{border-bottom:none}
+      footer{padding:1.5rem 2rem;flex-direction:column;gap:.5rem;text-align:center}
+    }
+    @media(max-width:600px){
+      .wgrid{grid-template-columns:1fr}.work.wide{grid-column:span 1}.work.wide .wimg{aspect-ratio:4/3}
+      .cgrid{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+<div id="cur"></div>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#" class="nlogo">Patricia Veranneman</a>
+  <ul class="nlinks">
+    <li><a href="#peintures">Peintures</a></li>
+    <li><a href="#ceramiques">Céramiques</a></li>
+    <li><a href="#expositions">Expositions</a></li>
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hi">
+    <img src="images/Tempête.jpg" alt="Tempête — Patricia Veranneman"/>
+  </div>
+  <div class="ht">
+    <p class="hsup">Peinture &amp; Céramique · Belgique</p>
+    <h1 class="hh1">Patricia<br>Vanne<em>man</em></h1>
+    <p class="hbio">Artiste belge, Patricia Veranneman explore la figure humaine, le paysage et la matière à travers la peinture à l'huile, l'acrylique, le dessin et la céramique.</p>
+    <div class="htags">
+      <span class="htag">Huile sur toile</span>
+      <span class="htag">Acrylique</span>
+      <span class="htag">Dessin</span>
+      <span class="htag">Grès</span>
+    </div>
+  </div>
+  <div class="hscr"><div class="vl"></div><span>Découvrir</span></div>
+</section>
+
+<!-- ═══ TICKER ═══ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ti">
+    <span>Portrait</span><span class="dot"> · </span><span>Figure humaine</span><span class="dot"> · </span>
+    <span>Paysage</span><span class="dot"> · </span><span>Scène de vie</span><span class="dot"> · </span>
+    <span>Sculpture</span><span class="dot"> · </span><span>Céramique émaillée</span><span class="dot"> · </span>
+    <span>Bas-relief</span><span class="dot"> · </span><span>Dessin au fusain</span><span class="dot"> · </span>
+    <span>Portrait</span><span class="dot"> · </span><span>Figure humaine</span><span class="dot"> · </span>
+    <span>Paysage</span><span class="dot"> · </span><span>Scène de vie</span><span class="dot"> · </span>
+    <span>Sculpture</span><span class="dot"> · </span><span>Céramique émaillée</span><span class="dot"> · </span>
+    <span>Bas-relief</span><span class="dot"> · </span><span>Dessin au fusain</span><span class="dot"> · </span>
+  </div>
+</div>
+
+<!-- ═══ PEINTURES ═══ -->
+<div class="sh" id="peintures">
+  <div><span class="snum">01 — Peintures</span><h2 class="stitle">Galerie de <em>peintures</em></h2></div>
+  <div class="shint">Huile · Acrylique · Dessin<br>42 œuvres</div>
+</div>
+
+<div class="tabs">
+  <button class="fb on" data-f="all">Tout</button>
+  <button class="fb" data-f="portrait">Portraits</button>
+  <button class="fb" data-f="enfance">Enfance &amp; famille</button>
+  <button class="fb" data-f="lieu">Lieux &amp; lumière</button>
+  <button class="fb" data-f="dessin">Dessins</button>
+</div>
+
+<div class="wgrid" id="pg">
+
+  <!-- ENFANCE / FAMILLE -->
+  <div class="work" data-c="enfance">
+    <div class="wimg"><img src="images/Joie_de_la_mer.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Joie de la mer</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work wide" data-c="enfance">
+    <div class="wimg"><img src="images/Run.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Run</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="enfance">
+    <div class="wimg"><img src="images/1_Children.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Children</span><span class="wmeta">Acrylique</span></div>
+  </div>
+  <div class="work" data-c="enfance">
+    <div class="wimg"><img src="images/Le_manège.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Le manège</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="enfance">
+    <div class="wimg"><img src="images/Papa_et_fils_plage.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Papa et fils — plage</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="enfance">
+    <div class="wimg"><img src="images/Where_are_we_going_Dad_.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Where are we going, Dad?</span><span class="wmeta">Acrylique</span></div>
+  </div>
+  <div class="work wide" data-c="enfance">
+    <div class="wimg"><img src="images/Hiver_etangs_d_Ixelles_1.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Hiver — Étangs d'Ixelles I</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="enfance">
+    <div class="wimg"><img src="images/Hiver_Etangs_d_Ixelles.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Hiver — Étangs d'Ixelles II</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="enfance">
+    <div class="wimg"><img src="images/In_the_arms__.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">In the Arms</span><span class="wmeta">Acrylique</span></div>
+  </div>
+  <div class="work" data-c="enfance">
+    <div class="wimg"><img src="images/Automne_Cambre.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Automne au Cambré</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="enfance">
+    <div class="wimg"><img src="images/Le_transat.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Le transat</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="enfance">
+    <div class="wimg"><img src="images/Confidences.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Confidences</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="enfance">
+    <div class="wimg"><img src="images/Je_m_informe.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Je m'informe</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="enfance">
+    <div class="wimg"><img src="images/Voiture_Patricia_Raymond1.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Voiture — Patricia &amp; Raymond</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+
+  <!-- PORTRAITS -->
+  <div class="work wide" data-c="portrait">
+    <div class="wimg"><img src="images/Zhaoui.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Zhaoui</span><span class="wmeta">Portrait · Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/Old_couple.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Old Couple</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/Guillaume.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Guillaume</span><span class="wmeta">Portrait · Huile</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/Johanna.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Johanna</span><span class="wmeta">Portrait · Huile</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/Stéphanie1.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Stéphanie</span><span class="wmeta">Portrait · Huile</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/Patricia_et_Stéphanie.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Patricia et Stéphanie</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/Nicolas.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Nicolas</span><span class="wmeta">Portrait · Huile</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/Laetitia.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Laetitia</span><span class="wmeta">Portrait · Huile</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/Fils_et_vieux_père.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Fils et vieux père</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/Père_François.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Père François</span><span class="wmeta">Portrait · Huile</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/Raymond_Veranneman_de_Watervliet.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Raymond Veranneman de Watervliet</span><span class="wmeta">Portrait · Huile</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/1_Suzy_Paternotte.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Suzy Paternotte</span><span class="wmeta">Portrait · Huile</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/EAJean-Charles_Veranneman_de_Watervliet.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Jean-Charles Veranneman de Watervliet</span><span class="wmeta">Portrait historique</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/Emerence_Pardo_de_Fremicourt.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Émérences Pardo de Frémicourt</span><span class="wmeta">Portrait historique</span></div>
+  </div>
+  <div class="work" data-c="portrait">
+    <div class="wimg"><img src="images/Jesus_and_the_bird__Murillo_.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Jésus et l'oiseau</span><span class="wmeta">D'après Murillo</span></div>
+  </div>
+
+  <!-- LIEUX & LUMIÈRE -->
+  <div class="work wide" data-c="lieu">
+    <div class="wimg"><img src="images/Tempête.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Tempête</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="lieu">
+    <div class="wimg"><img src="images/Look____Turner_.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Look — (d'après Turner)</span><span class="wmeta">Pastel</span></div>
+  </div>
+  <div class="work" data-c="lieu">
+    <div class="wimg"><img src="images/Vue_sur_mer.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Vue sur mer</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="lieu">
+    <div class="wimg"><img src="images/Fenêtre.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Fenêtre</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="lieu">
+    <div class="wimg"><img src="images/LLN_Bibliothèque.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">LLN — Bibliothèque</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="lieu">
+    <div class="wimg"><img src="images/LLN_Musée_Hergé.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">LLN — Musée Hergé</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="lieu">
+    <div class="wimg"><img src="images/In_the_dark.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">In the Dark</span><span class="wmeta">Acrylique</span></div>
+  </div>
+  <div class="work" data-c="lieu">
+    <div class="wimg"><img src="images/Wall_Street.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Wall Street</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+  <div class="work" data-c="lieu">
+    <div class="wimg"><img src="images/Prend_le_train_de_la_vie__.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Prend le train de la vie</span><span class="wmeta">Acrylique</span></div>
+  </div>
+  <div class="work" data-c="lieu">
+    <div class="wimg"><img src="images/Against_Evil.JPG" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Against Evil</span><span class="wmeta">Huile sur toile</span></div>
+  </div>
+
+  <!-- DESSINS -->
+  <div class="work" data-c="dessin">
+    <div class="wimg"><img src="images/dance.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Danse</span><span class="wmeta">Dessin · Fusain</span></div>
+  </div>
+  <div class="work" data-c="dessin">
+    <div class="wimg"><img src="images/nake.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Nu</span><span class="wmeta">Dessin · Fusain</span></div>
+  </div>
+  <div class="work" data-c="dessin">
+    <div class="wimg"><img src="images/pommes.jpg" alt="" loading="lazy"/></div>
+    <div class="wcap"><span class="wtitle">Pommes</span><span class="wmeta">Dessin · Fusain</span></div>
+  </div>
+
+</div><!-- end wgrid -->
+
+<!-- ═══ CÉRAMIQUES ═══ -->
+<div class="sh" id="ceramiques" style="border-top:1px solid var(--l)">
+  <div><span class="snum">02 — Céramiques</span><h2 class="stitle">Galerie de <em>céramiques</em></h2></div>
+  <div class="shint">Grès · Émail · Sculpture<br>10 œuvres</div>
+</div>
+
+<div class="cgrid" style="margin-top:2.5rem">
+  <div class="cwork wide2">
+    <div class="cwimg"><img src="images/L_enfant_qui_dort.JPG" alt="" loading="lazy"/></div>
+    <div class="ccap"><span class="wtitle">L'enfant qui dort</span><span class="wmeta">Grès · Sculpture</span></div>
+  </div>
+  <div class="cwork">
+    <div class="cwimg"><img src="images/Applique_wc.JPG" alt="" loading="lazy"/></div>
+    <div class="ccap"><span class="wtitle">Applique</span><span class="wmeta">Grès blanc · Luminaire</span></div>
+  </div>
+  <div class="cwork">
+    <div class="cwimg"><img src="images/DSC_0067__2_.JPG" alt="" loading="lazy"/></div>
+    <div class="ccap"><span class="wtitle">Ellipse rouge</span><span class="wmeta">Grès · Émail rouge sang</span></div>
+  </div>
+  <div class="cwork">
+    <div class="cwimg"><img src="images/Détail_Air.jpg" alt="" loading="lazy"/></div>
+    <div class="ccap"><span class="wtitle">L'Air — détail</span><span class="wmeta">Grès · Émail bleu-gris</span></div>
+  </div>
+  <div class="cwork">
+    <div class="cwimg"><img src="images/DSC_0074.JPG" alt="" loading="lazy"/></div>
+    <div class="ccap"><span class="wtitle">Vague</span><span class="wmeta">Grès · Émail céladon</span></div>
+  </div>
+  <div class="cwork wide2">
+    <div class="cwimg"><img src="images/DSC_0426_-_Copie.JPG" alt="" loading="lazy"/></div>
+    <div class="ccap"><span class="wtitle">N'ayez pas peur !</span><span class="wmeta">Grès · Bas-relief polychrome</span></div>
+  </div>
+  <div class="cwork">
+    <div class="cwimg"><img src="images/DSC_0070.JPG" alt="" loading="lazy"/></div>
+    <div class="ccap"><span class="wtitle">Lumière bleue</span><span class="wmeta">Grès · Porte-bougie</span></div>
+  </div>
+  <div class="cwork">
+    <div class="cwimg"><img src="images/DSC_0027__2_.JPG" alt="" loading="lazy"/></div>
+    <div class="ccap"><span class="wtitle">Rinceaux</span><span class="wmeta">Grès · Bas-relief</span></div>
+  </div>
+  <div class="cwork">
+    <div class="cwimg"><img src="images/DSC_0023__2_.JPG" alt="" loading="lazy"/></div>
+    <div class="ccap"><span class="wtitle">Trio de boîtes</span><span class="wmeta">Grès brut · Non émaillé</span></div>
+  </div>
+  <div class="cwork">
+    <div class="cwimg"><img src="images/Empathie_.jpg" alt="" loading="lazy"/></div>
+    <div class="ccap"><span class="wtitle">Empathie</span><span class="wmeta">Grès · Sculpture figurative</span></div>
+  </div>
+</div>
+
+<!-- ═══ EXPOSITIONS ═══ -->
+<div class="expo" id="expositions">
+  <div class="eimg"><img src="images/expo_Den_Blank_l_Air.jpg" alt="Exposition Den Blank" loading="lazy"/></div>
+  <div class="etxt">
+    <span class="snum">03 — Expositions</span>
+    <h2 class="stitle">En <em>espace</em> public</h2>
+    <p>Peintures accrochées aux cimaises, sculptures posées sur leurs socles — les œuvres de Patricia Veranneman ont été présentées dans des galeries et espaces culturels en Belgique et à l'étranger.</p>
+    <blockquote>Peindre ou modeler, c'est toujours chercher la même chose&nbsp;: ce qui résiste au silence.</blockquote>
+  </div>
+</div>
+
+<!-- ═══ INSTALLATION ═══ -->
+<div class="install">
+  <div class="iimg"><img src="images/Mise_en_place_d_une_boule_sur_un_pilastre_.jpg" alt="Installation — boule sur pilastre" loading="lazy"/></div>
+  <div class="itxt">
+    <span class="snum">Installation in situ</span>
+    <h2 class="stitle">La boule<br>sur le <em>pilastre</em></h2>
+    <p>Commande spécifique et intervention dans l'espace architectural — les pièces de Patricia dialoguent avec le bâti et le paysage, investissant l'extérieur comme prolongement naturel du travail en atelier.</p>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<div class="about" id="apropos">
+  <div class="aimg">
+    <img src="images/1549910293381.jpeg" alt="Patricia Veranneman"/>
+  </div>
+  <div class="atxt">
+    <span class="snum">04 — À propos</span>
+    <h2 class="stitle">Patricia<br><em>Veranneman</em></h2>
+    <p>Artiste belge, Patricia Veranneman développe depuis de nombreuses années un travail qui traverse la peinture et la céramique. Ses œuvres explorent la figure humaine — portraits, scènes de famille, instants de vie — ainsi que le paysage et l'architecture.</p>
+    <p>À travers l'huile, l'acrylique, le dessin au fusain et le grès, elle interroge ce qui unit la matière et le regard&nbsp;: l'intimité des corps, la lumière sur les choses, le temps qui passe.</p>
+    <span class="asig">Patricia Veranneman</span>
+  </div>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<div class="contact" id="contact">
+  <span class="snum">05 — Contact</span>
+  <h2 class="cth">Entrer en <em>conversation</em></h2>
+  <div class="ctrow">
+    <a href="mailto:votre@email.com" class="ci">
+      <span class="cil">Email</span>
+      <span class="civ">votre@email.com</span>
+    </a>
+    <a href="https://instagram.com/" target="_blank" rel="noopener" class="ci">
+      <span class="cil">Instagram</span>
+      <span class="civ">@votre_compte</span>
+    </a>
+    <a href="tel:+32000000000" class="ci">
+      <span class="cil">Téléphone</span>
+      <span class="civ">+32 (0)X XX XX XX</span>
+    </a>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p>© <span id="yr"></span> Patricia Veranneman — Tous droits réservés</p>
+  <p>Belgique · Peinture &amp; Céramique</p>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* cursor */
+const cur = document.getElementById('cur');
+document.addEventListener('mousemove', e => { cur.style.left = e.clientX+'px'; cur.style.top = e.clientY+'px'; });
+document.querySelectorAll('a,.work,.cwork').forEach(el => {
+  el.addEventListener('mouseenter', () => cur.classList.add('h'));
+  el.addEventListener('mouseleave', () => cur.classList.remove('h'));
+});
+
+/* scroll reveal */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => {
+    if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('in'), i*55); obs.unobserve(e.target); }
+  });
+}, {threshold:.06});
+document.querySelectorAll('.work,.cwork').forEach(el => obs.observe(el));
+
+/* filter tabs */
+document.querySelectorAll('.fb').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    const f = btn.dataset.f;
+    document.querySelectorAll('.work').forEach(w => {
+      w.classList.toggle('hidden', f !== 'all' && w.dataset.c !== f);
+    });
+  });
+});
+</script>
+</body>
+</html>
