@@ -72,13 +72,12 @@
     text-rendering:optimizeLegibility;
     overflow-x:hidden;
     line-height:1.5;
-    /* Optimisation tactile globale : supprime le délai 300ms et les double-tap-zoom intempestifs */
-    touch-action:manipulation;
-    /* Empêche le rebond élastique iOS de révéler du blanc sous la page */
-    overscroll-behavior-y:none;
     /* Largeur min pour éviter cassures sur écrans extrêmes */
     min-width:320px;
   }
+  /* touch-action:manipulation appliqué uniquement aux éléments interactifs
+     (supprime le délai 300ms sans interférer avec le scroll natif) */
+  a,button,.fb,.ci,.work,.cwork,.io,.eimg,.iimg{touch-action:manipulation}
   body.lock{overflow:hidden;position:fixed;width:100%;top:0;left:0;right:0}
   img{display:block;max-width:100%;height:auto;background:var(--warm)}
   img[src]{animation:imgFade .6s ease forwards}
@@ -1085,6 +1084,14 @@
 <script>
 (function(){
   'use strict';
+
+  /* ══════════════════════════════════════════════════════════
+     FILET DE SÉCURITÉ : nettoie tout état "lock" résiduel
+     (peut arriver après navigation back/forward ou rechargement
+     pendant que la lightbox/menu était ouvert)
+     ══════════════════════════════════════════════════════════ */
+  document.body.classList.remove('lock');
+  document.body.style.top = '';
 
   /* ── Year ── */
   var yr = document.getElementById('yr');
