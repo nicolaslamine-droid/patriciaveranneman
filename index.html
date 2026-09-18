@@ -25,14 +25,14 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Patricia Veranneman — Peinture &amp; Céramique">
 <meta property="og:description" content="Artiste belge. Entre mémoire et matière — peinture et céramique.">
-<meta property="og:image" content="images/Hiver_etangs_d_Ixelles_1.JPG">
+<meta property="og:image" content="https://patricia.veranneman.eu/images/Le_Feu.jpg">
 <meta property="og:locale" content="fr_BE">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%230D0D0D%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2245%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20fill%3D%22%239A7040%22%20text-anchor%3D%22middle%22%3EPV%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="images/Hiver_etangs_d_Ixelles_1.JPG" fetchpriority="high">
+<link rel="preload" as="image" href="images/Le_Feu.jpg" fetchpriority="high">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
 
 <style>
@@ -202,17 +202,17 @@
   }
   .hero-bg{
     position:absolute;inset:0;
-    background:url("images/Hiver_etangs_d_Ixelles_1.JPG") 50% 38%/cover no-repeat;
+    background:url("images/Le_Feu.jpg") 50% 42%/cover no-repeat;
     background-color:var(--k);
-    filter:brightness(.76) saturate(.96);
+    filter:brightness(.92) saturate(1.02);
     transform:scale(1.08);
     animation:heroZoom 28s var(--ease) both;
   }
   .hero-overlay{
     position:absolute;inset:0;
     background:
-      linear-gradient(to top,rgba(6,6,6,.82) 0%,rgba(6,6,6,.45) 38%,rgba(6,6,6,.10) 72%,rgba(6,6,6,.30) 100%),
-      linear-gradient(to right,rgba(6,6,6,.45) 0%,rgba(6,6,6,.10) 55%,transparent 100%);
+      linear-gradient(to top,rgba(6,6,6,.80) 0%,rgba(6,6,6,.38) 38%,rgba(6,6,6,.06) 72%,rgba(6,6,6,.26) 100%),
+      linear-gradient(to right,rgba(6,6,6,.52) 0%,rgba(6,6,6,.12) 52%,transparent 100%);
   }
   .hero-content{
     position:relative;z-index:1;
@@ -489,6 +489,39 @@
   .cil{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);display:block;margin-bottom:.5rem}
   .civ{font-family:var(--S);font-size:1.1rem;font-style:italic;word-break:break-word}
 
+  /* ── FORMULAIRE DE CONTACT ── */
+  .cform{
+    max-width:640px;margin:3.5rem auto 0;text-align:left;
+    display:flex;flex-direction:column;gap:1.25rem;
+  }
+  .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+  .cf-field{display:flex;flex-direction:column;gap:.5rem}
+  .cf-field > span{
+    font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);
+  }
+  .cf-field input,.cf-field select,.cf-field textarea{
+    font-family:var(--s);font-size:.92rem;font-weight:300;color:var(--k);
+    background:var(--w);border:1px solid var(--line);
+    padding:.85rem 1rem;border-radius:0;
+    transition:border-color .25s var(--ease);
+    min-height:44px;width:100%;
+  }
+  .cf-field textarea{resize:vertical;line-height:1.7}
+  .cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{
+    outline:none;border-color:var(--gold);
+  }
+  .cf-send{
+    align-self:flex-start;margin-top:.5rem;
+    font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+    padding:1.05rem 2.75rem;min-height:44px;
+    background:var(--k);color:var(--w);
+    border:1px solid var(--k);
+    transition:background .25s var(--ease),color .25s var(--ease);
+  }
+  .cf-send:hover{background:var(--gold);border-color:var(--gold)}
+  .cf-note{font-size:.78rem;color:var(--mid);font-style:italic;min-height:1.2em}
+  .cf-note.err{color:#a33}
+
   /* ── FOOTER ── */
   footer{
     padding:1.5rem calc(2rem + var(--safe-r)) calc(1.5rem + var(--safe-b)) calc(2rem + var(--safe-l));
@@ -641,6 +674,8 @@
     .contact{padding:3.5rem 1.5rem}
     .cth{font-size:clamp(2rem,10vw,4rem);margin:1rem 0 2.5rem}
     .ci{padding:1.4rem 1.5rem}
+    .cform{margin-top:2.5rem}
+    .cf-row{grid-template-columns:1fr}
     /* Email peut overflow horizontalement → on réduit la taille pour que ça tienne */
     .civ{font-size:.95rem;line-height:1.4}
     footer{padding:1.5rem;flex-direction:column;text-align:center}
@@ -722,13 +757,14 @@
 
 <!-- HERO -->
 <section class="hero" aria-label="Présentation">
-  <div class="hero-bg" role="img" aria-label="Hiver aux étangs d'Ixelles — peinture de Patricia Veranneman"></div>
+  <div class="hero-bg" role="img" aria-label="Le Feu — sphère en grès émaillé de Patricia Veranneman"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hsup">Peinture &amp; Céramique · Belgique</p>
     <h1 class="hh1">Patricia<br>Veranne<em>man</em></h1>
     <p class="hbio">Artiste belge, Patricia Veranneman travaille la peinture et la céramique à partir de ce qui a déjà vécu&nbsp;— une photographie ancienne, un objet oublié, un fragment de mémoire&nbsp;— qu'elle déplace et recompose jusqu'à devenir autre chose.</p>
     <div class="htags" aria-label="Techniques">
+      <span class="htag">Grès émaillé</span>
       <span class="htag">Acrylique</span>
       <span class="htag">Dessin</span>
       <span class="htag">Grès</span>
@@ -1222,6 +1258,35 @@
       <span class="civ">+32 478 68 31 86</span>
     </a>
   </div>
+
+  <form class="cform" id="cform" novalidate>
+    <div class="cf-row">
+      <label class="cf-field">
+        <span>Votre nom</span>
+        <input type="text" name="nom" id="cf-nom" autocomplete="name" required>
+      </label>
+      <label class="cf-field">
+        <span>Votre email</span>
+        <input type="email" name="email" id="cf-email" autocomplete="email" required>
+      </label>
+    </div>
+    <label class="cf-field">
+      <span>Objet</span>
+      <select name="objet" id="cf-objet">
+        <option>Renseignement sur une œuvre</option>
+        <option>Acquisition</option>
+        <option>Exposition / invitation</option>
+        <option>Commande</option>
+        <option>Autre</option>
+      </select>
+    </label>
+    <label class="cf-field">
+      <span>Message</span>
+      <textarea name="message" id="cf-message" rows="5" required></textarea>
+    </label>
+    <button type="submit" class="cf-send">Envoyer</button>
+    <p class="cf-note" id="cf-note" role="status"></p>
+  </form>
 </section>
 
 </main>
@@ -1393,6 +1458,35 @@
     window.addEventListener('resize', function(){
       clearTimeout(rt); rt = setTimeout(layoutAll, 140);
     }, {passive:true});
+  })();
+
+  /* ══════════════════════════════════════════════════════════
+     FORMULAIRE DE CONTACT
+     Site statique : le formulaire compose un message structuré et
+     l'ouvre dans le logiciel de messagerie du visiteur.
+     ══════════════════════════════════════════════════════════ */
+  (function(){
+    var f = document.getElementById('cform');
+    if(!f) return;
+    var note = document.getElementById('cf-note');
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var nom = document.getElementById('cf-nom').value.trim();
+      var mail = document.getElementById('cf-email').value.trim();
+      var objet = document.getElementById('cf-objet').value;
+      var msg = document.getElementById('cf-message').value.trim();
+      if(!nom || !mail || !msg){
+        note.textContent = 'Merci de remplir votre nom, votre email et votre message.';
+        note.classList.add('err'); return;
+      }
+      note.classList.remove('err');
+      var corps = msg + '\n\n— ' + nom + ' (' + mail + ')';
+      var href = 'mailto:patricia.veranneman@gmail.com'
+               + '?subject=' + encodeURIComponent('[Site] ' + objet + ' — ' + nom)
+               + '&body=' + encodeURIComponent(corps);
+      note.textContent = 'Votre logiciel de messagerie va s\'ouvrir avec le message pré-rempli.';
+      window.location.href = href;
+    });
   })();
 
   /* ══════════════════════════════════════════════════════════
