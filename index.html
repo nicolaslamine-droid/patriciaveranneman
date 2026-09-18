@@ -162,6 +162,20 @@
   /* ── BARRE DE PROGRESSION ── */
   #prog{position:fixed;top:0;left:0;height:2px;width:0;background:var(--gold);z-index:300;transition:width .1s linear}
 
+  /* ── BASCULE DE LANGUE ── */
+  .lang{
+    position:relative;z-index:1;
+    font-size:.6rem;letter-spacing:.18em;font-weight:400;
+    color:#fff;opacity:.6;
+    border:1px solid rgba(255,255,255,.35);
+    padding:0 .7rem;min-height:30px;margin-left:2rem;
+    display:inline-flex;align-items:center;
+    transition:opacity .2s,border-color .3s,color .3s,background .2s;
+  }
+  .lang:hover{opacity:1;background:rgba(255,255,255,.12)}
+  nav.solid .lang{color:var(--k);border-color:var(--line);opacity:.65}
+  nav.solid .lang:hover{opacity:1;background:var(--warm)}
+
   /* Hamburger : zone cliquable 44×44px réelle */
   .nbtn{
     display:none;flex-direction:column;justify-content:center;align-items:center;
@@ -629,6 +643,7 @@
   @media(max-width:900px){
     .nlinks{display:none}
     .nbtn{display:flex}
+    .lang{margin-left:0;margin-right:1rem}
     .wgrid,.cgrid{--cols:2;--gap:2rem;padding:0 2rem}
     .expo{grid-template-columns:1fr}
     .etxt{border-left:none;border-top:1px solid var(--line);padding:3rem 2rem}
@@ -725,7 +740,7 @@
 </head>
 <body>
 
-<a href="#main" class="skip">Aller au contenu</a>
+<a href="#main" class="skip" data-en="Skip to content">Aller au contenu</a>
 
 <div id="cur" aria-hidden="true"></div>
 <div id="prog" aria-hidden="true"></div>
@@ -734,20 +749,21 @@
 <nav aria-label="Navigation principale">
   <a href="#" class="nlogo" aria-label="Patricia Veranneman — Accueil">Patricia Veranneman</a>
   <ul class="nlinks">
-    <li><a href="#peintures">Peintures</a></li>
-    <li><a href="#ceramiques">Céramiques</a></li>
+    <li><a href="#peintures" data-en="Paintings">Peintures</a></li>
+    <li><a href="#ceramiques" data-en="Ceramics">Céramiques</a></li>
     <li><a href="#expositions">Expositions</a></li>
     <li><a href="#apropos">À propos</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="lang" id="lang" type="button" aria-label="Switch to English" title="English">EN</button>
   <button class="nbtn" id="nbtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nmenu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <div class="nmenu" id="nmenu" role="navigation" aria-label="Menu mobile" aria-hidden="true">
-  <a href="#peintures" class="nmlink">Peintures</a>
-  <a href="#ceramiques" class="nmlink">Céramiques</a>
+  <a href="#peintures" class="nmlink" data-en="Paintings">Peintures</a>
+  <a href="#ceramiques" class="nmlink" data-en="Ceramics">Céramiques</a>
   <a href="#expositions" class="nmlink">Expositions</a>
   <a href="#apropos" class="nmlink">À propos</a>
   <a href="#contact" class="nmlink">Contact</a>
@@ -760,9 +776,9 @@
   <div class="hero-bg" role="img" aria-label="Le Feu — sphère en grès émaillé de Patricia Veranneman"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hsup">Peinture &amp; Céramique · Belgique</p>
+    <p class="hsup" data-en="Painting &amp; Ceramics · Belgium">Peinture &amp; Céramique · Belgique</p>
     <h1 class="hh1">Patricia<br>Veranne<em>man</em></h1>
-    <p class="hbio">Artiste belge, Patricia Veranneman travaille la peinture et la céramique à partir de ce qui a déjà vécu&nbsp;— une photographie ancienne, un objet oublié, un fragment de mémoire&nbsp;— qu'elle déplace et recompose jusqu'à devenir autre chose.</p>
+    <p class="hbio" data-en="A Belgian artist, Patricia Veranneman works in painting and ceramics from what has already lived&nbsp;— an old photograph, a forgotten object, a fragment of memory&nbsp;— which she displaces and recomposes until it becomes something else.">Artiste belge, Patricia Veranneman travaille la peinture et la céramique à partir de ce qui a déjà vécu&nbsp;— une photographie ancienne, un objet oublié, un fragment de mémoire&nbsp;— qu'elle déplace et recompose jusqu'à devenir autre chose.</p>
     <div class="htags" aria-label="Techniques">
       <span class="htag">Grès émaillé</span>
       <span class="htag">Acrylique</span>
@@ -770,7 +786,7 @@
       <span class="htag">Grès</span>
     </div>
   </div>
-  <div class="hscr" aria-hidden="true"><div class="vl"></div><span>Défiler</span></div>
+  <div class="hscr" aria-hidden="true"><div class="vl"></div><span data-en="Scroll">Défiler</span></div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -783,16 +799,16 @@
       <div class="io">
         <img width="530" height="800" src="images/Joie_de_la_mer.JPG" alt="Joie de la mer — détail" loading="lazy" decoding="async">
       </div>
-      <span class="iolab">01 · Peinture · Joie de la mer</span>
+      <span class="iolab" data-en="01 · Painting · Joie de la mer">01 · Peinture · Joie de la mer</span>
     </div>
 
     <div class="intro-center">
-      <p class="imanif">Entre mémoire &amp; matière</p>
-      <p class="iquote">Le temps n'est jamais figé&nbsp;: il se dépose, se fissure, se transforme et <em>recommence</em>.</p>
+      <p class="imanif" data-en="Between memory &amp; matter">Entre mémoire &amp; matière</p>
+      <p class="iquote" data-en="Time is never fixed: it settles, it cracks, it transforms and <em>begins again</em>.">Le temps n'est jamais figé&nbsp;: il se dépose, se fissure, se transforme et <em>recommence</em>.</p>
       <div class="istats" aria-label="Chiffres clés">
-        <div class="istat"><span class="n">42</span><span class="l">Peintures</span></div>
-        <div class="istat"><span class="n">32</span><span class="l">Céramiques</span></div>
-        <div class="istat"><span class="n">3</span><span class="l">Techniques</span></div>
+        <div class="istat"><span class="n">42</span><span class="l" data-en="Paintings">Peintures</span></div>
+        <div class="istat"><span class="n">32</span><span class="l" data-en="Ceramics">Céramiques</span></div>
+        <div class="istat"><span class="n">3</span><span class="l" data-en="Techniques">Techniques</span></div>
       </div>
     </div>
 
@@ -800,7 +816,7 @@
       <div class="io">
         <img width="1500" height="2000" src="images/Elle_brule_planete_B.jpg" alt="Elle brûle ! Il n'y a pas de planète B" loading="lazy" decoding="async">
       </div>
-      <span class="iolab">02 · Céramique · Elle brûle&nbsp;!</span>
+      <span class="iolab" data-en="02 · Ceramic · Elle brûle!">02 · Céramique · Elle brûle&nbsp;!</span>
     </div>
 
   </div>
@@ -825,17 +841,17 @@
      ═══════════════════════════════════════════════════════════ -->
 <section aria-labelledby="peintures-title">
 <div class="sh" id="peintures">
-  <div><span class="snum">01 — Peintures</span><h2 class="stitle" id="peintures-title">Galerie de <em>peintures</em></h2></div>
-  <div class="shint">Acrylique · Dessin<br>42 œuvres</div>
+  <div><span class="snum" data-en="01 — Paintings">01 — Peintures</span><h2 class="stitle" id="peintures-title" data-en="<em>Paintings</em>">Galerie de <em>peintures</em></h2></div>
+  <div class="shint" data-en="Acrylic · Drawing<br>42 works">Acrylique · Dessin<br>42 œuvres</div>
 </div>
 
 <div class="tabs" role="tablist" aria-label="Filtres">
   <div class="tabs-inner">
-    <button class="fb on" data-f="all" role="tab" aria-selected="true">Tout</button>
-    <button class="fb" data-f="enfance" role="tab" aria-selected="false">Enfance &amp; famille</button>
-    <button class="fb" data-f="lieu" role="tab" aria-selected="false">Lieux &amp; lumière</button>
-    <button class="fb" data-f="dessin" role="tab" aria-selected="false">Dessins</button>
-    <button class="fb" data-f="portrait" role="tab" aria-selected="false">Portraits</button>
+    <button class="fb on" data-f="all" role="tab" aria-selected="true" data-en="All">Tout</button>
+    <button class="fb" data-f="enfance" role="tab" aria-selected="false" data-en="Childhood &amp; family">Enfance &amp; famille</button>
+    <button class="fb" data-f="lieu" role="tab" aria-selected="false" data-en="Places &amp; light">Lieux &amp; lumière</button>
+    <button class="fb" data-f="dessin" role="tab" aria-selected="false" data-en="Drawings">Dessins</button>
+    <button class="fb" data-f="portrait" role="tab" aria-selected="false" data-en="Portraits">Portraits</button>
   </div>
 </div>
 
@@ -844,177 +860,177 @@
   <!-- ── ENFANCE & FAMILLE ── -->
   <article id="w-joie-de-la-mer" class="work" data-c="enfance">
     <div class="wimg"><img width="530" height="800" src="images/Joie_de_la_mer.JPG" alt="Joie de la mer" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Joie de la mer</span><span class="wm">Acrylique</span><span class="wd">Rire d'enfant sur la plage, reflets bleutés.</span></div>
+    <div class="wcap"><span class="wt">Joie de la mer</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="A child laughing on the beach, blue reflections.">Rire d'enfant sur la plage, reflets bleutés.</span></div>
   </article>
   <article id="w-run" class="work wide" data-c="enfance">
     <div class="wimg"><img width="2000" height="1376" src="images/Run.jpg" alt="Run" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Run</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Run</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-children" class="work" data-c="enfance">
     <div class="wimg"><img width="2000" height="1387" src="images/1_Children.jpg" alt="Children" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Children</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Children</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-le-manege" class="work" data-c="enfance">
     <div class="wimg"><img width="788" height="800" src="images/Le_man%C3%A8ge.JPG" alt="Le manège" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Le manège</span><span class="wm">Acrylique</span><span class="wd">Petite voiture rouge, n°6, tour de manège.</span></div>
+    <div class="wcap"><span class="wt">Le manège</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="Little red car, no. 6, a turn on the carousel.">Petite voiture rouge, n°6, tour de manège.</span></div>
   </article>
   <article id="w-papa-et-fils-plage" class="work" data-c="enfance">
     <div class="wimg"><img width="1892" height="1346" src="images/Papa_et_fils_plage.jpg" alt="Papa et fils — plage" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Papa et fils — plage</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Papa et fils — plage</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-where-are-we-going-dad" class="work" data-c="enfance">
     <div class="wimg"><img width="1487" height="1888" src="images/Where_are_we_going_Dad_.jpg" alt="Where are we going, Dad?" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Where are we going, Dad?</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Where are we going, Dad?</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-hiver-aux-etangs-d-ixelles" class="work wide" data-c="enfance">
     <div class="wimg"><img width="781" height="800" src="images/Hiver_etangs_d_Ixelles_1.JPG" alt="Hiver aux étangs d'Ixelles" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Hiver aux étangs d'Ixelles</span><span class="wm">Acrylique</span><span class="wd">Enfant en manteau bleu, canards, lumière d'hiver.</span></div>
+    <div class="wcap"><span class="wt">Hiver aux étangs d'Ixelles</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="Child in a blue coat, ducks, winter light.">Enfant en manteau bleu, canards, lumière d'hiver.</span></div>
   </article>
   <article id="w-hiver-aux-etangs-d-ixelles-ii" class="work" data-c="enfance">
     <div class="wimg"><img width="534" height="800" src="images/Hiver_Etangs_d_Ixelles.JPG" alt="Hiver aux étangs d'Ixelles II" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Hiver aux étangs d'Ixelles II</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Hiver aux étangs d'Ixelles II</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-in-the-arms" class="work" data-c="enfance">
     <div class="wimg"><img width="1368" height="1902" src="images/In_the_arms__.jpg" alt="In the Arms" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">In the Arms</span><span class="wm">Acrylique</span><span class="wd">Enfant dans les bras, chaussons rouges.</span></div>
+    <div class="wcap"><span class="wt">In the Arms</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="A child in her arms, red slippers.">Enfant dans les bras, chaussons rouges.</span></div>
   </article>
   <article id="w-automne-a-l-abbaye-de-la-cambre" class="work" data-c="enfance">
     <div class="wimg"><img width="534" height="800" src="images/Automne_Cambre.JPG" alt="Automne à l'Abbaye de la Cambre" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Automne à l'Abbaye de la Cambre</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Automne à l'Abbaye de la Cambre</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-le-transat" class="work" data-c="enfance">
     <div class="wimg"><img width="789" height="800" src="images/Le_transat.JPG" alt="Le transat" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Le transat</span><span class="wm">Acrylique</span><span class="wd">Mère et fille, après-midi au soleil.</span></div>
+    <div class="wcap"><span class="wt">Le transat</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="Mother and daughter, an afternoon in the sun.">Mère et fille, après-midi au soleil.</span></div>
   </article>
   <article id="w-confidences" class="work" data-c="enfance">
     <div class="wimg"><img width="1414" height="1754" src="images/Confidences.jpg" alt="Confidences" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Confidences</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Confidences</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-je-m-informe" class="work" data-c="enfance">
     <div class="wimg"><img width="783" height="800" src="images/Je_m_informe.JPG" alt="Je m'informe" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Je m'informe</span><span class="wm">Acrylique</span><span class="wd">Enfant lisant le journal, intérieur rose.</span></div>
+    <div class="wcap"><span class="wt">Je m'informe</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="A child reading the paper, pink interior.">Enfant lisant le journal, intérieur rose.</span></div>
   </article>
   <article id="w-voiture-patricia-raymond" class="work" data-c="enfance">
     <div class="wimg"><img width="1843" height="1389" src="images/Voiture_Patricia_Raymond1.jpg" alt="Voiture — Patricia & Raymond" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Voiture — Patricia &amp; Raymond</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Voiture — Patricia &amp; Raymond</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
 
   <!-- ── LIEUX & LUMIÈRE ── -->
   <article id="w-tempete" class="work wide" data-c="lieu">
     <div class="wimg"><img width="1703" height="1420" src="images/Temp%C3%AAte.jpg" alt="Tempête" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Tempête</span><span class="wm">Acrylique</span><span class="wd">Grande toile graphique.</span></div>
+    <div class="wcap"><span class="wt">Tempête</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="Large graphic canvas.">Grande toile graphique.</span></div>
   </article>
   <article id="w-look-d-apres-turner" class="work" data-c="lieu">
     <div class="wimg"><img width="1326" height="2000" src="images/Look____Turner_.jpg" alt="Look — d'après Turner" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Look — d'après Turner</span><span class="wm">Pastel</span><span class="wd">Coucher de soleil sur la mer, d'après William Turner.</span></div>
+    <div class="wcap"><span class="wt">Look — d'après Turner</span><span class="wm" data-en="Pastel">Pastel</span><span class="wd" data-en="Sunset over the sea, after William Turner.">Coucher de soleil sur la mer, d'après William Turner.</span></div>
   </article>
   <article id="w-vue-sur-mer" class="work" data-c="lieu">
     <div class="wimg"><img width="800" height="660" src="images/Vue_sur_mer.JPG" alt="Vue sur mer" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Vue sur mer</span><span class="wm">Acrylique</span><span class="wd">D'après E.&nbsp;Hopper.</span></div>
+    <div class="wcap"><span class="wt">Vue sur mer</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="After E.&nbsp;Hopper.">D'après E.&nbsp;Hopper.</span></div>
   </article>
   <article id="w-fenetre" class="work" data-c="lieu">
     <div class="wimg"><img width="800" height="566" src="images/Fen%C3%AAtre.JPG" alt="Fenêtre" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Fenêtre</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Fenêtre</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-lln-bibliotheque" class="work" data-c="lieu">
     <div class="wimg"><img width="788" height="800" src="images/LLN_Biblioth%C3%A8que.JPG" alt="LLN — Bibliothèque" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">LLN — Bibliothèque</span><span class="wm">Acrylique</span><span class="wd">Architecture de Louvain-la-Neuve, perspectives géométriques.</span></div>
+    <div class="wcap"><span class="wt">LLN — Bibliothèque</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="The architecture of Louvain-la-Neuve, geometric perspectives.">Architecture de Louvain-la-Neuve, perspectives géométriques.</span></div>
   </article>
   <article id="w-lln-musee-herge" class="work" data-c="lieu">
     <div class="wimg"><img width="800" height="796" src="images/LLN_Mus%C3%A9e_Herg%C3%A9.JPG" alt="LLN — Musée Hergé" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">LLN — Musée Hergé</span><span class="wm">Acrylique</span><span class="wd">Façade du musée, clins d'œil à l'univers de Tintin.</span></div>
+    <div class="wcap"><span class="wt">LLN — Musée Hergé</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="The museum façade, with nods to the world of Tintin.">Façade du musée, clins d'œil à l'univers de Tintin.</span></div>
   </article>
   <article id="w-in-the-dark" class="work" data-c="lieu">
     <div class="wimg"><img width="1350" height="2000" src="images/In_the_dark.jpg" alt="In the Dark" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">In the Dark</span><span class="wm">Acrylique</span><span class="wd">Lumière dans l'obscurité, porte entrouverte.</span></div>
+    <div class="wcap"><span class="wt">In the Dark</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="Light in the darkness, a door ajar.">Lumière dans l'obscurité, porte entrouverte.</span></div>
   </article>
   <article id="w-wall-street" class="work" data-c="lieu">
     <div class="wimg"><img width="1383" height="1824" src="images/Wall_Street.JPG" alt="Wall Street" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Wall Street</span><span class="wm">Acrylique</span><span class="wd">Cela va mal se terminer&nbsp;!</span></div>
+    <div class="wcap"><span class="wt">Wall Street</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="This will end badly!">Cela va mal se terminer&nbsp;!</span></div>
   </article>
   <article id="w-prend-le-train-de-la-vie" class="work" data-c="lieu">
     <div class="wimg"><img width="2000" height="1326" src="images/Prend_le_train_de_la_vie__.jpg" alt="Prend le train de la vie" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Prend le train de la vie</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Prend le train de la vie</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-against-evil" class="work" data-c="lieu">
     <div class="wimg"><img width="1931" height="1366" src="images/Against_Evil.JPG" alt="Against Evil" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Against Evil</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Against Evil</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
 
   <!-- ── DESSINS ── -->
   <article id="w-danse" class="work" data-c="dessin">
     <div class="wimg"><img width="1370" height="2000" src="images/dance.jpg" alt="Danse" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Danse</span><span class="wm">Dessin · Fusain</span></div>
+    <div class="wcap"><span class="wt">Danse</span><span class="wm" data-en="Drawing · Charcoal">Dessin · Fusain</span></div>
   </article>
   <article id="w-nu" class="work" data-c="dessin">
     <div class="wimg"><img width="1460" height="1985" src="images/nake.jpg" alt="Nu" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Nu</span><span class="wm">Dessin · Fusain</span></div>
+    <div class="wcap"><span class="wt">Nu</span><span class="wm" data-en="Drawing · Charcoal">Dessin · Fusain</span></div>
   </article>
   <article id="w-pommes" class="work" data-c="dessin">
     <div class="wimg"><img width="1431" height="1748" src="images/pommes.JPG" alt="Pommes" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Pommes</span><span class="wm">Dessin · Fusain</span></div>
+    <div class="wcap"><span class="wt">Pommes</span><span class="wm" data-en="Drawing · Charcoal">Dessin · Fusain</span></div>
   </article>
 
   <!-- ── PORTRAITS (EN FIN DE LISTE) ── -->
   <article id="w-zhaoui" class="work wide" data-c="portrait">
     <div class="wimg"><img width="1359" height="1937" src="images/Zhaoui.jpg" alt="Zhaoui" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Zhaoui</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Zhaoui</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-vieux-couple" class="work" data-c="enfance">
     <div class="wimg"><img width="1933" height="1489" src="images/Old_couple.jpg" alt="Vieux couple" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Vieux couple</span><span class="wm">Acrylique</span><span class="wd">Deux visages enlacés.</span></div>
+    <div class="wcap"><span class="wt">Vieux couple</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="Two faces entwined.">Deux visages enlacés.</span></div>
   </article>
   <article id="w-guillaume" class="work" data-c="portrait">
     <div class="wimg"><img width="532" height="800" src="images/Guillaume.JPG" alt="Guillaume" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Guillaume</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Guillaume</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-johanna" class="work" data-c="portrait">
     <div class="wimg"><img width="735" height="960" src="images/Johanna.jpg" alt="Johanna" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Johanna</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Johanna</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-stephanie" class="work" data-c="portrait">
     <div class="wimg"><img width="2000" height="1326" src="images/St%C3%A9phanie1.jpg" alt="Stéphanie" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Stéphanie</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Stéphanie</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-patricia-et-stephanie" class="work" data-c="portrait">
     <div class="wimg"><img width="1827" height="1444" src="images/Patricia_et_St%C3%A9phanie.jpg" alt="Patricia et Stéphanie" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Patricia et Stéphanie</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Patricia et Stéphanie</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-nicolas" class="work" data-c="portrait">
     <div class="wimg"><img width="2000" height="1326" src="images/Nicolas.jpg" alt="Nicolas" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Nicolas</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Nicolas</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-laetitia" class="work" data-c="portrait">
     <div class="wimg"><img width="1348" height="2000" src="images/Laetitia.jpg" alt="Laetitia" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Laetitia</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Laetitia</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-fils-et-vieux-pere" class="work" data-c="portrait">
     <div class="wimg"><img width="1905" height="1444" src="images/Fils_et_vieux_p%C3%A8re.jpg" alt="Fils et vieux père" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Fils et vieux père</span><span class="wm">Acrylique</span><span class="wd">Deux générations, tendresse du geste.</span></div>
+    <div class="wcap"><span class="wt">Fils et vieux père</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="Two generations, tenderness in the gesture.">Deux générations, tendresse du geste.</span></div>
   </article>
   <article id="w-pere-francois" class="work" data-c="portrait">
     <div class="wimg"><img width="800" height="800" src="images/P%C3%A8re_Fran%C3%A7ois.JPG" alt="Père François" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Père François</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Père François</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-raymond-veranneman-de-watervliet" class="work" data-c="portrait">
     <div class="wimg"><img width="1368" height="1709" src="images/Raymond_Veranneman_de_Watervliet.JPG" alt="Raymond Veranneman de Watervliet" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Raymond Veranneman de Watervliet</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Raymond Veranneman de Watervliet</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-suzy-paternotte" class="work" data-c="portrait">
     <div class="wimg"><img width="1409" height="1734" src="images/1_Suzy_Paternotte.jpg" alt="Suzy Paternotte" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Suzy Paternotte</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Suzy Paternotte</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-jean-charles-veranneman-de-watervliet" class="work" data-c="portrait">
     <div class="wimg"><img width="1452" height="2000" src="images/EAJean-Charles_Veranneman_de_Watervliet.JPG" alt="Jean-Charles Veranneman de Watervliet" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Jean-Charles Veranneman de Watervliet</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Jean-Charles Veranneman de Watervliet</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-emerences-pardo-de-fremicourt" class="work" data-c="portrait">
     <div class="wimg"><img width="1326" height="2000" src="images/Emerence_Pardo_de_Fremicourt.JPG" alt="Émérences Pardo de Frémicourt" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Émérences Pardo de Frémicourt</span><span class="wm">Acrylique</span></div>
+    <div class="wcap"><span class="wt">Émérences Pardo de Frémicourt</span><span class="wm" data-en="Acrylic">Acrylique</span></div>
   </article>
   <article id="w-jesus-et-l-oiseau" class="work" data-c="portrait">
     <div class="wimg"><img width="1455" height="1843" src="images/Jesus_and_the_bird__Murillo_.jpg" alt="Jésus et l'oiseau" loading="lazy" decoding="async"></div>
-    <div class="wcap"><span class="wt">Jésus et l'oiseau</span><span class="wm">Acrylique</span><span class="wd">Scène religieuse tendre, d'après le maître sévillan.</span></div>
+    <div class="wcap"><span class="wt">Jésus et l'oiseau</span><span class="wm" data-en="Acrylic">Acrylique</span><span class="wd" data-en="A tender religious scene, after the master of Seville.">Scène religieuse tendre, d'après le maître sévillan.</span></div>
   </article>
 
 </div>
@@ -1025,139 +1041,139 @@
      ═══════════════════════════════════════════════════════════ -->
 <section aria-labelledby="ceramiques-title">
 <div class="sh" id="ceramiques">
-  <div><span class="snum">02 — Céramiques</span><h2 class="stitle" id="ceramiques-title">Galerie de <em>céramiques</em></h2></div>
-  <div class="shint">Grès &amp; grès émaillé<br>32 œuvres</div>
+  <div><span class="snum" data-en="02 — Ceramics">02 — Céramiques</span><h2 class="stitle" id="ceramiques-title" data-en="<em>Ceramics</em>">Galerie de <em>céramiques</em></h2></div>
+  <div class="shint" data-en="Stoneware &amp; glazed stoneware<br>32 works">Grès &amp; grès émaillé<br>32 œuvres</div>
 </div>
 
 <div class="cgrid">
 
   <article id="w-elle-brule-il-n-y-a-pas-de-planete-b" class="cwork">
     <div class="cwimg"><img width="1500" height="2000" src="images/Elle_brule_planete_B.jpg" alt="Elle brûle&nbsp;! Il n'y a pas de planète B" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Elle brûle&nbsp;! Il n'y a pas de planète B</span><span class="wm">Grès émaillé</span><span class="wd">Le globe en équilibre sur une structure ouverte.</span></div>
+    <div class="ccap"><span class="wt">Elle brûle&nbsp;! Il n'y a pas de planète B</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span><span class="wd" data-en="The globe balanced on an open structure.">Le globe en équilibre sur une structure ouverte.</span></div>
   </article>
   <article id="w-jesus-calme-la-tempete" class="cwork">
     <div class="cwimg"><img width="941" height="2000" src="images/Jesus_calme_la_tempete.jpg" alt="Jésus calme la tempête" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Jésus calme la tempête</span><span class="wm">Grès émaillé</span><span class="wd">Bas-relief&nbsp;: «&nbsp;N'ayez pas peur&nbsp;!&nbsp;»</span></div>
+    <div class="ccap"><span class="wt">Jésus calme la tempête</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span><span class="wd" data-en="Bas-relief: &ldquo;Be not afraid!&rdquo;">Bas-relief&nbsp;: «&nbsp;N'ayez pas peur&nbsp;!&nbsp;»</span></div>
   </article>
   <article id="w-guernica-gaza-kharkiv" class="cwork">
     <div class="cwimg"><img width="1500" height="2000" src="images/Guernica_Gaza_Kharkiv.jpg" alt="Guernica, Gaza, Kharkiv" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Guernica, Gaza, Kharkiv</span><span class="wm">Grès émaillé</span><span class="wd">D'après Picasso.</span></div>
+    <div class="ccap"><span class="wt">Guernica, Gaza, Kharkiv</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span><span class="wd" data-en="After Picasso.">D'après Picasso.</span></div>
   </article>
   <article id="w-envole-toi" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/Envole_toi.jpg" alt="Envole-toi" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Envole-toi</span><span class="wm">Grès</span></div>
+    <div class="ccap"><span class="wt">Envole-toi</span><span class="wm" data-en="Stoneware">Grès</span></div>
   </article>
   <article id="w-dans-la-lune" class="cwork w2">
     <div class="cwimg"><img width="2000" height="1333" src="images/Dans_la_lune.jpg" alt="Dans la lune" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Dans la lune</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Dans la lune</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-le-heaume" class="cwork">
     <div class="cwimg"><img width="1333" height="2000" src="images/Le_Heaume.jpg" alt="Le Heaume" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Le Heaume</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Le Heaume</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-le-pied" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/Le_pied.jpg" alt="Le pied&nbsp;!" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Le pied&nbsp;!</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Le pied&nbsp;!</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-lutte-de-pouvoir" class="cwork">
     <div class="cwimg"><img width="1615" height="2000" src="images/Lutte_de_pouvoir_1.jpg" alt="Lutte de pouvoir" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Lutte de pouvoir</span><span class="wm">Grès émaillé</span><span class="wd">Deux figures debout, face à face.</span></div>
+    <div class="ccap"><span class="wt">Lutte de pouvoir</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span><span class="wd" data-en="Two standing figures, face to face.">Deux figures debout, face à face.</span></div>
   </article>
   <article id="w-trois-points-d-appui" class="cwork">
     <div class="cwimg"><img width="1333" height="2000" src="images/Trois_points_d_appui.jpg" alt="Trois points d'appui" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Trois points d'appui</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Trois points d'appui</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-vase-1" class="cwork">
     <div class="cwimg"><img width="1914" height="2000" src="images/Vase_1.jpg" alt="Vase 1" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Vase 1</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Vase 1</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-vase-2" class="cwork">
     <div class="cwimg"><img width="1024" height="912" src="images/Vase_2.jpg" alt="Vase 2" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Vase 2</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Vase 2</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-unite-dans-la-diversite" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/Unite_dans_la_diversite.jpg" alt="Unité dans la diversité" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Unité dans la diversité</span><span class="wm">Grès</span><span class="wd">Trois pots couverts.</span></div>
+    <div class="ccap"><span class="wt">Unité dans la diversité</span><span class="wm" data-en="Stoneware">Grès</span><span class="wd" data-en="Three lidded jars.">Trois pots couverts.</span></div>
   </article>
   <article id="w-plat-bleu" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/Plat_bleu.jpg" alt="Plat bleu" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Plat bleu</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Plat bleu</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-plat-triangulaire" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/Plat_triangulaire.jpg" alt="Plat triangulaire" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Plat triangulaire</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Plat triangulaire</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-la-vague" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/La_vague.jpg" alt="La vague" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">La vague</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">La vague</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-boucle-rouge" class="cwork w2">
     <div class="cwimg"><img width="2000" height="1333" src="images/Boucle_rouge.jpg" alt="Boucle rouge" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Boucle rouge</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Boucle rouge</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-collier" class="cwork w2">
     <div class="cwimg"><img width="2000" height="1333" src="images/Collier.jpg" alt="Collier" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Collier</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Collier</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-bobeches" class="cwork">
     <div class="cwimg"><img width="1333" height="2000" src="images/Bobeches.jpg" alt="Bobèches" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Bobèches</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Bobèches</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-applique" class="cwork">
     <div class="cwimg"><img width="1333" height="2000" src="images/Applique_new.jpg" alt="Applique" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Applique</span><span class="wm">Grès</span><span class="wd">Luminaire mural.</span></div>
+    <div class="ccap"><span class="wt">Applique</span><span class="wm" data-en="Stoneware">Grès</span><span class="wd" data-en="Wall light.">Luminaire mural.</span></div>
   </article>
   <article id="w-serre-livres" class="cwork">
     <div class="cwimg"><img width="1484" height="1644" src="images/Serre_livres.jpg" alt="Serre-livres" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Serre-livres</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Serre-livres</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-essai-a-l-echelle-0-5-pour-la-chapelle" class="cwork">
     <div class="cwimg"><img width="1333" height="2000" src="images/Essai_chapelle.jpg" alt="Essai à l'échelle 0,5 pour la chapelle" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Essai à l'échelle 0,5 pour la chapelle</span><span class="wm">Grès</span><span class="wd">Maquette d'étude.</span></div>
+    <div class="ccap"><span class="wt">Essai à l'échelle 0,5 pour la chapelle</span><span class="wm" data-en="Stoneware">Grès</span><span class="wd" data-en="Study model.">Maquette d'étude.</span></div>
   </article>
   <article id="w-l-enfant-qui-dort" class="cwork w2">
     <div class="cwimg"><img width="2000" height="1333" src="images/L_enfant_qui_dort.JPG" alt="L'enfant qui dort" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">L'enfant qui dort</span><span class="wm">Grès</span><span class="wd">Visage paisible, modelé à même la terre.</span></div>
+    <div class="ccap"><span class="wt">L'enfant qui dort</span><span class="wm" data-en="Stoneware">Grès</span><span class="wd" data-en="A peaceful face, modelled straight into the clay.">Visage paisible, modelé à même la terre.</span></div>
   </article>
   <article id="w-toucher-la-lune" class="cwork">
     <div class="cwimg"><img width="1500" height="2000" src="images/Toucher_la_lune.jpeg" alt="Toucher la lune" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Toucher la lune</span><span class="wm">Grès émaillé</span><span class="wd">Enfant tendant la main vers l'astre.</span></div>
+    <div class="ccap"><span class="wt">Toucher la lune</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span><span class="wd" data-en="A child reaching out towards the moon.">Enfant tendant la main vers l'astre.</span></div>
   </article>
   <article id="w-bougeoir" class="cwork">
     <div class="cwimg"><img width="1500" height="2000" src="images/Bougeoir.jpeg" alt="Bougeoir" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Bougeoir</span><span class="wm">Grès émaillé</span><span class="wd">Plaque pliée, flamme en son centre.</span></div>
+    <div class="ccap"><span class="wt">Bougeoir</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span><span class="wd" data-en="A folded slab, a flame at its centre.">Plaque pliée, flamme en son centre.</span></div>
   </article>
   <article id="w-dechirement" class="cwork">
     <div class="cwimg"><img width="1500" height="2000" src="images/Dechirement.jpeg" alt="Déchirement" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Déchirement</span><span class="wm">Grès émaillé</span><span class="wd">Figure repliée sur elle-même.</span></div>
+    <div class="ccap"><span class="wt">Déchirement</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span><span class="wd" data-en="A figure folded in on itself.">Figure repliée sur elle-même.</span></div>
   </article>
   <article id="w-l-enfant-au-chapeau" class="cwork">
     <div class="cwimg"><img width="1500" height="2000" src="images/L_enfant_au_chapeau.jpeg" alt="L'enfant au chapeau" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">L'enfant au chapeau</span><span class="wm">Grès</span><span class="wd">Étude d'un visage à l'ombre d'un large bord.</span></div>
+    <div class="ccap"><span class="wt">L'enfant au chapeau</span><span class="wm" data-en="Stoneware">Grès</span><span class="wd" data-en="Study of a face in the shade of a wide brim.">Étude d'un visage à l'ombre d'un large bord.</span></div>
   </article>
   <article id="w-rinceaux" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/DSC_0027__2_.JPG" alt="Rinceaux" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Rinceaux</span><span class="wm">Grès</span></div>
+    <div class="ccap"><span class="wt">Rinceaux</span><span class="wm" data-en="Stoneware">Grès</span></div>
   </article>
   <article id="w-empathie" class="cwork">
     <div class="cwimg"><img width="2000" height="2000" src="images/Empathie_.jpg" alt="Empathie" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Empathie</span><span class="wm">Grès</span></div>
+    <div class="ccap"><span class="wt">Empathie</span><span class="wm" data-en="Stoneware">Grès</span></div>
   </article>
   <article id="w-provence" class="cwork">
     <div class="cwimg"><img width="1500" height="2000" src="images/Provence.jpeg" alt="Provence" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Provence</span><span class="wm">Grès émaillé</span><span class="wd">Double vase incisé.</span></div>
+    <div class="ccap"><span class="wt">Provence</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span><span class="wd" data-en="Double incised vase.">Double vase incisé.</span></div>
   </article>
   <article id="w-lumiere-bleue" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/DSC_0070.JPG" alt="Lumière bleue" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Lumière bleue</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Lumière bleue</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-globe" class="cwork">
     <div class="cwimg"><img width="1500" height="2000" src="images/Globe.jpeg" alt="Globe" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Globe</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Globe</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-pilastre" class="cwork">
     <div class="cwimg"><img width="1500" height="2000" src="images/Pilastre.jpeg" alt="Pilastre" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Pilastre</span><span class="wm">Grès émaillé</span><span class="wd">Boule posée sur socle, vue en galerie.</span></div>
+    <div class="ccap"><span class="wt">Pilastre</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span><span class="wd" data-en="Sphere on a plinth, seen in the gallery.">Boule posée sur socle, vue en galerie.</span></div>
   </article>
 
 </div>
@@ -1167,10 +1183,10 @@
 <section class="expo" id="expositions" aria-labelledby="expo-title">
   <div class="eimg"><img width="1500" height="2000" src="images/expo_Den_Blank_l_Air.jpg" alt="Exposition Den Blank — installation céramique" loading="lazy" decoding="async"></div>
   <div class="etxt">
-    <span class="snum">03 — Expositions</span>
-    <h2 class="stitle" id="expo-title">En <em>espace</em> public</h2>
-    <p>Peintures accrochées aux cimaises, sculptures posées sur leurs socles — les œuvres de Patricia Veranneman ont été présentées dans des galeries et espaces culturels en Belgique et à l'étranger.</p>
-    <blockquote>La photographie devient peinture. Le fragment devient sculpture. La matière garde les marques de sa transformation.</blockquote>
+    <span class="snum" data-en="03 — Exhibitions">03 — Expositions</span>
+    <h2 class="stitle" id="expo-title" data-en="In <em>public</em> space">En <em>espace</em> public</h2>
+    <p data-en="Paintings on the walls, sculptures on their plinths — Patricia Veranneman's work has been shown in galleries and cultural venues in Belgium and abroad.">Peintures accrochées aux cimaises, sculptures posées sur leurs socles — les œuvres de Patricia Veranneman ont été présentées dans des galeries et espaces culturels en Belgique et à l'étranger.</p>
+    <blockquote data-en="The photograph becomes painting. The fragment becomes sculpture. The material keeps the marks of its transformation.">La photographie devient peinture. Le fragment devient sculpture. La matière garde les marques de sa transformation.</blockquote>
   </div>
 </section>
 
@@ -1178,52 +1194,52 @@
 <section class="install" aria-labelledby="install-title">
   <div class="iimg"><img width="2000" height="1333" src="images/Ensemble_de_pilastres.jpg" alt="Les quatre boules céramiques sur les pilastres de la grille" loading="lazy" decoding="async"></div>
   <div class="itxt">
-    <span class="snum">Installation in situ</span>
-    <h2 class="stitle" id="install-title">La boule<br>sur le <em>pilastre</em></h2>
-    <p>Commande spécifique et intervention dans l'espace architectural — les pièces de Patricia dialoguent avec le bâti et le paysage, investissant l'extérieur comme prolongement naturel du travail en atelier.</p>
-    <p>Quatre sphères en grès émaillé, une par élément — la Terre, l'Eau, l'Air, le Feu — posées sur les pilastres d'une grille d'entrée.</p>
+    <span class="snum" data-en="Site-specific installation">Installation in situ</span>
+    <h2 class="stitle" id="install-title" data-en="The sphere<br>on the <em>pilaster</em>">La boule<br>sur le <em>pilastre</em></h2>
+    <p data-en="Commissioned work and intervention in architectural space — Patricia's pieces converse with the building and the landscape, taking the outdoors as a natural extension of the studio.">Commande spécifique et intervention dans l'espace architectural — les pièces de Patricia dialoguent avec le bâti et le paysage, investissant l'extérieur comme prolongement naturel du travail en atelier.</p>
+    <p data-en="Four glazed stoneware spheres, one for each element — Earth, Water, Air, Fire — set on the pilasters of an entrance gate.">Quatre sphères en grès émaillé, une par élément — la Terre, l'Eau, l'Air, le Feu — posées sur les pilastres d'une grille d'entrée.</p>
   </div>
 </section>
 
 <section class="elements" aria-labelledby="elements-title">
 <div class="sh">
-  <div><span class="snum">Série · Les quatre éléments</span><h2 class="stitle" id="elements-title">La Terre, l'Eau,<br>l'Air et le <em>Feu</em></h2></div>
-  <div class="shint">Grès émaillé<br>4 sphères &amp; détails</div>
+  <div><span class="snum" data-en="Series · The four elements">Série · Les quatre éléments</span><h2 class="stitle" id="elements-title" data-en="Earth, Water,<br>Air and <em>Fire</em>">La Terre, l'Eau,<br>l'Air et le <em>Feu</em></h2></div>
+  <div class="shint" data-en="Glazed stoneware<br>4 spheres &amp; details">Grès émaillé<br>4 sphères &amp; détails</div>
 </div>
 
 <div class="cgrid">
 
   <article id="w-la-terre" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/La_Terre.jpg" alt="La Terre" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">La Terre</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">La Terre</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-la-terre-detail" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/La_Terre_detail.jpg" alt="La Terre — détail" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">La Terre — détail</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">La Terre — détail</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-l-eau" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/L_Eau.jpg" alt="L'Eau" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">L'Eau</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">L'Eau</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-l-eau-detail" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/L_Eau_detail.jpg" alt="L'Eau — détail" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">L'Eau — détail</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">L'Eau — détail</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-l-air" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/L_Air.jpg" alt="L'Air" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">L'Air</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">L'Air</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-l-air-detail" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/L_Air_detail.jpg" alt="L'Air — détail" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">L'Air — détail</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">L'Air — détail</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-le-feu" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/Le_Feu.jpg" alt="Le Feu" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Le Feu</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Le Feu</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
   <article id="w-le-feu-detail" class="cwork">
     <div class="cwimg"><img width="2000" height="1333" src="images/Le_Feu_detail.jpg" alt="Le Feu — détail" loading="lazy" decoding="async"></div>
-    <div class="ccap"><span class="wt">Le Feu — détail</span><span class="wm">Grès émaillé</span></div>
+    <div class="ccap"><span class="wt">Le Feu — détail</span><span class="wm" data-en="Glazed stoneware">Grès émaillé</span></div>
   </article>
 
 </div>
@@ -1235,26 +1251,26 @@
     <img width="200" height="200" src="images/Patricia.jpeg" alt="Patricia Veranneman — portrait photographique" loading="lazy" decoding="async">
   </div>
   <div class="atxt">
-    <span class="snum">04 — À propos</span>
+    <span class="snum" data-en="04 — About">04 — À propos</span>
     <h2 class="stitle" id="apropos-title">Patricia<br><em>Veranneman</em></h2>
-    <p>À travers la peinture et la céramique, Patricia Veranneman explore les traces du temps, les fragments de mémoire et les transformations de la matière. Son travail part souvent de ce qui existe déjà&nbsp;: une photographie ancienne, un objet oublié, un élément trouvé, une forme qui porte en elle une histoire. Ces fragments ne sont pas reproduits — ils sont déplacés, transformés, recomposés, jusqu'à devenir autre chose.</p>
-    <p>Ses peintures s'appuient parfois sur d'anciennes photographies&nbsp;: images familiales, scènes anonymes, souvenirs dont il ne reste qu'une trace. Le passage de la photographie à la peinture introduit une distance. Les contours s'effacent, des détails disparaissent&nbsp;; ce qui était une image précise devient une impression, une présence, parfois une absence.</p>
-    <p>La céramique aborde ces mêmes questions par la matière et le volume. Des éléments anciens, trouvés ou porteurs d'une histoire, sont assemblés à la terre et confrontés à une forme nouvelle&nbsp;: ni conservés intacts, ni tout à fait effacés. Les pièces portent alors plusieurs temps à la fois, entre vestige et création.</p>
+    <p data-en="Through painting and ceramics, Patricia Veranneman explores the traces of time, fragments of memory and the transformations of matter. Her work often starts from what already exists: an old photograph, a forgotten object, a found element, a form that carries a story within it. These fragments are not reproduced — they are displaced, transformed, recomposed, until they become something else.">À travers la peinture et la céramique, Patricia Veranneman explore les traces du temps, les fragments de mémoire et les transformations de la matière. Son travail part souvent de ce qui existe déjà&nbsp;: une photographie ancienne, un objet oublié, un élément trouvé, une forme qui porte en elle une histoire. Ces fragments ne sont pas reproduits — ils sont déplacés, transformés, recomposés, jusqu'à devenir autre chose.</p>
+    <p data-en="Her paintings sometimes begin from old photographs: family pictures, anonymous scenes, memories of which only a trace remains. Moving from photograph to painting introduces a distance. Outlines fade, details disappear; what was a precise image becomes an impression, a presence, sometimes an absence.">Ses peintures s'appuient parfois sur d'anciennes photographies&nbsp;: images familiales, scènes anonymes, souvenirs dont il ne reste qu'une trace. Le passage de la photographie à la peinture introduit une distance. Les contours s'effacent, des détails disparaissent&nbsp;; ce qui était une image précise devient une impression, une présence, parfois une absence.</p>
+    <p data-en="Ceramics take up these same questions through material and volume. Old elements, found or carrying a story, are joined to the clay and set against a new form: neither kept intact nor quite erased. The pieces then hold several times at once, between relic and creation.">La céramique aborde ces mêmes questions par la matière et le volume. Des éléments anciens, trouvés ou porteurs d'une histoire, sont assemblés à la terre et confrontés à une forme nouvelle&nbsp;: ni conservés intacts, ni tout à fait effacés. Les pièces portent alors plusieurs temps à la fois, entre vestige et création.</p>
     <span class="asig">Patricia Veranneman</span>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact" aria-labelledby="contact-title">
-  <span class="snum">05 — Contact</span>
-  <h2 class="cth" id="contact-title">Entrer en <em>conversation</em></h2>
+  <span class="snum" data-en="05 — Contact">05 — Contact</span>
+  <h2 class="cth" id="contact-title" data-en="Start a <em>conversation</em>">Entrer en <em>conversation</em></h2>
   <div class="ctrow">
     <a href="mailto:patricia.veranneman@gmail.com" class="ci" aria-label="Envoyer un email">
-      <span class="cil">Email</span>
+      <span class="cil" data-en="Email">Email</span>
       <span class="civ">patricia.veranneman@gmail.com</span>
     </a>
     <a href="tel:+32478683186" class="ci" aria-label="Appeler">
-      <span class="cil">Téléphone</span>
+      <span class="cil" data-en="Phone">Téléphone</span>
       <span class="civ">+32 478 68 31 86</span>
     </a>
   </div>
@@ -1262,29 +1278,29 @@
   <form class="cform" id="cform" novalidate>
     <div class="cf-row">
       <label class="cf-field">
-        <span>Votre nom</span>
+        <span data-en="Your name">Votre nom</span>
         <input type="text" name="nom" id="cf-nom" autocomplete="name" required>
       </label>
       <label class="cf-field">
-        <span>Votre email</span>
+        <span data-en="Your email">Votre email</span>
         <input type="email" name="email" id="cf-email" autocomplete="email" required>
       </label>
     </div>
     <label class="cf-field">
-      <span>Objet</span>
+      <span data-en="Subject">Objet</span>
       <select name="objet" id="cf-objet">
-        <option>Renseignement sur une œuvre</option>
-        <option>Acquisition</option>
-        <option>Exposition / invitation</option>
-        <option>Commande</option>
-        <option>Autre</option>
+        <option data-en="Enquiry about a work">Renseignement sur une œuvre</option>
+        <option data-en="Acquisition">Acquisition</option>
+        <option data-en="Exhibition / invitation">Exposition / invitation</option>
+        <option data-en="Commission">Commande</option>
+        <option data-en="Other">Autre</option>
       </select>
     </label>
     <label class="cf-field">
-      <span>Message</span>
+      <span data-en="Message">Message</span>
       <textarea name="message" id="cf-message" rows="5" required></textarea>
     </label>
-    <button type="submit" class="cf-send">Envoyer</button>
+    <button type="submit" class="cf-send" data-en="Send">Envoyer</button>
     <p class="cf-note" id="cf-note" role="status"></p>
   </form>
 </section>
@@ -1458,6 +1474,49 @@
     window.addEventListener('resize', function(){
       clearTimeout(rt); rt = setTimeout(layoutAll, 140);
     }, {passive:true});
+  })();
+
+  /* ══════════════════════════════════════════════════════════
+     BASCULE FRANÇAIS / ANGLAIS
+     Chaque élément traduit porte un attribut data-en ; le texte
+     français d'origine est mémorisé au premier basculement.
+     ══════════════════════════════════════════════════════════ */
+  (function(){
+    var btn = document.getElementById('lang');
+    if(!btn) return;
+    var TITRES = {
+      fr:'Patricia Veranneman — Peinture & Céramique',
+      en:'Patricia Veranneman — Painting & Ceramics'
+    };
+    var nodes = document.querySelectorAll('[data-en]');
+    for(var i=0;i<nodes.length;i++){ nodes[i].setAttribute('data-fr', nodes[i].innerHTML); }
+
+    function apply(lang){
+      for(var i=0;i<nodes.length;i++){
+        var v = nodes[i].getAttribute(lang === 'en' ? 'data-en' : 'data-fr');
+        if(v !== null) nodes[i].innerHTML = v;
+      }
+      document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'fr');
+      document.title = TITRES[lang] || TITRES.fr;
+      btn.textContent = lang === 'en' ? 'FR' : 'EN';
+      btn.setAttribute('aria-label', lang === 'en' ? 'Afficher en français' : 'Switch to English');
+      btn.setAttribute('title', lang === 'en' ? 'Français' : 'English');
+      try{ localStorage.setItem('pv-lang', lang); }catch(e){}
+      if(window.__relayout) setTimeout(window.__relayout, 30);
+    }
+
+    var current = 'fr';
+    try{
+      var saved = localStorage.getItem('pv-lang');
+      if(saved === 'en') current = 'en';
+      else if(!saved && (navigator.language||'').slice(0,2) !== 'fr') current = 'fr';
+    }catch(e){}
+    if(current === 'en') apply('en');
+
+    btn.addEventListener('click', function(){
+      current = (current === 'en') ? 'fr' : 'en';
+      apply(current);
+    });
   })();
 
   /* ══════════════════════════════════════════════════════════
