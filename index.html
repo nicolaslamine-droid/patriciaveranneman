@@ -29,9 +29,10 @@
 <meta property="og:locale" content="fr_BE">
 <meta name="twitter:card" content="summary_large_image">
 
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%230D0D0D%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2245%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2234%22%20fill%3D%22%239A7040%22%20text-anchor%3D%22middle%22%3EPV%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="images/Temp%C3%AAte.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="images/Hiver_etangs_d_Ixelles_1.JPG" fetchpriority="high">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
 
 <style>
@@ -126,12 +127,27 @@
     /* Hauteur visuelle 60px + safe-area pour l'encoche iPhone */
     height:calc(60px + var(--safe-t));
     padding:var(--safe-t) calc(2rem + var(--safe-r)) 0 calc(2rem + var(--safe-l));
-    background:rgba(255,255,255,.92);
-    -webkit-backdrop-filter:saturate(180%) blur(12px);
-    backdrop-filter:saturate(180%) blur(12px);
-    border-bottom:1px solid var(--line);
+    background:transparent;border-bottom:1px solid transparent;
+    transition:background .45s var(--ease),border-color .45s var(--ease),backdrop-filter .45s;
     display:flex;justify-content:space-between;align-items:center;
   }
+  nav::before{
+    content:'';position:absolute;top:0;left:0;right:0;bottom:-90px;
+    background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,0));
+    transition:opacity .45s var(--ease);pointer-events:none;
+  }
+  nav.solid::before{opacity:0}
+  nav .nlogo,nav .nlinks,nav .nbtn{position:relative;z-index:1}
+  nav .nlogo,nav .nlinks a{color:#fff}
+  nav .nbtn span{background:#fff}
+  nav.solid{
+    background:rgba(255,255,255,.94);
+    border-bottom-color:var(--line);
+    -webkit-backdrop-filter:saturate(180%) blur(14px);
+    backdrop-filter:saturate(180%) blur(14px);
+  }
+  nav.solid .nlogo,nav.solid .nlinks a{color:var(--k)}
+  nav.solid .nbtn span{background:var(--k)}
   .nlogo{font-family:var(--S);font-size:1.1rem;font-weight:400;letter-spacing:.04em;padding:.6rem 0}
   .nlinks{display:flex;gap:2rem;list-style:none}
   /* Cibles tactiles ≥ 44px (Apple HIG / Material) — padding élargi */
@@ -142,6 +158,9 @@
     min-height:44px;display:inline-flex;align-items:center;
   }
   .nlinks a:hover,.nlinks a:focus{opacity:1}
+
+  /* ── BARRE DE PROGRESSION ── */
+  #prog{position:fixed;top:0;left:0;height:2px;width:0;background:var(--gold);z-index:300;transition:width .1s linear}
 
   /* Hamburger : zone cliquable 44×44px réelle */
   .nbtn{
@@ -183,12 +202,18 @@
   }
   .hero-bg{
     position:absolute;inset:0;
-    background:url("images/Hiver_etangs_d_Ixelles_1.JPG") center/cover no-repeat;
+    background:url("images/Hiver_etangs_d_Ixelles_1.JPG") 50% 38%/cover no-repeat;
     background-color:var(--k);
-    filter:brightness(.55) saturate(.9);
-    transform:translateZ(0);
+    filter:brightness(.76) saturate(.96);
+    transform:scale(1.08);
+    animation:heroZoom 28s var(--ease) both;
   }
-  .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.55) 0%,rgba(0,0,0,.2) 60%,transparent 100%)}
+  .hero-overlay{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(to top,rgba(6,6,6,.82) 0%,rgba(6,6,6,.45) 38%,rgba(6,6,6,.10) 72%,rgba(6,6,6,.30) 100%),
+      linear-gradient(to right,rgba(6,6,6,.45) 0%,rgba(6,6,6,.10) 55%,transparent 100%);
+  }
   .hero-content{
     position:relative;z-index:1;
     min-height:calc(var(--vh) - 60px - var(--safe-t));
@@ -235,13 +260,13 @@
   }
   .intro-left,.intro-right{position:relative}
   .intro-left .io,.intro-right .io{
-    aspect-ratio:3/4;overflow:hidden;background:var(--warm);
+    overflow:hidden;background:var(--warm);
   }
   .intro-left .io img,.intro-right .io img{
-    width:100%;height:100%;object-fit:cover;
-    transition:transform .8s var(--ease);
+    width:100%;height:auto;display:block;
+    transition:transform 1s var(--ease);
   }
-  .intro-right .io{aspect-ratio:4/5;margin-top:4rem}
+  .intro-right .io{margin-top:3rem}
   .io:hover img{transform:scale(1.04)}
 
   .iolab{
@@ -301,19 +326,28 @@
 
   /* ── SECTION HEADER ── */
   .sh{
-    padding:4rem 2rem 0;
+    position:relative;
+    max-width:1620px;margin:0 auto;
+    padding:6rem 2.5rem 0;
     display:flex;justify-content:space-between;align-items:flex-end;
     flex-wrap:wrap;gap:1rem;
-    border-top:1px solid var(--line);
   }
+  .sh::before{
+    content:'';position:absolute;top:0;left:2.5rem;right:2.5rem;
+    height:1px;background:var(--line);
+  }
+  .elements .sh::before{background:rgba(255,255,255,.14)}
+  .sh > div:first-child{scroll-margin-top:90px}
+  #peintures,#ceramiques,#expositions,#apropos,#contact{scroll-margin-top:80px}
   .snum{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.6rem}
-  .stitle{font-family:var(--S);font-size:clamp(2rem,5vw,3.5rem);font-weight:300;line-height:1}
+  .stitle{font-family:var(--S);font-size:clamp(2.2rem,5.6vw,4.2rem);font-weight:300;line-height:.98;letter-spacing:-.02em}
   .stitle em{font-style:italic}
   .shint{font-size:.7rem;letter-spacing:.08em;color:var(--mid);text-align:right;line-height:1.8;align-self:flex-end}
 
   /* ── TABS ── */
   .tabs{
-    padding:2rem 2rem 0;
+    max-width:1620px;margin:0 auto;
+    padding:2.5rem 2.5rem 0;
     overflow-x:auto;-webkit-overflow-scrolling:touch;
     scrollbar-width:none;
   }
@@ -330,43 +364,66 @@
   .fb:last-child{border-right:none}
   .fb.on,.fb:hover,.fb:focus-visible{background:var(--k);color:var(--w)}
 
-  /* ── GALLERY GRIDS ── */
+  /* ── GALERIES — maçonnerie, format d'origine respecté ── */
   .wgrid,.cgrid{
-    border-left:1px solid var(--line);border-top:1px solid var(--line);
-    margin:2rem 2rem 5rem;
+    --cols:3;--gap:2.5rem;
+    max-width:1620px;margin:3.5rem auto 7rem;
+    padding:0 2.5rem;
+    columns:var(--cols);column-gap:var(--gap);
   }
-  .wgrid{display:grid;grid-template-columns:repeat(3,1fr)}
-  .cgrid{display:grid;grid-template-columns:repeat(4,1fr)}
+  /* Une fois le JS passé : positionnement calculé, ordre de lecture respecté */
+  .wgrid.msn,.cgrid.msn{columns:auto;position:relative}
+  .wgrid.msn > article,.cgrid.msn > article{position:absolute;margin:0}
   .work,.cwork{
-    border-right:1px solid var(--line);border-bottom:1px solid var(--line);
-    opacity:0;transform:translateY(12px);
-    transition:opacity .6s var(--ease),transform .6s var(--ease);
-    will-change:opacity,transform;
+    break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;
+    display:block;width:100%;margin:0 0 3.25rem;
+    opacity:0;transform:translateY(18px);
+    transition:opacity .85s var(--ease),transform .85s var(--ease);
     position:relative;
   }
-  .work.in,.cwork.in{opacity:1;transform:translateY(0);will-change:auto}
+  .work.in,.cwork.in{opacity:1;transform:none}
   .work.hidden{display:none}
-  .work.wide{grid-column:span 2}
-  .cwork.w2{grid-column:span 2}
   .wimg,.cwimg{
     overflow:hidden;background:var(--warm);
     position:relative;cursor:pointer;
   }
-  .work:not(.wide) .wimg{aspect-ratio:4/3}
-  .work.wide .wimg{aspect-ratio:21/9}
-  .cwork:not(.w2) .cwimg{aspect-ratio:1/1}
-  .cwork.w2 .cwimg{aspect-ratio:2/1}
   .wimg img,.cwimg img{
-    width:100%;height:100%;object-fit:cover;
-    transition:transform .7s var(--ease);
+    width:100%;height:auto;display:block;
+    transition:transform 1.2s var(--ease);
+  }
+  .wimg::after,.cwimg::after{
+    content:'';position:absolute;inset:0;
+    background:var(--k);opacity:0;
+    transition:opacity .5s var(--ease);pointer-events:none;
   }
   @media(hover:hover){
-    .work:hover .wimg img,.cwork:hover .cwimg img{transform:scale(1.04)}
+    .work:hover .wimg img,.cwork:hover .cwimg img{transform:scale(1.035)}
+    .work:hover .wimg::after,.cwork:hover .cwimg::after{opacity:.07}
   }
-  .wcap,.ccap{padding:.95rem 1rem 1.1rem;background:var(--w);border-top:1px solid var(--line)}
-  .wt{font-family:var(--S);font-size:1rem;font-style:italic;display:block;margin-bottom:.25rem;line-height:1.3}
-  .wm{font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--mid);display:block}
-  .wd{font-size:.75rem;color:#777;line-height:1.55;margin-top:.4rem;display:block;font-style:italic}
+  .wcap,.ccap{padding:1.15rem .1rem 0}
+  .wt{
+    font-family:var(--S);font-size:1.2rem;font-style:italic;
+    display:block;margin-bottom:.45rem;line-height:1.25;color:var(--ink);
+  }
+  .wm{
+    font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--mid);display:block;
+  }
+  .wd{
+    font-size:.8rem;color:#6b6b6b;line-height:1.65;
+    margin-top:.65rem;display:block;font-style:italic;max-width:38ch;
+  }
+
+
+  /* ── LES QUATRE ÉLÉMENTS (fond sombre) ── */
+  .elements{background:var(--k);color:#fff;padding-bottom:1px}
+  .elements .stitle{color:#fff}
+  .elements .snum{color:var(--gold)}
+  .elements .shint{color:rgba(255,255,255,.45)}
+  .elements .wt{color:#fff}
+  .elements .wm{color:rgba(255,255,255,.42)}
+  .elements .cwimg{background:#181818}
+  .elements .cgrid{margin-bottom:6rem}
 
   /* ── EXPO ── */
   .expo{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
@@ -386,10 +443,10 @@
   @media(hover:hover){.iimg:hover img{transform:scale(1.02)}}
 
   /* ── ABOUT (portrait + cadre éditorial) ── */
-  .about{display:grid;grid-template-columns:360px 1fr;border-top:1px solid var(--line)}
+  .about{display:grid;grid-template-columns:300px 1fr;border-top:1px solid var(--line);align-items:stretch}
   .aimg{
     border-right:1px solid var(--line);overflow:hidden;
-    aspect-ratio:3/4;min-height:400px;
+    aspect-ratio:3/4;min-height:360px;
     background:var(--cream);
     position:relative;
   }
@@ -414,7 +471,7 @@
 
   /* ── CONTACT ── */
   .contact{
-    padding:5rem calc(2rem + var(--safe-r)) 5rem calc(2rem + var(--safe-l));
+    padding:7rem calc(2rem + var(--safe-r)) 7rem calc(2rem + var(--safe-l));
     text-align:center;border-top:1px solid var(--line);background:var(--cream);
   }
   .cth{font-family:var(--S);font-size:clamp(2.5rem,7vw,5.5rem);font-weight:300;line-height:1;margin:1rem 0 3.5rem}
@@ -445,7 +502,8 @@
      ══════════════════════════════════════════════════════════ */
   .lb{
     position:fixed;inset:0;z-index:9998;
-    background:rgba(10,10,10,.96);
+    background:rgba(8,8,8,.985);
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
     display:flex;align-items:center;justify-content:center;
     opacity:0;pointer-events:none;
     transition:opacity .3s var(--ease);
@@ -477,7 +535,8 @@
     max-width:600px;
   }
   .lb-cap .lb-t{font-family:var(--S);font-size:1.25rem;font-style:italic;display:block;margin-bottom:.35rem}
-  .lb-cap .lb-m{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block}
+  .lb-cap .lb-m{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);display:block}
+  .lb-cap .lb-d{font-size:.82rem;font-style:italic;color:rgba(255,255,255,.62);display:block;margin-top:.7rem;line-height:1.6}
   .lb-close,.lb-prev,.lb-next{
     position:fixed;z-index:10;
     width:48px;height:48px;
@@ -508,6 +567,7 @@
   @keyframes fin{from{opacity:0}to{opacity:1}}
   @keyframes up{from{opacity:0;transform:translate3d(0,20px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
   @keyframes pulse{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.3;transform:scaleY(.5)}}
+  @keyframes heroZoom{from{transform:scale(1.12)}to{transform:scale(1)}}
   @keyframes tick{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 
   @media(prefers-reduced-motion:reduce){
@@ -525,10 +585,7 @@
   @media(max-width:900px){
     .nlinks{display:none}
     .nbtn{display:flex}
-    .wgrid{grid-template-columns:repeat(2,1fr)}
-    .work.wide{grid-column:span 2}
-    .work.wide .wimg{aspect-ratio:16/7}
-    .cgrid{grid-template-columns:repeat(2,1fr)}
+    .wgrid,.cgrid{--cols:2;--gap:2rem;padding:0 2rem}
     .expo{grid-template-columns:1fr}
     .etxt{border-left:none;border-top:1px solid var(--line);padding:3rem 2rem}
     .install{grid-template-columns:1fr}
@@ -541,7 +598,7 @@
     .ci:last-child{border-bottom:none}
     .intro{padding:5rem 1.5rem 4rem}
     .intro-grid{grid-template-columns:1fr;gap:4rem}
-    .intro-left .io,.intro-right .io{max-width:260px;margin:0 auto;aspect-ratio:3/4}
+    .intro-left .io,.intro-right .io{max-width:280px;margin:0 auto}
     .intro-right .io{margin-top:0}
     .iolab{position:static;margin-top:2rem}
     .intro-left .iolab,.intro-right .iolab{text-align:center}
@@ -563,13 +620,12 @@
     .hscr{bottom:calc(1.5rem + var(--safe-b));right:calc(1.5rem + var(--safe-r))}
     .nmenu{top:calc(56px + var(--safe-t));padding:1.5rem calc(1.5rem + var(--safe-r)) calc(1.5rem + var(--safe-b)) calc(1.5rem + var(--safe-l))}
     .nmenu a{font-size:1.5rem;padding:1.2rem 0}
-    .sh{padding:3rem 1.5rem 0}
+    .sh{padding:3.5rem 1.5rem 0}
+    .sh::before{left:1.5rem;right:1.5rem}
+    .shint{text-align:left;align-self:flex-start}
     .tabs{padding:1.5rem 1.5rem 0}
-    .wgrid{grid-template-columns:1fr;margin:1.5rem 1.25rem 4rem}
-    .work.wide{grid-column:span 1}
-    .work.wide .wimg{aspect-ratio:4/3}
-    .cgrid{grid-template-columns:1fr 1fr;margin:1.5rem 1.25rem 4rem}
-    .cwork.w2{grid-column:span 2}
+    .wgrid,.cgrid{--cols:1;--gap:0rem;margin:2rem auto 4.5rem;padding:0 1.25rem}
+    .work,.cwork{margin-bottom:2.75rem}
     .etxt,.itxt,.atxt{padding:2.5rem 1.5rem}
     .contact{padding:3.5rem 1.5rem}
     .cth{font-size:clamp(2rem,10vw,4rem);margin:1rem 0 2.5rem}
@@ -599,14 +655,11 @@
     .hh1{font-size:clamp(2.6rem,13vw,4rem);margin-bottom:1.25rem}
     .hbio{font-size:.85rem}
     .htag{font-size:.58rem;padding:.4rem .7rem}
-    .sh{padding:2.5rem 1.25rem 0}
+    .sh{padding:3rem 1.25rem 0}
+    .sh::before{left:1.25rem;right:1.25rem}
     .tabs{padding:1.25rem 1.25rem 0}
     .fb{padding:0 .9rem;font-size:.6rem}
-    .wgrid,.cgrid{margin:1.25rem 1rem 3rem}
-    /* Sur écrans extrêmes, céramiques en 1 colonne pour rester lisible */
-    .cgrid{grid-template-columns:1fr}
-    .cwork.w2{grid-column:span 1}
-    .cwork:not(.w2) .cwimg{aspect-ratio:4/3}
+    .wgrid,.cgrid{margin:1.25rem auto 3rem;padding:0 1rem}
     .iquote{font-size:1.15rem}
     .intro{padding:3.5rem 1rem 2.5rem}
     .ctrow{max-width:100%}
@@ -628,6 +681,7 @@
 <a href="#main" class="skip">Aller au contenu</a>
 
 <div id="cur" aria-hidden="true"></div>
+<div id="prog" aria-hidden="true"></div>
 
 <!-- NAV -->
 <nav aria-label="Navigation principale">
@@ -679,7 +733,7 @@
 
     <div class="intro-left">
       <div class="io">
-        <img src="images/Joie_de_la_mer.JPG" alt="Joie de la mer — détail" loading="lazy" decoding="async">
+        <img width="530" height="800" src="images/Joie_de_la_mer.JPG" alt="Joie de la mer — détail" loading="lazy" decoding="async">
       </div>
       <span class="iolab">01 · Peinture · Joie de la mer</span>
     </div>
@@ -696,7 +750,7 @@
 
     <div class="intro-right">
       <div class="io">
-        <img src="images/Elle_brule_planete_B.jpg" alt="Elle brûle ! Il n'y a pas de planète B" loading="lazy" decoding="async">
+        <img width="3060" height="4080" src="images/Elle_brule_planete_B.jpg" alt="Elle brûle ! Il n'y a pas de planète B" loading="lazy" decoding="async">
       </div>
       <span class="iolab">02 · Céramique · Elle brûle&nbsp;!</span>
     </div>
@@ -741,177 +795,177 @@
 
   <!-- ── ENFANCE & FAMILLE ── -->
   <article class="work" data-c="enfance">
-    <div class="wimg"><img src="images/Joie_de_la_mer.JPG" alt="Joie de la mer" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="530" height="800" src="images/Joie_de_la_mer.JPG" alt="Joie de la mer" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Joie de la mer</span><span class="wm">Acrylique</span><span class="wd">Rire d'enfant sur la plage, reflets bleutés.</span></div>
   </article>
   <article class="work wide" data-c="enfance">
-    <div class="wimg"><img src="images/Run.jpg" alt="Run" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="2158" height="1485" src="images/Run.jpg" alt="Run" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Run</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="enfance">
-    <div class="wimg"><img src="images/1_Children.jpg" alt="Children" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="2079" height="1442" src="images/1_Children.jpg" alt="Children" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Children</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="enfance">
-    <div class="wimg"><img src="images/Le_man%C3%A8ge.JPG" alt="Le manège" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="788" height="800" src="images/Le_man%C3%A8ge.JPG" alt="Le manège" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Le manège</span><span class="wm">Acrylique</span><span class="wd">Petite voiture rouge, n°6, tour de manège.</span></div>
   </article>
   <article class="work" data-c="enfance">
-    <div class="wimg"><img src="images/Papa_et_fils_plage.jpg" alt="Papa et fils — plage" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1892" height="1346" src="images/Papa_et_fils_plage.jpg" alt="Papa et fils — plage" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Papa et fils — plage</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="enfance">
-    <div class="wimg"><img src="images/Where_are_we_going_Dad_.jpg" alt="Where are we going, Dad?" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1487" height="1888" src="images/Where_are_we_going_Dad_.jpg" alt="Where are we going, Dad?" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Where are we going, Dad?</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work wide" data-c="enfance">
-    <div class="wimg"><img src="images/Hiver_etangs_d_Ixelles_1.JPG" alt="Hiver aux étangs d'Ixelles" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="781" height="800" src="images/Hiver_etangs_d_Ixelles_1.JPG" alt="Hiver aux étangs d'Ixelles" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Hiver aux étangs d'Ixelles</span><span class="wm">Acrylique</span><span class="wd">Enfant en manteau bleu, canards, lumière d'hiver.</span></div>
   </article>
   <article class="work" data-c="enfance">
-    <div class="wimg"><img src="images/Hiver_Etangs_d_Ixelles.JPG" alt="Hiver aux étangs d'Ixelles II" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="534" height="800" src="images/Hiver_Etangs_d_Ixelles.JPG" alt="Hiver aux étangs d'Ixelles II" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Hiver aux étangs d'Ixelles II</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="enfance">
-    <div class="wimg"><img src="images/In_the_arms__.jpg" alt="In the Arms" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1368" height="1902" src="images/In_the_arms__.jpg" alt="In the Arms" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">In the Arms</span><span class="wm">Acrylique</span><span class="wd">Enfant dans les bras, chaussons rouges.</span></div>
   </article>
   <article class="work" data-c="enfance">
-    <div class="wimg"><img src="images/Automne_Cambre.JPG" alt="Automne à l'Abbaye de la Cambre" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="534" height="800" src="images/Automne_Cambre.JPG" alt="Automne à l'Abbaye de la Cambre" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Automne à l'Abbaye de la Cambre</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="enfance">
-    <div class="wimg"><img src="images/Le_transat.JPG" alt="Le transat" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="789" height="800" src="images/Le_transat.JPG" alt="Le transat" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Le transat</span><span class="wm">Acrylique</span><span class="wd">Mère et fille, après-midi au soleil.</span></div>
   </article>
   <article class="work" data-c="enfance">
-    <div class="wimg"><img src="images/Confidences.jpg" alt="Confidences" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1414" height="1754" src="images/Confidences.jpg" alt="Confidences" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Confidences</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="enfance">
-    <div class="wimg"><img src="images/Je_m_informe.JPG" alt="Je m'informe" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="783" height="800" src="images/Je_m_informe.JPG" alt="Je m'informe" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Je m'informe</span><span class="wm">Acrylique</span><span class="wd">Enfant lisant le journal, intérieur rose.</span></div>
   </article>
   <article class="work" data-c="enfance">
-    <div class="wimg"><img src="images/Voiture_Patricia_Raymond1.jpg" alt="Voiture — Patricia & Raymond" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1843" height="1389" src="images/Voiture_Patricia_Raymond1.jpg" alt="Voiture — Patricia & Raymond" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Voiture — Patricia &amp; Raymond</span><span class="wm">Acrylique</span></div>
   </article>
 
   <!-- ── LIEUX & LUMIÈRE ── -->
   <article class="work wide" data-c="lieu">
-    <div class="wimg"><img src="images/Temp%C3%AAte.jpg" alt="Tempête" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1703" height="1420" src="images/Temp%C3%AAte.jpg" alt="Tempête" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Tempête</span><span class="wm">Acrylique</span><span class="wd">Grande toile graphique.</span></div>
   </article>
   <article class="work" data-c="lieu">
-    <div class="wimg"><img src="images/Look____Turner_.jpg" alt="Look — d'après Turner" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1496" height="2256" src="images/Look____Turner_.jpg" alt="Look — d'après Turner" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Look — d'après Turner</span><span class="wm">Pastel</span><span class="wd">Coucher de soleil sur la mer, d'après William Turner.</span></div>
   </article>
   <article class="work" data-c="lieu">
-    <div class="wimg"><img src="images/Vue_sur_mer.JPG" alt="Vue sur mer" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="800" height="660" src="images/Vue_sur_mer.JPG" alt="Vue sur mer" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Vue sur mer</span><span class="wm">Acrylique</span><span class="wd">D'après E.&nbsp;Hopper.</span></div>
   </article>
   <article class="work" data-c="lieu">
-    <div class="wimg"><img src="images/Fen%C3%AAtre.JPG" alt="Fenêtre" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="800" height="566" src="images/Fen%C3%AAtre.JPG" alt="Fenêtre" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Fenêtre</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="lieu">
-    <div class="wimg"><img src="images/LLN_Biblioth%C3%A8que.JPG" alt="LLN — Bibliothèque" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="788" height="800" src="images/LLN_Biblioth%C3%A8que.JPG" alt="LLN — Bibliothèque" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">LLN — Bibliothèque</span><span class="wm">Acrylique</span><span class="wd">Architecture de Louvain-la-Neuve, perspectives géométriques.</span></div>
   </article>
   <article class="work" data-c="lieu">
-    <div class="wimg"><img src="images/LLN_Mus%C3%A9e_Herg%C3%A9.JPG" alt="LLN — Musée Hergé" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="800" height="796" src="images/LLN_Mus%C3%A9e_Herg%C3%A9.JPG" alt="LLN — Musée Hergé" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">LLN — Musée Hergé</span><span class="wm">Acrylique</span><span class="wd">Façade du musée, clins d'œil à l'univers de Tintin.</span></div>
   </article>
   <article class="work" data-c="lieu">
-    <div class="wimg"><img src="images/In_the_dark.jpg" alt="In the Dark" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1496" height="2216" src="images/In_the_dark.jpg" alt="In the Dark" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">In the Dark</span><span class="wm">Acrylique</span><span class="wd">Lumière dans l'obscurité, porte entrouverte.</span></div>
   </article>
   <article class="work" data-c="lieu">
-    <div class="wimg"><img src="images/Wall_Street.JPG" alt="Wall Street" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1383" height="1824" src="images/Wall_Street.JPG" alt="Wall Street" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Wall Street</span><span class="wm">Acrylique</span><span class="wd">Cela va mal se terminer&nbsp;!</span></div>
   </article>
   <article class="work" data-c="lieu">
-    <div class="wimg"><img src="images/Prend_le_train_de_la_vie__.jpg" alt="Prend le train de la vie" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="2256" height="1496" src="images/Prend_le_train_de_la_vie__.jpg" alt="Prend le train de la vie" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Prend le train de la vie</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="lieu">
-    <div class="wimg"><img src="images/Against_Evil.JPG" alt="Against Evil" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1931" height="1366" src="images/Against_Evil.JPG" alt="Against Evil" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Against Evil</span><span class="wm">Acrylique</span></div>
   </article>
 
   <!-- ── DESSINS ── -->
   <article class="work" data-c="dessin">
-    <div class="wimg"><img src="images/dance.jpg" alt="Danse" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1426" height="2081" src="images/dance.jpg" alt="Danse" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Danse</span><span class="wm">Dessin · Fusain</span></div>
   </article>
   <article class="work" data-c="dessin">
-    <div class="wimg"><img src="images/nake.jpg" alt="Nu" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1460" height="1985" src="images/nake.jpg" alt="Nu" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Nu</span><span class="wm">Dessin · Fusain</span></div>
   </article>
   <article class="work" data-c="dessin">
-    <div class="wimg"><img src="images/pommes.JPG" alt="Pommes" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1431" height="1748" src="images/pommes.JPG" alt="Pommes" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Pommes</span><span class="wm">Dessin · Fusain</span></div>
   </article>
 
   <!-- ── PORTRAITS (EN FIN DE LISTE) ── -->
   <article class="work wide" data-c="portrait">
-    <div class="wimg"><img src="images/Zhaoui.jpg" alt="Zhaoui" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1359" height="1937" src="images/Zhaoui.jpg" alt="Zhaoui" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Zhaoui</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="enfance">
-    <div class="wimg"><img src="images/Old_couple.jpg" alt="Vieux couple" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1933" height="1489" src="images/Old_couple.jpg" alt="Vieux couple" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Vieux couple</span><span class="wm">Acrylique</span><span class="wd">Deux visages enlacés.</span></div>
   </article>
   <article class="work" data-c="portrait">
-    <div class="wimg"><img src="images/Guillaume.JPG" alt="Guillaume" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="532" height="800" src="images/Guillaume.JPG" alt="Guillaume" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Guillaume</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="portrait">
-    <div class="wimg"><img src="images/Johanna.jpg" alt="Johanna" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="735" height="960" src="images/Johanna.jpg" alt="Johanna" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Johanna</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="portrait">
-    <div class="wimg"><img src="images/St%C3%A9phanie1.jpg" alt="Stéphanie" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="2256" height="1496" src="images/St%C3%A9phanie1.jpg" alt="Stéphanie" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Stéphanie</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="portrait">
-    <div class="wimg"><img src="images/Patricia_et_St%C3%A9phanie.jpg" alt="Patricia et Stéphanie" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1827" height="1444" src="images/Patricia_et_St%C3%A9phanie.jpg" alt="Patricia et Stéphanie" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Patricia et Stéphanie</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="portrait">
-    <div class="wimg"><img src="images/Nicolas.jpg" alt="Nicolas" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="2256" height="1496" src="images/Nicolas.jpg" alt="Nicolas" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Nicolas</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="portrait">
-    <div class="wimg"><img src="images/Laetitia.jpg" alt="Laetitia" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1484" height="2202" src="images/Laetitia.jpg" alt="Laetitia" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Laetitia</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="portrait">
-    <div class="wimg"><img src="images/Fils_et_vieux_p%C3%A8re.jpg" alt="Fils et vieux père" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1905" height="1444" src="images/Fils_et_vieux_p%C3%A8re.jpg" alt="Fils et vieux père" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Fils et vieux père</span><span class="wm">Acrylique</span><span class="wd">Deux générations, tendresse du geste.</span></div>
   </article>
   <article class="work" data-c="portrait">
-    <div class="wimg"><img src="images/P%C3%A8re_Fran%C3%A7ois.JPG" alt="Père François" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="800" height="800" src="images/P%C3%A8re_Fran%C3%A7ois.JPG" alt="Père François" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Père François</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="portrait">
-    <div class="wimg"><img src="images/Raymond_Veranneman_de_Watervliet.JPG" alt="Raymond Veranneman de Watervliet" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1368" height="1709" src="images/Raymond_Veranneman_de_Watervliet.JPG" alt="Raymond Veranneman de Watervliet" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Raymond Veranneman de Watervliet</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="portrait">
-    <div class="wimg"><img src="images/1_Suzy_Paternotte.jpg" alt="Suzy Paternotte" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1409" height="1734" src="images/1_Suzy_Paternotte.jpg" alt="Suzy Paternotte" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Suzy Paternotte</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="portrait">
-    <div class="wimg"><img src="images/EAJean-Charles_Veranneman_de_Watervliet.JPG" alt="Jean-Charles Veranneman de Watervliet" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1496" height="2061" src="images/EAJean-Charles_Veranneman_de_Watervliet.JPG" alt="Jean-Charles Veranneman de Watervliet" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Jean-Charles Veranneman de Watervliet</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="portrait">
-    <div class="wimg"><img src="images/Emerence_Pardo_de_Fremicourt.JPG" alt="Émérences Pardo de Frémicourt" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1496" height="2256" src="images/Emerence_Pardo_de_Fremicourt.JPG" alt="Émérences Pardo de Frémicourt" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Émérences Pardo de Frémicourt</span><span class="wm">Acrylique</span></div>
   </article>
   <article class="work" data-c="portrait">
-    <div class="wimg"><img src="images/Jesus_and_the_bird__Murillo_.jpg" alt="Jésus et l'oiseau" loading="lazy" decoding="async"></div>
+    <div class="wimg"><img width="1455" height="1843" src="images/Jesus_and_the_bird__Murillo_.jpg" alt="Jésus et l'oiseau" loading="lazy" decoding="async"></div>
     <div class="wcap"><span class="wt">Jésus et l'oiseau</span><span class="wm">Acrylique</span><span class="wd">Scène religieuse tendre, d'après le maître sévillan.</span></div>
   </article>
 
@@ -930,131 +984,131 @@
 <div class="cgrid">
 
   <article class="cwork">
-    <div class="cwimg"><img src="images/Elle_brule_planete_B.jpg" alt="Elle brûle&nbsp;! Il n'y a pas de planète B" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="3060" height="4080" src="images/Elle_brule_planete_B.jpg" alt="Elle brûle&nbsp;! Il n'y a pas de planète B" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Elle brûle&nbsp;! Il n'y a pas de planète B</span><span class="wm">Grès émaillé</span><span class="wd">Le globe en équilibre sur une structure ouverte.</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Jesus_calme_la_tempete.jpg" alt="Jésus calme la tempête" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="2620" height="5568" src="images/Jesus_calme_la_tempete.jpg" alt="Jésus calme la tempête" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Jésus calme la tempête</span><span class="wm">Grès émaillé</span><span class="wd">Bas-relief&nbsp;: «&nbsp;N'ayez pas peur&nbsp;!&nbsp;»</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Guernica_Gaza_Kharkiv.jpg" alt="Guernica, Gaza, Kharkiv" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="3060" height="4080" src="images/Guernica_Gaza_Kharkiv.jpg" alt="Guernica, Gaza, Kharkiv" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Guernica, Gaza, Kharkiv</span><span class="wm">Grès émaillé</span><span class="wd">D'après Picasso.</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Envole_toi.jpg" alt="Envole-toi" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="5832" height="3888" src="images/Envole_toi.jpg" alt="Envole-toi" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Envole-toi</span><span class="wm">Grès</span></div>
   </article>
   <article class="cwork w2">
-    <div class="cwimg"><img src="images/Dans_la_lune.jpg" alt="Dans la lune" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/Dans_la_lune.jpg" alt="Dans la lune" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Dans la lune</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Le_Heaume.jpg" alt="Le Heaume" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="4000" height="6000" src="images/Le_Heaume.jpg" alt="Le Heaume" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Le Heaume</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Le_pied.jpg" alt="Le pied&nbsp;!" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/Le_pied.jpg" alt="Le pied&nbsp;!" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Le pied&nbsp;!</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Lutte_de_pouvoir_1.jpg" alt="Lutte de pouvoir" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="2953" height="3658" src="images/Lutte_de_pouvoir_1.jpg" alt="Lutte de pouvoir" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Lutte de pouvoir</span><span class="wm">Grès émaillé</span><span class="wd">Deux figures debout, face à face.</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Trois_points_d_appui.jpg" alt="Trois points d'appui" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="4000" height="6000" src="images/Trois_points_d_appui.jpg" alt="Trois points d'appui" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Trois points d'appui</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Vase_1.jpg" alt="Vase 1" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="3828" height="4000" src="images/Vase_1.jpg" alt="Vase 1" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Vase 1</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Vase_2.jpg" alt="Vase 2" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="1024" height="912" src="images/Vase_2.jpg" alt="Vase 2" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Vase 2</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Unite_dans_la_diversite.jpg" alt="Unité dans la diversité" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="5842" height="3895" src="images/Unite_dans_la_diversite.jpg" alt="Unité dans la diversité" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Unité dans la diversité</span><span class="wm">Grès</span><span class="wd">Trois pots couverts.</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Plat_bleu.jpg" alt="Plat bleu" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/Plat_bleu.jpg" alt="Plat bleu" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Plat bleu</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Plat_triangulaire.jpg" alt="Plat triangulaire" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/Plat_triangulaire.jpg" alt="Plat triangulaire" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Plat triangulaire</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/La_vague.jpg" alt="La vague" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/La_vague.jpg" alt="La vague" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">La vague</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork w2">
-    <div class="cwimg"><img src="images/Boucle_rouge.jpg" alt="Boucle rouge" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/Boucle_rouge.jpg" alt="Boucle rouge" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Boucle rouge</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork w2">
-    <div class="cwimg"><img src="images/Collier.jpg" alt="Collier" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/Collier.jpg" alt="Collier" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Collier</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Bobeches.jpg" alt="Bobèches" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="4000" height="6000" src="images/Bobeches.jpg" alt="Bobèches" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Bobèches</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Applique_new.jpg" alt="Applique" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="4000" height="6000" src="images/Applique_new.jpg" alt="Applique" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Applique</span><span class="wm">Grès</span><span class="wd">Luminaire mural.</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Serre_livres.jpg" alt="Serre-livres" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="1484" height="1644" src="images/Serre_livres.jpg" alt="Serre-livres" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Serre-livres</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Essai_chapelle.jpg" alt="Essai à l'échelle 0,5 pour la chapelle" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="4000" height="6000" src="images/Essai_chapelle.jpg" alt="Essai à l'échelle 0,5 pour la chapelle" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Essai à l'échelle 0,5 pour la chapelle</span><span class="wm">Grès</span><span class="wd">Maquette d'étude.</span></div>
   </article>
   <article class="cwork w2">
-    <div class="cwimg"><img src="images/L_enfant_qui_dort.JPG" alt="L'enfant qui dort" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/L_enfant_qui_dort.JPG" alt="L'enfant qui dort" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">L'enfant qui dort</span><span class="wm">Grès</span><span class="wd">Visage paisible, modelé à même la terre.</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Toucher_la_lune.jpeg" alt="Toucher la lune" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="1530" height="2040" src="images/Toucher_la_lune.jpeg" alt="Toucher la lune" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Toucher la lune</span><span class="wm">Grès émaillé</span><span class="wd">Enfant tendant la main vers l'astre.</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Bougeoir.jpeg" alt="Bougeoir" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="1530" height="2040" src="images/Bougeoir.jpeg" alt="Bougeoir" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Bougeoir</span><span class="wm">Grès émaillé</span><span class="wd">Plaque pliée, flamme en son centre.</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Dechirement.jpeg" alt="Déchirement" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="1530" height="2040" src="images/Dechirement.jpeg" alt="Déchirement" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Déchirement</span><span class="wm">Grès émaillé</span><span class="wd">Figure repliée sur elle-même.</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/L_enfant_au_chapeau.jpeg" alt="L'enfant au chapeau" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="1530" height="2040" src="images/L_enfant_au_chapeau.jpeg" alt="L'enfant au chapeau" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">L'enfant au chapeau</span><span class="wm">Grès</span><span class="wd">Étude d'un visage à l'ombre d'un large bord.</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/DSC_0027__2_.JPG" alt="Rinceaux" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/DSC_0027__2_.JPG" alt="Rinceaux" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Rinceaux</span><span class="wm">Grès</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Empathie_.jpg" alt="Empathie" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="3744" height="3744" src="images/Empathie_.jpg" alt="Empathie" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Empathie</span><span class="wm">Grès</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Provence.jpeg" alt="Provence" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="1530" height="2040" src="images/Provence.jpeg" alt="Provence" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Provence</span><span class="wm">Grès émaillé</span><span class="wd">Double vase incisé.</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/DSC_0070.JPG" alt="Lumière bleue" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/DSC_0070.JPG" alt="Lumière bleue" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Lumière bleue</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Globe.jpeg" alt="Globe" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="1530" height="2040" src="images/Globe.jpeg" alt="Globe" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Globe</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Pilastre.jpeg" alt="Pilastre" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="1530" height="2040" src="images/Pilastre.jpeg" alt="Pilastre" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Pilastre</span><span class="wm">Grès émaillé</span><span class="wd">Boule posée sur socle, vue en galerie.</span></div>
   </article>
 
@@ -1063,7 +1117,7 @@
 
 <!-- EXPOSITIONS -->
 <section class="expo" id="expositions" aria-labelledby="expo-title">
-  <div class="eimg"><img src="images/expo_Den_Blank_l_Air.jpg" alt="Exposition Den Blank — installation céramique" loading="lazy" decoding="async"></div>
+  <div class="eimg"><img width="4080" height="3060" src="images/expo_Den_Blank_l_Air.jpg" alt="Exposition Den Blank — installation céramique" loading="lazy" decoding="async"></div>
   <div class="etxt">
     <span class="snum">03 — Expositions</span>
     <h2 class="stitle" id="expo-title">En <em>espace</em> public</h2>
@@ -1074,7 +1128,7 @@
 
 <!-- INSTALL -->
 <section class="install" aria-labelledby="install-title">
-  <div class="iimg"><img src="images/Ensemble_de_pilastres.jpg" alt="Les quatre boules céramiques sur les pilastres de la grille" loading="lazy" decoding="async"></div>
+  <div class="iimg"><img width="6000" height="4000" src="images/Ensemble_de_pilastres.jpg" alt="Les quatre boules céramiques sur les pilastres de la grille" loading="lazy" decoding="async"></div>
   <div class="itxt">
     <span class="snum">Installation in situ</span>
     <h2 class="stitle" id="install-title">La boule<br>sur le <em>pilastre</em></h2>
@@ -1083,7 +1137,7 @@
   </div>
 </section>
 
-<section aria-labelledby="elements-title">
+<section class="elements" aria-labelledby="elements-title">
 <div class="sh">
   <div><span class="snum">Série · Les quatre éléments</span><h2 class="stitle" id="elements-title">La Terre, l'Eau,<br>l'Air et le <em>Feu</em></h2></div>
   <div class="shint">Grès émaillé<br>4 sphères &amp; détails</div>
@@ -1092,35 +1146,35 @@
 <div class="cgrid">
 
   <article class="cwork">
-    <div class="cwimg"><img src="images/La_Terre.jpg" alt="La Terre" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/La_Terre.jpg" alt="La Terre" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">La Terre</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/La_Terre_detail.jpg" alt="La Terre — détail" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/La_Terre_detail.jpg" alt="La Terre — détail" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">La Terre — détail</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/L_Eau.jpg" alt="L'Eau" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/L_Eau.jpg" alt="L'Eau" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">L'Eau</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/L_Eau_detail.jpg" alt="L'Eau — détail" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/L_Eau_detail.jpg" alt="L'Eau — détail" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">L'Eau — détail</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/L_Air.jpg" alt="L'Air" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/L_Air.jpg" alt="L'Air" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">L'Air</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/L_Air_detail.jpg" alt="L'Air — détail" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/L_Air_detail.jpg" alt="L'Air — détail" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">L'Air — détail</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Le_Feu.jpg" alt="Le Feu" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/Le_Feu.jpg" alt="Le Feu" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Le Feu</span><span class="wm">Grès émaillé</span></div>
   </article>
   <article class="cwork">
-    <div class="cwimg"><img src="images/Le_Feu_detail.jpg" alt="Le Feu — détail" loading="lazy" decoding="async"></div>
+    <div class="cwimg"><img width="6000" height="4000" src="images/Le_Feu_detail.jpg" alt="Le Feu — détail" loading="lazy" decoding="async"></div>
     <div class="ccap"><span class="wt">Le Feu — détail</span><span class="wm">Grès émaillé</span></div>
   </article>
 
@@ -1130,7 +1184,7 @@
 <!-- ABOUT -->
 <section class="about" id="apropos" aria-labelledby="apropos-title">
   <div class="aimg">
-    <img src="images/Patricia.jpeg" alt="Patricia Veranneman — portrait photographique" loading="lazy" decoding="async">
+    <img width="200" height="200" src="images/Patricia.jpeg" alt="Patricia Veranneman — portrait photographique" loading="lazy" decoding="async">
   </div>
   <div class="atxt">
     <span class="snum">04 — À propos</span>
@@ -1178,6 +1232,7 @@
     <div class="lb-cap">
       <span class="lb-t" id="lbTitle"></span>
       <span class="lb-m" id="lbMeta"></span>
+      <span class="lb-d" id="lbDesc"></span>
     </div>
   </div>
 </div>
@@ -1245,6 +1300,8 @@
       btn.classList.toggle('open', open);
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      var nv = document.querySelector('nav');
+      if(nv) nv.classList.toggle('solid', open || window.scrollY > 40);
       if(open) lockBody(); else unlockBody();
     };
     btn.addEventListener('click', function(){ toggle(); });
@@ -1255,6 +1312,95 @@
       if(e.key === 'Escape' && menu.classList.contains('open')) toggle(false);
     });
   }
+
+
+  /* ══════════════════════════════════════════════════════════
+     MAÇONNERIE — colonnes calculées, ordre de lecture préservé
+     Progressive enhancement : sans JS, les galeries restent en
+     colonnes CSS natives (fonctionnelles, ordre par colonne).
+     ══════════════════════════════════════════════════════════ */
+  (function(){
+    var grids = document.querySelectorAll('.wgrid,.cgrid');
+    if(!grids.length || !window.requestAnimationFrame) return;
+
+    function layout(grid){
+      var cs = getComputedStyle(grid);
+      var cols = parseInt(cs.getPropertyValue('--cols'),10) || 1;
+      var gap  = parseFloat(cs.getPropertyValue('--gap')) || 0;
+      if(cs.getPropertyValue('--gap').indexOf('rem') > -1){
+        gap = parseFloat(cs.getPropertyValue('--gap')) * parseFloat(getComputedStyle(document.documentElement).fontSize);
+      }
+      var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+      var inner = grid.clientWidth - pad;
+      var w = (inner - gap*(cols-1)) / cols;
+      var rowGap = cols === 1 ? 44 : 52;
+      var heights = [], i;
+      for(i=0;i<cols;i++) heights.push(0);
+
+      var cards = grid.children;
+      for(i=0;i<cards.length;i++){
+        var c = cards[i];
+        if(c.nodeType !== 1 || c.classList.contains('hidden')){ continue; }
+        c.style.width = w + 'px';
+        var min = 0, j;
+        for(j=1;j<cols;j++){ if(heights[j] < heights[min] - 0.5) min = j; }
+        c.style.left = (parseFloat(cs.paddingLeft) + min*(w+gap)) + 'px';
+        c.style.top  = heights[min] + 'px';
+        heights[min] += c.offsetHeight + rowGap;
+      }
+      var max = 0;
+      for(i=0;i<cols;i++) if(heights[i] > max) max = heights[i];
+      grid.style.height = Math.max(0, max - rowGap) + 'px';
+    }
+
+    function layoutAll(){
+      for(var i=0;i<grids.length;i++){
+        grids[i].classList.add('msn');
+        layout(grids[i]);
+      }
+    }
+    window.__relayout = layoutAll;
+
+    layoutAll();
+    /* Recalcul quand les polices et les images sont prêtes */
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(layoutAll);
+    window.addEventListener('load', layoutAll);
+    var imgs = document.querySelectorAll('.wgrid img,.cgrid img');
+    for(var k=0;k<imgs.length;k++){
+      imgs[k].addEventListener('load', function(){
+        clearTimeout(window.__rl); window.__rl = setTimeout(layoutAll, 120);
+      });
+    }
+    var rt;
+    window.addEventListener('resize', function(){
+      clearTimeout(rt); rt = setTimeout(layoutAll, 140);
+    }, {passive:true});
+  })();
+
+  /* ══════════════════════════════════════════════════════════
+     BARRE DE PROGRESSION + NAV QUI SE SOLIDIFIE
+     ══════════════════════════════════════════════════════════ */
+  (function(){
+    var prog = document.getElementById('prog');
+    var nv = document.querySelector('nav');
+    var hero = document.querySelector('.hero');
+    var ticking = false;
+    function update(){
+      var y = window.scrollY || window.pageYOffset;
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if(prog) prog.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+      if(nv){
+        var limit = hero ? hero.offsetHeight - 90 : 80;
+        nv.classList.toggle('solid', y > limit || document.getElementById('nmenu').classList.contains('open'));
+      }
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){
+      if(!ticking){ ticking = true; requestAnimationFrame(update); }
+    }, {passive:true});
+    window.addEventListener('resize', update, {passive:true});
+    update();
+  })();
 
   /* ══════════════════════════════════════════════════════════
      SCROLL REVEAL — robuste avec fallback de sécurité
@@ -1297,6 +1443,7 @@
       document.querySelectorAll('.work').forEach(function(w){
         w.classList.toggle('hidden', f !== 'all' && w.dataset.c !== f);
       });
+      if(window.__relayout) window.__relayout();
     });
   });
 
@@ -1307,6 +1454,7 @@
   var lbImg = document.getElementById('lbImg');
   var lbTitle = document.getElementById('lbTitle');
   var lbMeta = document.getElementById('lbMeta');
+  var lbDesc = document.getElementById('lbDesc');
   var lbCount = document.getElementById('lbCount');
   var lbClose = document.getElementById('lbClose');
   var lbPrev = document.getElementById('lbPrev');
@@ -1321,7 +1469,8 @@
       var img = w.querySelector('img');
       var t = w.querySelector('.wt');
       var m = w.querySelector('.wm');
-      if(img && t) items.push({el:w, src:img.src, alt:img.alt, title:t.textContent, meta:m?m.textContent:''});
+      var d = w.querySelector('.wd');
+      if(img && t) items.push({el:w, src:img.src, alt:img.alt, title:t.textContent, meta:m?m.textContent:'', desc:d?d.textContent:''});
     });
     return items;
   }
@@ -1333,7 +1482,7 @@
       var section = img.closest('.expo,.install');
       var titleEl = section ? section.querySelector('.stitle') : null;
       var t = titleEl ? titleEl.textContent.trim() : (img.alt || '');
-      items.push({el:img.parentElement, src:img.src, alt:img.alt, title:t, meta:''});
+      items.push({el:img.parentElement, src:img.src, alt:img.alt, title:t, meta:'', desc:''});
     });
     return items;
   }
@@ -1362,6 +1511,7 @@
     lbImg.alt = it.alt;
     lbTitle.textContent = it.title;
     lbMeta.textContent = it.meta;
+    if(lbDesc){ lbDesc.textContent = it.desc || ''; lbDesc.style.display = it.desc ? 'block' : 'none'; }
     lbCount.textContent = (idx+1) + ' / ' + currentItems.length;
   }
   function next(){ idx = (idx+1) % currentItems.length; render(); }
