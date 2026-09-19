@@ -40,6 +40,7 @@
     --w:#FFFFFF; --cream:#FAF8F5; --warm:#F4EFE8;
     --k:#0D0D0D; --mid:#888; --line:#E5E0D8;
     --gold:#9A7040; --ink:#1C1915;
+    --txt-1:#444; --txt-2:#555; --txt-3:#6b6b6b;
     --S:'Cormorant Garamond','Georgia',serif;
     --s:'Jost','Helvetica Neue',system-ui,-apple-system,sans-serif;
     --dur:.3s;
@@ -424,9 +425,24 @@
     color:var(--mid);display:block;
   }
   .wd{
-    font-size:.8rem;color:#6b6b6b;line-height:1.65;
+    font-size:.8rem;color:var(--txt-3);line-height:1.65;
     margin-top:.65rem;display:block;font-style:italic;max-width:38ch;
   }
+  /* Année · dimensions · disponibilité — remplis quand les fiches arrivent */
+  .wf{
+    display:flex;flex-wrap:wrap;align-items:center;gap:.55rem;
+    margin-top:.5rem;font-size:.62rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--txt-3);
+  }
+  .wf span{display:inline-flex;align-items:center;gap:.4rem}
+  .wf .sep{opacity:.4}
+  .wf .av::before{
+    content:'';width:5px;height:5px;border-radius:50%;
+    background:currentColor;display:inline-block;
+  }
+  .wf .av[data-av="disponible"]{color:#5a7d4f}
+  .wf .av[data-av="vendue"],.wf .av[data-av="collection"]{color:var(--mid)}
+  .wf .av[data-av="commande"]{color:var(--gold)}
 
 
   /* ── LES QUATRE ÉLÉMENTS (fond sombre) ── */
@@ -444,7 +460,7 @@
   .eimg{align-self:start;width:100%;overflow:hidden;aspect-ratio:4/3;cursor:pointer}
   .eimg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transition:transform .6s var(--ease)}
   .etxt{padding:4rem 3rem;border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;background:var(--cream)}
-  .etxt p{font-size:.87rem;line-height:2;color:#555;margin-top:1.5rem;max-width:400px}
+  .etxt p{font-size:.87rem;line-height:2;color:var(--txt-2);margin-top:1.5rem;max-width:400px}
   .etxt blockquote{font-family:var(--S);font-size:1.3rem;font-style:italic;line-height:1.6;border-left:2px solid var(--gold);padding-left:1.5rem;margin-top:2rem;color:var(--k)}
   @media(hover:hover){.eimg:hover img{transform:scale(1.03)}}
 
@@ -453,8 +469,37 @@
   .iimg{align-self:start;width:100%;overflow:hidden;aspect-ratio:4/3;cursor:pointer}
   .iimg img{width:100%;height:100%;object-fit:cover;object-position:50% 72%;transition:transform .6s var(--ease)}
   .itxt{padding:4rem 3rem;background:var(--warm);border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
-  .itxt p{font-size:.87rem;line-height:2;color:#555;margin-top:1.5rem;max-width:380px}
+  .itxt p{font-size:.87rem;line-height:2;color:var(--txt-2);margin-top:1.5rem;max-width:380px}
   @media(hover:hover){.iimg:hover img{transform:scale(1.02)}}
+
+  /* ── PARCOURS / EXPOSITIONS ── */
+  .cv-wrap{max-width:1620px;margin:3.5rem auto 7rem;padding:0 2.5rem}
+  .cv-group{margin-bottom:3.5rem}
+  .cv-group h3{
+    font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);font-weight:400;margin-bottom:1.5rem;
+    padding-bottom:.9rem;border-bottom:1px solid var(--line);
+  }
+  .cv-line{
+    display:grid;grid-template-columns:6rem 1fr;gap:1.5rem;
+    padding:.95rem 0;border-bottom:1px solid var(--line);
+    align-items:baseline;
+  }
+  .cv-line:last-child{border-bottom:none}
+  .cv-year{
+    font-family:var(--S);font-size:1.1rem;color:var(--gold);
+    font-variant-numeric:tabular-nums;
+  }
+  .cv-what{font-family:var(--S);font-size:1.12rem;font-style:italic;color:var(--ink);display:block}
+  .cv-where{
+    font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--mid);display:block;margin-top:.35rem;
+  }
+  .cv-note{font-size:.8rem;font-style:italic;color:var(--txt-3);display:block;margin-top:.4rem}
+  @media(max-width:600px){
+    .cv-wrap{padding:0 1.25rem}
+    .cv-line{grid-template-columns:1fr;gap:.25rem}
+  }
 
   /* ── ABOUT (portrait + cadre éditorial) ── */
   .about{display:grid;grid-template-columns:300px 1fr;border-top:1px solid var(--line)}
@@ -481,7 +526,7 @@
     pointer-events:none;
   }
   .atxt{padding:4rem 3.5rem;display:flex;flex-direction:column;justify-content:center}
-  .atxt p{font-size:.88rem;line-height:2.1;color:#444;margin-top:1.5rem;max-width:500px}
+  .atxt p{font-size:.88rem;line-height:2.1;color:var(--txt-1);margin-top:1.5rem;max-width:500px}
   .asig{font-family:var(--S);font-size:2.4rem;font-style:italic;font-weight:300;margin-top:3rem;display:block;color:var(--gold)}
 
   /* ── CONTACT ── */
@@ -585,6 +630,11 @@
   .lb-cap .lb-t{font-family:var(--S);font-size:1.25rem;font-style:italic;display:block;margin-bottom:.35rem}
   .lb-cap .lb-m{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);display:block}
   .lb-cap .lb-d{font-size:.82rem;font-style:italic;color:rgba(255,255,255,.62);display:block;margin-top:.7rem;line-height:1.6}
+  .lb-cap .lb-f{
+    display:block;margin-top:.9rem;
+    font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+    color:rgba(255,255,255,.45);
+  }
   .lb-share{
     position:fixed;z-index:10;
     top:calc(1.5rem + var(--safe-t));right:calc(5.25rem + var(--safe-r));
@@ -753,6 +803,7 @@
     <li><a href="#peintures" data-en="Paintings">Peintures</a></li>
     <li><a href="#ceramiques" data-en="Ceramics">Céramiques</a></li>
     <li><a href="#expositions" data-en="Exhibitions">Expositions</a></li>
+    <li class="nav-cv" hidden><a href="#parcours" data-en="Career">Parcours</a></li>
     <li><a href="#apropos" data-en="About">À propos</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -766,6 +817,7 @@
   <a href="#peintures" class="nmlink" data-en="Paintings">Peintures</a>
   <a href="#ceramiques" class="nmlink" data-en="Ceramics">Céramiques</a>
   <a href="#expositions" class="nmlink" data-en="Exhibitions">Expositions</a>
+  <a href="#parcours" class="nmlink nav-cv" hidden data-en="Career">Parcours</a>
   <a href="#apropos" class="nmlink" data-en="About">À propos</a>
   <a href="#contact" class="nmlink">Contact</a>
 </div>
@@ -1246,6 +1298,15 @@
 </div>
 </section>
 
+<!-- PARCOURS — masqué tant que les données ne sont pas là -->
+<section class="cv" id="parcours" aria-labelledby="parcours-title" hidden>
+<div class="sh">
+  <div><span class="snum" data-en="06 — Career">06 — Parcours</span><h2 class="stitle" id="parcours-title" data-en="Exhibitions &amp; <em>career</em>">Expositions &amp; <em>parcours</em></h2></div>
+  <div class="shint" id="cv-hint"></div>
+</div>
+<div class="cv-wrap" id="cv-wrap"></div>
+</section>
+
 <!-- ABOUT -->
 <section class="about" id="apropos" aria-labelledby="apropos-title">
   <div class="aimg">
@@ -1333,6 +1394,7 @@
       <span class="lb-t" id="lbTitle"></span>
       <span class="lb-m" id="lbMeta"></span>
       <span class="lb-d" id="lbDesc"></span>
+      <span class="lb-f" id="lbFiche"></span>
     </div>
   </div>
 </div>
@@ -1642,7 +1704,10 @@
       var t = w.querySelector('.wt');
       var m = w.querySelector('.wm');
       var d = w.querySelector('.wd');
-      if(img && t) items.push({el:w, id:w.id||'', src:img.src, alt:img.alt, title:t.textContent, meta:m?m.textContent:'', desc:d?d.textContent:''});
+      var f = w.querySelector('.wf');
+      if(img && t) items.push({el:w, id:w.id||'', src:img.src, alt:img.alt, title:t.textContent,
+                               meta:m?m.textContent:'', desc:d?d.textContent:'',
+                               fiche:f?f.textContent.replace(/\s+/g,' ').trim():''});
     });
     return items;
   }
@@ -1685,6 +1750,8 @@
     lbTitle.textContent = it.title;
     lbMeta.textContent = it.meta;
     if(lbDesc){ lbDesc.textContent = it.desc || ''; lbDesc.style.display = it.desc ? 'block' : 'none'; }
+    var lbF = document.getElementById('lbFiche');
+    if(lbF){ lbF.textContent = it.fiche || ''; lbF.style.display = it.fiche ? 'block' : 'none'; }
     lbCount.textContent = (idx+1) + ' / ' + currentItems.length;
     if(it.id && history.replaceState) history.replaceState(null,'','#'+it.id);
     var sb = document.getElementById('lbShare');
