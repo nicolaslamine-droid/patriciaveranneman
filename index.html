@@ -441,8 +441,8 @@
 
   /* ── EXPO ── */
   .expo{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
-  .eimg{overflow:hidden;aspect-ratio:4/3;cursor:pointer}
-  .eimg img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+  .eimg{align-self:start;width:100%;overflow:hidden;aspect-ratio:4/3;cursor:pointer}
+  .eimg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transition:transform .6s var(--ease)}
   .etxt{padding:4rem 3rem;border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;background:var(--cream)}
   .etxt p{font-size:.87rem;line-height:2;color:#555;margin-top:1.5rem;max-width:400px}
   .etxt blockquote{font-family:var(--S);font-size:1.3rem;font-style:italic;line-height:1.6;border-left:2px solid var(--gold);padding-left:1.5rem;margin-top:2rem;color:var(--k)}
@@ -450,15 +450,16 @@
 
   /* ── INSTALL ── */
   .install{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
-  .iimg{overflow:hidden;aspect-ratio:4/3;cursor:pointer}
-  .iimg img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+  .iimg{align-self:start;width:100%;overflow:hidden;aspect-ratio:4/3;cursor:pointer}
+  .iimg img{width:100%;height:100%;object-fit:cover;object-position:50% 72%;transition:transform .6s var(--ease)}
   .itxt{padding:4rem 3rem;background:var(--warm);border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
   .itxt p{font-size:.87rem;line-height:2;color:#555;margin-top:1.5rem;max-width:380px}
   @media(hover:hover){.iimg:hover img{transform:scale(1.02)}}
 
   /* ── ABOUT (portrait + cadre éditorial) ── */
-  .about{display:grid;grid-template-columns:300px 1fr;border-top:1px solid var(--line);align-items:stretch}
+  .about{display:grid;grid-template-columns:300px 1fr;border-top:1px solid var(--line)}
   .aimg{
+    align-self:start;width:100%;
     border-right:1px solid var(--line);overflow:hidden;
     aspect-ratio:3/4;min-height:360px;
     background:var(--cream);
@@ -751,8 +752,8 @@
   <ul class="nlinks">
     <li><a href="#peintures" data-en="Paintings">Peintures</a></li>
     <li><a href="#ceramiques" data-en="Ceramics">Céramiques</a></li>
-    <li><a href="#expositions">Expositions</a></li>
-    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#expositions" data-en="Exhibitions">Expositions</a></li>
+    <li><a href="#apropos" data-en="About">À propos</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="lang" id="lang" type="button" aria-label="Switch to English" title="English">EN</button>
@@ -764,8 +765,8 @@
 <div class="nmenu" id="nmenu" role="navigation" aria-label="Menu mobile" aria-hidden="true">
   <a href="#peintures" class="nmlink" data-en="Paintings">Peintures</a>
   <a href="#ceramiques" class="nmlink" data-en="Ceramics">Céramiques</a>
-  <a href="#expositions" class="nmlink">Expositions</a>
-  <a href="#apropos" class="nmlink">À propos</a>
+  <a href="#expositions" class="nmlink" data-en="Exhibitions">Expositions</a>
+  <a href="#apropos" class="nmlink" data-en="About">À propos</a>
   <a href="#contact" class="nmlink">Contact</a>
 </div>
 
