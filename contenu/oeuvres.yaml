@@ -1,0 +1,533 @@
+oeuvres:
+- id: joie-de-la-mer
+  titre: Joie de la mer
+  galerie: peintures
+  image: Joie_de_la_mer.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+- id: run
+  titre: Run
+  galerie: peintures
+  image: Run.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+  format: large
+- id: children
+  titre: Children
+  galerie: peintures
+  image: 1_Children.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+- id: le-manege
+  titre: Le manège
+  galerie: peintures
+  image: Le_manège.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+- id: papa-et-fils-plage
+  titre: Papa et fils — plage
+  galerie: peintures
+  image: Papa_et_fils_plage.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+- id: where-are-we-going-dad
+  titre: Where are we going, Dad?
+  galerie: peintures
+  image: Where_are_we_going_Dad_.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+- id: hiver-aux-etangs-d-ixelles
+  titre: Hiver aux étangs d'Ixelles
+  galerie: peintures
+  image: Hiver_etangs_d_Ixelles_1.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+  format: large
+- id: hiver-aux-etangs-d-ixelles-ii
+  titre: Hiver aux étangs d'Ixelles II
+  galerie: peintures
+  image: Hiver_Etangs_d_Ixelles.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+- id: in-the-arms
+  titre: In the arms !
+  galerie: peintures
+  image: In_the_arms__.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+- id: automne-a-l-abbaye-de-la-cambre
+  titre: Automne à l'Abbaye de la Cambre
+  galerie: peintures
+  image: Automne_Cambre.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+- id: le-transat
+  titre: Le transat
+  galerie: peintures
+  image: Le_transat.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+- id: confidences
+  titre: Confidences
+  galerie: peintures
+  image: Confidences.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+- id: je-m-informe
+  titre: Je m'informe
+  galerie: peintures
+  image: Je_m_informe.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+- id: voiture-patricia-raymond
+  titre: Voiture — Patricia & Raymond
+  galerie: peintures
+  image: Voiture_Patricia_Raymond1.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+- id: tempete
+  titre: Tempête
+  galerie: peintures
+  image: Tempête.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  note: D'après Turner
+  note_en: After Turner
+  categorie: lieu
+  format: large
+- id: look-d-apres-turner
+  titre: Look — d'après Turner
+  galerie: peintures
+  image: Look____Turner_.jpg
+  technique: Pastel
+  technique_en: Pastel
+  categorie: lieu
+- id: vue-sur-mer
+  titre: Vue sur mer
+  galerie: peintures
+  image: Vue_sur_mer.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  note: D'après E. Hopper.
+  note_en: After E. Hopper.
+  categorie: lieu
+- id: fenetre
+  titre: Fenêtre
+  galerie: peintures
+  image: Fenêtre.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: lieu
+- id: lln-bibliotheque
+  titre: LLN — Bibliothèque
+  galerie: peintures
+  image: LLN_Bibliothèque.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: lieu
+- id: lln-musee-herge
+  titre: LLN — Musée Hergé
+  galerie: peintures
+  image: LLN_Musée_Hergé.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: lieu
+- id: in-the-dark
+  titre: In the Dark
+  galerie: peintures
+  image: In_the_dark.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: lieu
+- id: wall-street
+  titre: Wall Street
+  galerie: peintures
+  image: Wall_Street.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  note: Cela va mal se terminer !
+  note_en: This will end badly!
+  categorie: lieu
+- id: prend-le-train-de-la-vie
+  titre: Prend le train de la vie
+  galerie: peintures
+  image: Prend_le_train_de_la_vie__.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: lieu
+- id: against-evil
+  titre: Against Evil
+  galerie: peintures
+  image: Against_Evil.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: lieu
+- id: danse
+  titre: Danse
+  galerie: peintures
+  image: dance.jpg
+  technique: Dessin · Fusain
+  technique_en: Drawing · Charcoal
+  categorie: dessin
+- id: nu
+  titre: Nu
+  galerie: peintures
+  image: nake.jpg
+  technique: Dessin · Crayon
+  technique_en: Drawing · Pencil
+  categorie: dessin
+- id: pommes
+  titre: Pommes
+  galerie: peintures
+  image: pommes.JPG
+  technique: Dessin · Fusain
+  technique_en: Drawing · Charcoal
+  categorie: dessin
+- id: zhaoui
+  titre: Zhaoui
+  galerie: peintures
+  image: Zhaoui.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+  format: large
+- id: le-fils-de-zhaoui
+  titre: Le fils de Zhaoui
+  galerie: peintures
+  image: Fils_de_Zhaoui.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+- id: vieux-couple
+  titre: Vieux couple
+  galerie: peintures
+  image: Old_couple.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: enfance
+- id: guillaume
+  titre: Guillaume
+  galerie: peintures
+  image: Guillaume.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+- id: johanna
+  titre: Johanna
+  galerie: peintures
+  image: Johanna.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+- id: stephanie
+  titre: Stéphanie
+  galerie: peintures
+  image: Stéphanie1.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+- id: patricia-et-stephanie
+  titre: Patricia et Stéphanie
+  galerie: peintures
+  image: Patricia_et_Stéphanie.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+- id: nicolas
+  titre: Nicolas
+  galerie: peintures
+  image: Nicolas.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+- id: laetitia
+  titre: Laetitia
+  galerie: peintures
+  image: Laetitia.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+- id: fils-et-vieux-pere
+  titre: Fils et vieux père
+  galerie: peintures
+  image: Fils_et_vieux_père.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+- id: pere-francois
+  titre: Père François
+  galerie: peintures
+  image: Père_François.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+- id: raymond-veranneman-de-watervliet
+  titre: Raymond Veranneman de Watervliet
+  galerie: peintures
+  image: Raymond_Veranneman_de_Watervliet.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+- id: suzy-paternotte
+  titre: Suzy Paternotte
+  galerie: peintures
+  image: 1_Suzy_Paternotte.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+- id: jean-charles-veranneman-de-watervliet
+  titre: Jean-Charles Veranneman de Watervliet
+  galerie: peintures
+  image: EAJean-Charles_Veranneman_de_Watervliet.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+- id: emerences-pardo-de-fremicourt
+  titre: Émérences Pardo de Frémicourt
+  galerie: peintures
+  image: Emerence_Pardo_de_Fremicourt.JPG
+  technique: Acrylique
+  technique_en: Acrylic
+  categorie: portrait
+- id: jesus-et-l-oiseau
+  titre: Jésus et l'oiseau
+  galerie: peintures
+  image: Jesus_and_the_bird__Murillo_.jpg
+  technique: Acrylique
+  technique_en: Acrylic
+  note: D'après le maître sévillan.
+  note_en: After the master of Seville.
+  categorie: portrait
+- id: elle-brule-il-n-y-a-pas-de-planete-b
+  titre: Elle brûle ! Il n'y a pas de planète B
+  galerie: ceramiques
+  image: Elle_brule_planete_B.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: jesus-calme-la-tempete
+  titre: Jésus calme la tempête
+  galerie: ceramiques
+  image: Jesus_calme_la_tempete.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+  note: 'Bas-relief : « N''ayez pas peur ! »'
+  note_en: 'Bas-relief: “Be not afraid!”'
+- id: guernica-gaza-kharkiv
+  titre: Guernica, Gaza, Kharkiv
+  galerie: ceramiques
+  image: Guernica_Gaza_Kharkiv.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+  note: D'après Picasso.
+  note_en: After Picasso.
+- id: envole-toi
+  titre: Envole-toi
+  galerie: ceramiques
+  image: Envole_toi.jpg
+  technique: Grès
+  technique_en: Stoneware
+- id: dans-la-lune
+  titre: Dans la lune
+  galerie: ceramiques
+  image: Dans_la_lune.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: le-heaume
+  titre: Le Heaume
+  galerie: ceramiques
+  image: Le_Heaume.jpg
+  technique: Céramique, plume, récupération d'un élément ancien de fenêtre
+  technique_en: Ceramic, feather, salvaged antique window element
+- id: le-pied
+  titre: C'est le pied !
+  galerie: ceramiques
+  image: Le_pied.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+  note: D'après Magritte
+  note_en: After Magritte
+- id: lutte-de-pouvoir
+  titre: Lutte de pouvoir
+  galerie: ceramiques
+  image: Lutte_de_pouvoir_1.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: trois-points-d-appui
+  titre: Trois points d'appui
+  galerie: ceramiques
+  image: Trois_points_d_appui.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: vase-1
+  titre: Vase 1
+  galerie: ceramiques
+  image: Vase_1.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: vase-2
+  titre: Vase 2
+  galerie: ceramiques
+  image: Vase_2.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: unite-dans-la-diversite
+  titre: Unité dans la diversité
+  galerie: ceramiques
+  image: Unite_dans_la_diversite.jpg
+  technique: Grès
+  technique_en: Stoneware
+- id: plat-bleu
+  titre: Plat bleu
+  galerie: ceramiques
+  image: Plat_bleu.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: plat-triangulaire
+  titre: Plat triangulaire
+  galerie: ceramiques
+  image: Plat_triangulaire.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: la-vague
+  titre: La vague
+  galerie: ceramiques
+  image: La_vague.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: boucle-rouge
+  titre: Boucle rouge
+  galerie: ceramiques
+  image: Boucle_rouge.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+  format: double
+- id: collier
+  titre: Collier
+  galerie: ceramiques
+  image: Collier.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+  format: double
+- id: bobeches
+  titre: Bobèches
+  galerie: ceramiques
+  image: Bobeches.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: applique
+  titre: Applique
+  galerie: ceramiques
+  image: Applique_new.jpg
+  technique: Grès
+  technique_en: Stoneware
+- id: serre-livres
+  titre: Serre-livres
+  galerie: ceramiques
+  image: Serre_livres.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: essai-a-l-echelle-0-5-pour-la-chapelle
+  titre: Essai à l'échelle 0,5 pour la chapelle
+  galerie: ceramiques
+  image: Essai_chapelle.jpg
+  technique: Grès
+  technique_en: Stoneware
+- id: l-enfant-qui-dort
+  titre: L'enfant qui dort
+  galerie: ceramiques
+  image: L_enfant_qui_dort.JPG
+  technique: Grès
+  technique_en: Stoneware
+  format: double
+- id: rinceaux
+  titre: Rinceaux
+  galerie: ceramiques
+  image: DSC_0027__2_.JPG
+  technique: Grès
+  technique_en: Stoneware
+- id: empathie
+  titre: Empathie
+  galerie: ceramiques
+  image: Empathie_.jpg
+  technique: Grès
+  technique_en: Stoneware
+- id: provence
+  titre: Provence
+  galerie: ceramiques
+  image: Provence.jpeg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: lumiere-bleue
+  titre: Lumière bleue
+  galerie: ceramiques
+  image: DSC_0070.JPG
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: pilastre
+  titre: Pilastre
+  galerie: ceramiques
+  image: Pilastre.jpeg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: la-terre
+  titre: La Terre
+  galerie: elements
+  image: La_Terre.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: la-terre-detail
+  titre: La Terre — détail
+  galerie: elements
+  image: La_Terre_detail.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: l-eau
+  titre: L'Eau
+  galerie: elements
+  image: L_Eau.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: l-eau-detail
+  titre: L'Eau — détail
+  galerie: elements
+  image: L_Eau_detail.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: l-air
+  titre: L'Air
+  galerie: elements
+  image: L_Air.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: l-air-detail
+  titre: L'Air — détail
+  galerie: elements
+  image: L_Air_detail.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: le-feu
+  titre: Le Feu
+  galerie: elements
+  image: Le_Feu.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: le-feu-detail
+  titre: Le Feu — détail
+  galerie: elements
+  image: Le_Feu_detail.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware

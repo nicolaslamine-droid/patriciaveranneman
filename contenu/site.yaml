@@ -1,0 +1,29 @@
+url: https://patricia.veranneman.eu/
+titre: Patricia Veranneman — Peinture & Céramique
+titre_en: Patricia Veranneman — Painting & Ceramics
+description: 'Patricia Veranneman, artiste belge. Entre mémoire et matière : peintures à l''acrylique et céramiques en grès,
+  construites à partir de photographies anciennes, d''objets trouvés et de fragments transformés.'
+description_en: 'Patricia Veranneman, Belgian artist. Between memory and matter: acrylic paintings and stoneware ceramics
+  built from old photographs, found objects and transformed fragments.'
+artiste:
+  nom: Patricia Veranneman
+  autre_nom: Patricia Veranneman de Watervliet
+  metier: Artiste peintre et céramiste
+  metier_en: Painter and ceramicist
+  nationalite: BE
+  email: patricia.veranneman@gmail.com
+  telephone: '+32478683186'
+  portrait: images/Patricia_portrait.jpg
+  savoirs:
+  - Peinture à l'acrylique
+  - Céramique
+  - Grès émaillé
+  - Dessin au fusain
+  reseaux:
+  - https://www.instagram.com/patriciaveranneman
+  - https://www.facebook.com/patricia.veranneman
+mentions:
+  responsable: Patricia Veranneman
+  adresse: ''
+  pays: Belgique
+  tva: ''

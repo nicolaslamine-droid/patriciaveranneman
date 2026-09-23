@@ -1,0 +1,312 @@
+against-evil:
+  h: 0.0245
+  l: 0.233
+  s: 0.432
+applique:
+  h: 0.0759
+  l: 0.419
+  s: 0.916
+automne-a-l-abbaye-de-la-cambre:
+  h: 0.0982
+  l: 0.429
+  s: 0.382
+bobeches:
+  h: 0.017
+  l: 0.299
+  s: 0.487
+boucle-rouge:
+  h: 0.6428
+  l: 0.89
+  s: 0.443
+children:
+  h: 0.5531
+  l: 0.369
+  s: 0.547
+collier:
+  h: 0.01
+  l: 0.284
+  s: 0.623
+confidences:
+  h: 0.489
+  l: 0.293
+  s: 0.748
+dans-la-lune:
+  h: 0.1106
+  l: 0.574
+  s: 0.721
+danse:
+  h: 0.0808
+  l: 0.896
+  s: 0.32
+elle-brule-il-n-y-a-pas-de-planete-b:
+  h: 0.0729
+  l: 0.877
+  s: 0.285
+emerences-pardo-de-fremicourt:
+  h: 0.0995
+  l: 0.226
+  s: 0.263
+empathie:
+  h: 0.0979
+  l: 0.295
+  s: 0.281
+envole-toi:
+  h: 0.5932
+  l: 0.902
+  s: 0.266
+essai-a-l-echelle-0-5-pour-la-chapelle:
+  h: 0.0669
+  l: 0.642
+  s: 0.335
+fenetre:
+  h: 0.0149
+  l: 0.254
+  s: 0.315
+fils-et-vieux-pere:
+  h: 0.5667
+  l: 0.238
+  s: 0.423
+guernica-gaza-kharkiv:
+  h: 0.1035
+  l: 0.861
+  s: 0.279
+guillaume:
+  h: 0.569
+  l: 0.379
+  s: 0.57
+hiver-aux-etangs-d-ixelles:
+  h: 0.1207
+  l: 0.489
+  s: 0.293
+hiver-aux-etangs-d-ixelles-ii:
+  h: 0.1286
+  l: 0.735
+  s: 0.451
+in-the-arms:
+  h: 0.5884
+  l: 0.285
+  s: 0.423
+in-the-dark:
+  h: 0.0
+  l: 0.276
+  s: 0.0
+je-m-informe:
+  h: 0.5982
+  l: 0.235
+  s: 0.307
+jean-charles-veranneman-de-watervliet:
+  h: 0.0102
+  l: 0.477
+  s: 0.432
+jesus-calme-la-tempete:
+  h: 0.118
+  l: 0.561
+  s: 0.462
+jesus-et-l-oiseau:
+  h: 0.5475
+  l: 0.326
+  s: 0.73
+johanna:
+  h: 0.5481
+  l: 0.384
+  s: 0.505
+joie-de-la-mer:
+  h: 0.5507
+  l: 0.359
+  s: 0.625
+l-air:
+  h: 0.2541
+  l: 0.164
+  s: 0.289
+l-air-detail:
+  h: 0.1414
+  l: 0.163
+  s: 0.273
+l-eau:
+  h: 0.2278
+  l: 0.181
+  s: 0.344
+l-eau-detail:
+  h: 0.603
+  l: 0.663
+  s: 0.338
+l-enfant-qui-dort:
+  h: 0.078
+  l: 0.159
+  s: 0.262
+la-terre:
+  h: 0.223
+  l: 0.188
+  s: 0.395
+la-terre-detail:
+  h: 0.2656
+  l: 0.209
+  s: 0.313
+la-vague:
+  h: 0.0777
+  l: 0.515
+  s: 0.302
+laetitia:
+  h: 0.0476
+  l: 0.358
+  s: 0.401
+le-feu:
+  h: 0.2321
+  l: 0.219
+  s: 0.39
+le-feu-detail:
+  h: 0.9931
+  l: 0.405
+  s: 0.477
+le-fils-de-zhaoui:
+  h: 0.037
+  l: 0.518
+  s: 0.308
+le-heaume:
+  h: 0.9765
+  l: 0.626
+  s: 0.816
+le-manege:
+  h: 0.0339
+  l: 0.406
+  s: 0.668
+le-pied:
+  h: 0.0872
+  l: 0.576
+  s: 0.235
+le-transat:
+  h: 0.5659
+  l: 0.294
+  s: 0.355
+lln-bibliotheque:
+  h: 0.1034
+  l: 0.53
+  s: 0.326
+lln-musee-herge:
+  h: 0.0281
+  l: 0.377
+  s: 0.589
+look-d-apres-turner:
+  h: 0.0623
+  l: 0.55
+  s: 0.464
+lumiere-bleue:
+  h: 0.5849
+  l: 0.386
+  s: 0.268
+lutte-de-pouvoir:
+  h: 0.097
+  l: 0.609
+  s: 0.48
+nicolas:
+  h: 0.5508
+  l: 0.356
+  s: 0.387
+nu:
+  h: 0.0816
+  l: 0.9
+  s: 0.24
+papa-et-fils-plage:
+  h: 0.5868
+  l: 0.391
+  s: 0.307
+patricia-et-stephanie:
+  h: 0.5691
+  l: 0.651
+  s: 0.236
+pere-francois:
+  h: 0.463
+  l: 0.423
+  s: 0.294
+pilastre:
+  h: 0.1028
+  l: 0.439
+  s: 0.301
+plat-bleu:
+  h: 0.6196
+  l: 0.852
+  s: 0.57
+plat-triangulaire:
+  h: 0.6209
+  l: 0.879
+  s: 0.416
+pommes:
+  h: 0.6144
+  l: 0.867
+  s: 0.338
+prend-le-train-de-la-vie:
+  h: 0.0361
+  l: 0.131
+  s: 0.229
+provence:
+  h: 0.5391
+  l: 0.299
+  s: 0.663
+raymond-veranneman-de-watervliet:
+  h: 0.0069
+  l: 0.281
+  s: 0.43
+rinceaux:
+  h: 0.0
+  l: 0.631
+  s: 0.0
+run:
+  h: 0.5662
+  l: 0.482
+  s: 0.392
+serre-livres:
+  h: 0.0823
+  l: 0.531
+  s: 0.478
+stephanie:
+  h: 0.4887
+  l: 0.224
+  s: 0.561
+suzy-paternotte:
+  h: 0.5247
+  l: 0.366
+  s: 0.433
+tempete:
+  h: 0.5452
+  l: 0.595
+  s: 0.278
+trois-points-d-appui:
+  h: 0.0925
+  l: 0.735
+  s: 0.256
+unite-dans-la-diversite:
+  h: 0.081
+  l: 0.518
+  s: 0.336
+vase-1:
+  h: 0.0728
+  l: 0.624
+  s: 0.378
+vase-2:
+  h: 0.0628
+  l: 0.508
+  s: 0.363
+vieux-couple:
+  h: 0.5416
+  l: 0.421
+  s: 0.386
+voiture-patricia-raymond:
+  h: 0.1296
+  l: 0.8
+  s: 0.471
+vue-sur-mer:
+  h: 0.5575
+  l: 0.491
+  s: 0.575
+wall-street:
+  h: 0.0242
+  l: 0.367
+  s: 0.34
+where-are-we-going-dad:
+  h: 0.5621
+  l: 0.462
+  s: 0.599
+zhaoui:
+  h: 0.1322
+  l: 0.484
+  s: 0.467
