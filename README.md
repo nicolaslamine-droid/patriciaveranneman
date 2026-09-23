@@ -70,3 +70,12 @@ puis relancer `construire.py`.
 - Légendes : « Acrylique », « Grès » ou « Grès émaillé » — sans mention de couleur.
 - Pas de description de ce que l'on voit sur l'image ; une note sert à indiquer une
   référence (« D'après Turner »), pas à décrire la scène.
+
+## Mise en service de l'éditeur (une seule fois)
+
+1. **GitHub → Settings → Developer settings → OAuth Apps → New OAuth App**
+   Homepage : `https://patricia.veranneman.eu` — Callback : `<URL_DU_WORKER>/callback`.
+2. **Cloudflare Workers** : déployer `sveltia/sveltia-cms-auth`, puis dans Settings → Variables :
+   `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` (chiffré), `ALLOWED_DOMAINS=patricia.veranneman.eu`.
+3. Reporter l'URL du worker dans `admin/config.yml` (`backend.base_url`).
+4. Donner à Patricia un accès en écriture au dépôt (Settings → Collaborators).
