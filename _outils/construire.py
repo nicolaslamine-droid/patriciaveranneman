@@ -20,6 +20,10 @@ def charger(f): return yaml.safe_load(open('contenu/' + f, encoding='utf-8'))
 SITE = charger('site.yaml')
 TEXTES = charger('textes.yaml')
 OEUVRES = charger('oeuvres.yaml')['oeuvres']
+for _o in OEUVRES:
+    # l'éditeur enregistre « /images/Fichier.jpg » : on ne garde que le nom
+    _o['image'] = re.sub(r'^/?images/', '', str(_o['image']))
+    _o['id'] = str(_o.get('id') or '').strip()
 COULEURS = charger('couleurs.yaml') or {}
 URL = SITE['url'].rstrip('/') + '/'
 GAB = open('gabarit/index.html', encoding='utf-8').read()
@@ -219,6 +223,14 @@ def accueil():
                 f'      <span class="iolab" data-en="{att(lab_en)}">{esc(lab)}</span>')
     s = re.sub(r'<div class="io" data-w="w-[^"]+" data-intro="([^"]+)" data-num="(\d+)"></div>', intro, s)
     s = s.replace('<!--JSONLD-->', jsonld())
+    ex = SITE.get('exposition')
+    if ex and ex.get('titre'):
+        s = s.replace('var EXPO = null;', 'var EXPO = ' + json.dumps(
+            {'titre': ex['titre'], 'lieu': ex.get('lieu', ''), 'dates': ex.get('dates', ''),
+             'datesEn': ex.get('dates_en', ex.get('dates', '')), 'horaires': ex.get('horaires', ''),
+             'horairesEn': ex.get('horaires_en', ex.get('horaires', '')),
+             'resume': ex.get('resume', ex['titre']), 'resumeEn': ex.get('resume_en', ex.get('resume', ex['titre']))},
+            ensure_ascii=False) + ';')
     s = s.replace('<button class="lang" id="lang" type="button" aria-label="Switch to English" title="English">EN</button>',
                   '<a class="lang" id="lang" href="en/" hreflang="en" aria-label="Switch to English" title="English">EN</a>')
     s = s.replace('<link rel="canonical" href="%s">' % URL,

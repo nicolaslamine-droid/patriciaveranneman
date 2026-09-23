@@ -1,0 +1,171 @@
+# Éditeur du site — Sveltia CMS (https://sveltiacms.app)
+# Chaque enregistrement écrit dans le dépôt GitHub ; le site se reconstruit tout seul.
+backend:
+  name: github
+  repo: nicolaslamine-droid/patriciaveranneman
+  branch: main
+  base_url: https://REMPLACER-PAR-LE-WORKER.workers.dev   # passerelle de connexion (sveltia-cms-auth)
+
+media_folder: images
+public_folder: /images
+publish_mode: simple
+locale: fr
+site_url: https://patricia.veranneman.eu
+
+collections:
+  - name: oeuvres
+    label: Œuvres
+    files:
+      - name: liste
+        label: Toutes les œuvres
+        file: contenu/oeuvres.yaml
+        description: >-
+          Ajouter, modifier, réordonner les œuvres. L'ordre de la liste est l'ordre
+          d'affichage sur le site. Après enregistrement, le site se met à jour en quelques minutes.
+        fields:
+          - name: oeuvres
+            label: Œuvres
+            label_singular: Œuvre
+            widget: list
+            summary: '{{fields.titre}} — {{fields.technique}}'
+            fields:
+              - { name: titre, label: Titre, widget: string }
+              - name: id
+                label: Adresse de la page (ne plus modifier après publication)
+                widget: string
+                pattern: ['^[a-z0-9-]+$', 'Lettres minuscules, chiffres et tirets uniquement']
+              - name: galerie
+                label: Galerie
+                widget: select
+                options:
+                  - { label: Peintures, value: peintures }
+                  - { label: Céramiques, value: ceramiques }
+                  - { label: Les quatre éléments, value: elements }
+              - { name: image, label: Photo, widget: image, media_library: { config: { max_file_size: 20000000 } } }
+              - { name: technique, label: Technique, widget: string, required: false, hint: 'Acrylique, Grès émaillé, Dessin · Crayon…' }
+              - { name: technique_en, label: Technique (anglais), widget: string, required: false }
+              - { name: note, label: Note courte, widget: string, required: false, hint: "Seulement si elle apporte quelque chose : « D'après Turner ». On n'écrit pas ce que l'on voit." }
+              - { name: note_en, label: Note courte (anglais), widget: string, required: false }
+              - name: categorie
+                label: Groupe (peintures uniquement)
+                widget: select
+                required: false
+                options:
+                  - { label: Enfance & famille, value: enfance }
+                  - { label: Lieux & lumière, value: lieu }
+                  - { label: Dessins, value: dessin }
+                  - { label: Portraits, value: portrait }
+              - name: format
+                label: Format dans la galerie
+                widget: select
+                required: false
+                options:
+                  - { label: Normal, value: '' }
+                  - { label: Grande image, value: large }
+                  - { label: Double largeur, value: double }
+              - { name: annee, label: Année, widget: string, required: false }
+              - { name: dimensions, label: Dimensions, widget: string, required: false, hint: 'ex. 80 × 60 cm' }
+              - name: disponibilite
+                label: Disponibilité
+                widget: select
+                required: false
+                options: [disponible, vendue, collection, commande]
+
+  - name: textes
+    label: Textes du site
+    files:
+      - name: textes
+        label: Textes
+        file: contenu/textes.yaml
+        fields:
+          - name: hero_sur
+            label: Ligne au-dessus du nom
+            widget: object
+            fields: [{ name: fr, label: Français, widget: string }, { name: en, label: Anglais, widget: string }]
+          - name: hero_bio
+            label: Présentation (page d'accueil)
+            widget: object
+            fields: [{ name: fr, label: Français, widget: text }, { name: en, label: Anglais, widget: text }]
+          - name: intro_manifeste
+            label: Titre du manifeste
+            widget: object
+            fields: [{ name: fr, label: Français, widget: string }, { name: en, label: Anglais, widget: string }]
+          - name: intro_citation
+            label: Citation
+            widget: object
+            fields: [{ name: fr, label: Français, widget: text }, { name: en, label: Anglais, widget: text }]
+          - name: apropos
+            label: À propos (paragraphes)
+            widget: list
+            fields: [{ name: fr, label: Français, widget: text }, { name: en, label: Anglais, widget: text }]
+          - name: expositions
+            label: Expositions (chapeau)
+            widget: list
+            required: false
+            fields: [{ name: fr, label: Français, widget: text }, { name: en, label: Anglais, widget: text }]
+          - name: installation
+            label: Les quatre éléments (texte)
+            widget: list
+            required: false
+            fields: [{ name: fr, label: Français, widget: text }, { name: en, label: Anglais, widget: text }]
+
+  - name: site
+    label: Contact & expositions
+    files:
+      - name: site
+        label: Réglages
+        file: contenu/site.yaml
+        fields:
+          - { name: url, label: Adresse du site, widget: hidden }
+          - { name: titre, label: Titre du site, widget: string }
+          - { name: titre_en, label: Titre du site (anglais), widget: string }
+          - { name: description, label: Description pour Google, widget: text }
+          - { name: description_en, label: Description pour Google (anglais), widget: text }
+          - name: artiste
+            label: Artiste
+            widget: object
+            fields:
+              - { name: nom, label: Nom, widget: string }
+              - { name: autre_nom, label: Autre nom, widget: string, required: false }
+              - { name: metier, label: Métier, widget: string }
+              - { name: metier_en, label: Métier (anglais), widget: string, required: false }
+              - { name: nationalite, label: Nationalité (code), widget: string, required: false }
+              - { name: email, label: Courriel, widget: string }
+              - { name: telephone, label: Téléphone, widget: string }
+              - { name: portrait, label: Portrait (chemin), widget: string }
+              - { name: savoirs, label: Mots-clés, widget: list, required: false }
+              - { name: reseaux, label: Réseaux sociaux (liens), widget: list, required: false }
+          - name: exposition
+            label: Exposition en cours (laisser vide s'il n'y en a pas)
+            widget: object
+            required: false
+            collapsed: true
+            fields:
+              - { name: titre, label: Titre, widget: string, required: false }
+              - { name: lieu, label: Lieu et adresse, widget: string, required: false }
+              - { name: dates, label: Dates, widget: string, required: false }
+              - { name: dates_en, label: Dates (anglais), widget: string, required: false }
+              - { name: horaires, label: Horaires, widget: string, required: false }
+              - { name: horaires_en, label: Horaires (anglais), widget: string, required: false }
+              - { name: resume, label: Résumé du bandeau, widget: string, required: false }
+              - { name: resume_en, label: Résumé du bandeau (anglais), widget: string, required: false }
+          - name: expositions
+            label: Expositions (passées et à venir)
+            widget: list
+            required: false
+            summary: '{{fields.titre}} — {{fields.lieu}}'
+            fields:
+              - { name: titre, label: Titre, widget: string }
+              - { name: lieu, label: Lieu, widget: string }
+              - { name: adresse, label: Adresse, widget: string, required: false }
+              - { name: debut, label: Début, widget: date, format: 'YYYY-MM-DD' }
+              - { name: fin, label: Fin, widget: date, format: 'YYYY-MM-DD', required: false }
+              - { name: lien, label: Lien, widget: string, required: false }
+          - name: mentions
+            label: Mentions légales
+            widget: object
+            fields:
+              - { name: responsable, label: Responsable, widget: string }
+              - { name: adresse, label: Adresse postale, widget: string, required: false }
+              - { name: pays, label: Pays, widget: string }
+              - { name: tva, label: Numéro d'entreprise, widget: string, required: false }
