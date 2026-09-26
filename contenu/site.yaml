@@ -27,5 +27,28 @@ mentions:
   adresse: ''
   pays: Belgique
   tva: ''
-exposition: null
-expositions: []
+exposition:
+  titre: Parcours d'artistes de Louvain-la-Neuve
+  lieu: Chez Françoise et Adrien de Wouters, place Horta 88, Bruyères, 1348 Louvain-la-Neuve
+  dates: les 26 et 27 septembre et les 3 et 4 octobre 2026
+  dates_en: 26–27 September and 3–4 October 2026
+  horaires: de 14 h à 18 h
+  horaires_en: 2 – 6 pm
+  note: Céramiques de Patricia Veranneman, peintures d'Adrien de Wouters
+  note_en: Ceramics by Patricia Veranneman, paintings by Adrien de Wouters
+  resume: Parcours d'artistes de Louvain-la-Neuve · place Horta 88 · 26-27 septembre et 3-4 octobre
+  resume_en: Louvain-la-Neuve artists' trail · place Horta 88 · 26–27 September and 3–4 October
+  lien: https://www.facebook.com/events/1615244100200592
+expositions:
+- titre: Parcours d'artistes de Louvain-la-Neuve
+  lieu: Chez Françoise et Adrien de Wouters
+  adresse: Place Horta 88, Bruyères, 1348 Louvain-la-Neuve, Belgique
+  debut: '2026-09-26'
+  fin: '2026-09-27'
+  lien: https://www.facebook.com/events/1615244100200592
+- titre: Parcours d'artistes de Louvain-la-Neuve
+  lieu: Chez Françoise et Adrien de Wouters
+  adresse: Place Horta 88, Bruyères, 1348 Louvain-la-Neuve, Belgique
+  debut: '2026-10-03'
+  fin: '2026-10-04'
+  lien: https://www.facebook.com/events/1615244100200592

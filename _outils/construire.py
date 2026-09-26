@@ -229,7 +229,9 @@ def accueil():
             {'titre': ex['titre'], 'lieu': ex.get('lieu', ''), 'dates': ex.get('dates', ''),
              'datesEn': ex.get('dates_en', ex.get('dates', '')), 'horaires': ex.get('horaires', ''),
              'horairesEn': ex.get('horaires_en', ex.get('horaires', '')),
-             'resume': ex.get('resume', ex['titre']), 'resumeEn': ex.get('resume_en', ex.get('resume', ex['titre']))},
+             'resume': ex.get('resume', ex['titre']), 'resumeEn': ex.get('resume_en', ex.get('resume', ex['titre'])),
+             'note': ex.get('note', ''), 'noteEn': ex.get('note_en', ex.get('note', '')),
+             'lien': ex.get('lien', '')},
             ensure_ascii=False) + ';')
     s = s.replace('<button class="lang" id="lang" type="button" aria-label="Switch to English" title="English">EN</button>',
                   '<a class="lang" id="lang" href="en/" hreflang="en" aria-label="Switch to English" title="English">EN</a>')
@@ -251,8 +253,8 @@ def en_version(s, prefixe='../'):
         return f'<{tag2}>{html.unescape(en.group(1))}</{m.group(2)}>'
     s = re.sub(r'<(([a-z]+)[^>]*\bdata-en="[^"]*"[^>]*)>((?:(?!<\2[ >])[\s\S])*?)</\2>', swap, s)
     s = s.replace('<html lang="fr">', '<html lang="en">')
-    s = re.sub(r'(src|href|srcset)="(images/|polices/|mentions-legales/)', lambda m: f'{m.group(1)}="{prefixe}{m.group(2)}', s)
-    s = re.sub(r'url\("images/', f'url("{prefixe}images/', s)
+    # toutes les adresses relatives, y compris les 2e et 3e entrées d'un srcset
+    s = re.sub(r'(?<![\w./-])(images/|polices/|mentions-legales/)', lambda m: prefixe + m.group(1), s)
     s = s.replace('<a class="lang" id="lang" href="en/"', f'<a class="lang" id="lang" href="{prefixe}"')
     s = s.replace('hreflang="en" aria-label="Switch to English" title="English">EN</a>',
                   'hreflang="fr" aria-label="Afficher en français" title="Français">FR</a>')

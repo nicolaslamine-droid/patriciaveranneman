@@ -313,7 +313,7 @@
   }
   .expo-info dd{margin:0;font-size:.88rem;line-height:1.6;color:var(--txt-1)}
   .expo-info .ei-map{
-    display:inline-block;margin-top:1.1rem;
+    display:inline-block;margin-top:1.1rem;margin-right:1.5rem;
     font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
     color:var(--gold);border-bottom:1px solid currentColor;padding-bottom:.25rem;
   }
@@ -1145,7 +1145,7 @@
   <div class="hero-bg" role="img" aria-label="Le Feu — sphère en grès émaillé de Patricia Veranneman"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <a class="hexpo" href="#expositions" hidden data-en="Current exhibition"><span class="hexpo-l">Exposition en cours</span><span class="hexpo-t" id="hexpo-t"></span></a>
+    <a class="hexpo" href="#expositions" hidden><span class="hexpo-l" data-en="Current exhibition">Exposition en cours</span><span class="hexpo-t" id="hexpo-t"></span></a>
     <p class="hsup" data-txt="hero_sur"></p>
     <h1 class="hh1">Patricia<br>Veranne<em>man</em></h1>
     <p class="hbio" data-txt="hero_bio"></p>
@@ -1272,8 +1272,10 @@
         <dt data-en="Where">Lieu</dt><dd id="ei-lieu"></dd>
         <dt data-en="When">Dates</dt><dd id="ei-dates"></dd>
         <dt data-en="Hours">Horaires</dt><dd id="ei-horaires"></dd>
+        <dt class="ei-l-note" data-en="Details" hidden>Détail</dt><dd id="ei-note" hidden></dd>
       </dl>
       <a class="ei-map" id="ei-map" href="#" target="_blank" rel="noopener" data-en="Open in Maps">Ouvrir dans Maps</a>
+      <a class="ei-map" id="ei-lien" href="#" target="_blank" rel="noopener" hidden data-en="The event">L'événement</a>
     </div>
     <blockquote data-en="The photograph becomes painting. The fragment becomes sculpture. The material keeps the marks of its transformation.">La photographie devient peinture. Le fragment devient sculpture. La matière garde les marques de sa transformation.</blockquote>
   </div>
@@ -1743,8 +1745,15 @@
       mk('ei-lieu', EXPO.lieu);
       mk('ei-dates', (en && EXPO.datesEn) ? EXPO.datesEn : EXPO.dates);
       mk('ei-horaires', (en && EXPO.horairesEn) ? EXPO.horairesEn : EXPO.horaires);
+      var note = (en && EXPO.noteEn) ? EXPO.noteEn : EXPO.note;
+      mk('ei-note', note || '');
+      var dn = document.getElementById('ei-note'), ln = document.querySelector('.ei-l-note');
+      if(dn) dn.hidden = !note;
+      if(ln) ln.hidden = !note;
       var m = document.getElementById('ei-map');
       if(m) m.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(EXPO.lieu);
+      var ln2 = document.getElementById('ei-lien');
+      if(ln2){ ln2.hidden = !EXPO.lien; if(EXPO.lien) ln2.href = EXPO.lien; }
     }
     if(band) band.hidden = false;
     if(info) info.hidden = false;
