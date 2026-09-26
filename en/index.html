@@ -142,6 +142,14 @@
     }
     #cur.h{width:36px;height:36px;background:transparent;border:1px solid var(--k);opacity:.55}
     #cur.z{width:56px;height:56px;background:var(--k);opacity:.85}
+    /* Vue plein écran : le curseur s'inverse sur le fond, donc toujours visible,
+       aussi bien sur le noir de la salle que sur une œuvre claire. */
+    body.vue-plein #cur{
+      width:12px;height:12px;background:#fff;mix-blend-mode:difference;
+    }
+    body.vue-plein #cur.h{width:40px;height:40px;background:transparent;border:1.5px solid #fff;opacity:1;mix-blend-mode:normal}
+    body.vue-plein #cur.z{width:56px;height:56px;background:#fff;opacity:1}
+    body.vue-plein #cur.z::after{color:#000}
     #cur.z::after{
       content:'+';
       position:absolute;inset:0;
@@ -2404,7 +2412,7 @@
     if(i < 0 || i >= currentItems.length) return;
     idx = i;
     render();
-    lb.classList.add('on');
+    lb.classList.add('on'); document.body.classList.add('vue-plein');
     lb.setAttribute('aria-hidden','false');
     flip(currentItems[idx] && currentItems[idx].el);
     lockBody();
@@ -2412,6 +2420,7 @@
   function close(apres){
     var termine = function(){
       lb.classList.remove('on');
+      document.body.classList.remove('vue-plein');
       lb.setAttribute('aria-hidden','true');
       if(history.replaceState) history.replaceState(null,'',location.pathname + location.search);
       unlockBody();
@@ -2497,7 +2506,7 @@
       for(var i=0;i<all.length;i++){
         if(all[i].el === cible || all[i].el === cible.parentElement){
           currentItems = all; idx = i; render(); voisines();
-          lb.classList.add('on');
+          lb.classList.add('on'); document.body.classList.add('vue-plein');
           lb.setAttribute('aria-hidden','false');
           flip(el);
           lockBody();
@@ -2529,7 +2538,7 @@
       for(var i=0;i<all.length;i++){
         if(all[i].el === el){
           currentItems = all; idx = i; render(); voisines();
-          lb.classList.add('on'); lb.setAttribute('aria-hidden','false'); lockBody();
+          lb.classList.add('on'); document.body.classList.add('vue-plein'); lb.setAttribute('aria-hidden','false'); lockBody();
           return;
         }
       }
