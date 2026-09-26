@@ -606,7 +606,8 @@
   .itxt{padding:4rem 3rem;background:var(--warm);border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
   .itxt p{font-size:.87rem;line-height:2;color:var(--txt-2);margin-top:1.5rem;max-width:380px}
   @media(hover:hover){.iimg:hover img{transform:scale(1.02)}}
-  .ichap{grid-column:1/-1;display:grid;grid-template-columns:2fr 1fr;border-top:1px solid var(--line)}
+  .chapelle{border-top:1px solid var(--line)}
+  .ichap{display:grid;grid-template-columns:2fr 1fr}
   .ichap .iimg{margin:0;aspect-ratio:auto;align-self:stretch}
   .ichap .ichap-a{aspect-ratio:1/1}
   .ichap .ichap-a img{object-position:50% 45%}
@@ -1286,11 +1287,6 @@
     <h2 class="stitle" id="install-title" data-en="The four elements<br>of <em>ceramics</em>">Les quatre éléments<br>de la <em>céramique</em></h2>
     <!--TEXTES:installation-->
   </div>
-  <div class="ichap">
-    <figure class="iimg ichap-a"><picture><source type="image/avif" srcset="images/Potale_chapelle-600.avif 600w, images/Potale_chapelle-1200.avif 1200w, images/Potale_chapelle.avif 2000w" sizes="(max-width:900px) 66vw, 50vw"><source type="image/webp" srcset="images/Potale_chapelle-600.webp 600w, images/Potale_chapelle-1200.webp 1200w, images/Potale_chapelle.webp 2000w" sizes="(max-width:900px) 66vw, 50vw"><img data-titre="Potale — vue d'ensemble" data-en-titre="Wayside chapel — overall view" width="2000" height="2000" src="images/Potale_chapelle.jpg" alt="Potale abritant le bas-relief « N'ayez pas peur ! »" loading="lazy" decoding="async" srcset="images/Potale_chapelle-600.jpg 600w, images/Potale_chapelle-1200.jpg 1200w, images/Potale_chapelle.jpg 2000w" sizes="(max-width:900px) 66vw, 50vw" data-full="images/Potale_chapelle.jpg"></picture></figure>
-    <figure class="iimg ichap-b"><picture><source type="image/avif" srcset="images/Jesus_calme_la_tempete-600.avif 600w, images/Jesus_calme_la_tempete.avif 941w" sizes="(max-width:900px) 34vw, 25vw"><source type="image/webp" srcset="images/Jesus_calme_la_tempete-600.webp 600w, images/Jesus_calme_la_tempete.webp 941w" sizes="(max-width:900px) 34vw, 25vw"><img data-titre="Jésus calme la tempête — détail" data-en-titre="Jesus calms the storm — detail" width="941" height="2000" src="images/Jesus_calme_la_tempete.jpg" alt="Jésus calme la tempête — détail du bas-relief" loading="lazy" decoding="async" srcset="images/Jesus_calme_la_tempete-600.jpg 600w, images/Jesus_calme_la_tempete.jpg 941w" sizes="(max-width:900px) 34vw, 25vw" data-full="images/Jesus_calme_la_tempete.jpg"></picture></figure>
-    <p class="ichap-cap" data-en="Wayside chapel · <em>Jesus calms the storm</em>, glazed stoneware · overall view and detail">Potale · <em>Jésus calme la tempête</em>, grès émaillé · vue d'ensemble et détail</p>
-  </div>
 </section>
 
 <section class="elements" aria-labelledby="elements-title">
@@ -1304,6 +1300,16 @@
 
 </div>
 </section>
+
+<!-- POTALE -->
+<section class="chapelle" aria-label="Potale">
+  <div class="ichap">
+    <figure class="iimg ichap-a"><picture><source type="image/avif" srcset="images/Potale_chapelle-600.avif 600w, images/Potale_chapelle-1200.avif 1200w, images/Potale_chapelle.avif 2000w" sizes="(max-width:900px) 66vw, 50vw"><source type="image/webp" srcset="images/Potale_chapelle-600.webp 600w, images/Potale_chapelle-1200.webp 1200w, images/Potale_chapelle.webp 2000w" sizes="(max-width:900px) 66vw, 50vw"><img data-titre="Potale — vue d'ensemble" data-en-titre="Wayside chapel — overall view" width="2000" height="2000" src="images/Potale_chapelle.jpg" alt="Potale abritant le bas-relief « N'ayez pas peur ! »" loading="lazy" decoding="async" srcset="images/Potale_chapelle-600.jpg 600w, images/Potale_chapelle-1200.jpg 1200w, images/Potale_chapelle.jpg 2000w" sizes="(max-width:900px) 66vw, 50vw" data-full="images/Potale_chapelle.jpg"></picture></figure>
+    <figure class="iimg ichap-b"><picture><source type="image/avif" srcset="images/Jesus_calme_la_tempete-600.avif 600w, images/Jesus_calme_la_tempete.avif 941w" sizes="(max-width:900px) 34vw, 25vw"><source type="image/webp" srcset="images/Jesus_calme_la_tempete-600.webp 600w, images/Jesus_calme_la_tempete.webp 941w" sizes="(max-width:900px) 34vw, 25vw"><img data-titre="Jésus calme la tempête — détail" data-en-titre="Jesus calms the storm — detail" width="941" height="2000" src="images/Jesus_calme_la_tempete.jpg" alt="Jésus calme la tempête — détail du bas-relief" loading="lazy" decoding="async" srcset="images/Jesus_calme_la_tempete-600.jpg 600w, images/Jesus_calme_la_tempete.jpg 941w" sizes="(max-width:900px) 34vw, 25vw" data-full="images/Jesus_calme_la_tempete.jpg"></picture></figure>
+    <p class="ichap-cap" data-en="Wayside chapel · <em>Jesus calms the storm</em>, glazed stoneware · overall view and detail">Potale · <em>Jésus calme la tempête</em>, grès émaillé · vue d'ensemble et détail</p>
+  </div>
+</section>
+
 
 <!-- PARCOURS — masqué tant que les données ne sont pas là -->
 <section class="cv" id="parcours" aria-labelledby="parcours-title" hidden>

@@ -146,12 +146,12 @@ oeuvres:
   technique: Acrylique
   technique_en: Acrylic
   categorie: lieu
-- id: in-the-dark
-  titre: In the Dark
+- id: une-lumiere-dans-l-obscurite
+  titre: Une lumière dans l'obscurité
   galerie: peintures
   image: In_the_dark.jpg
-  technique: Acrylique
-  technique_en: Acrylic
+  technique: Acrylique sur papier glacé
+  technique_en: Acrylic on glossy paper
   categorie: lieu
 - id: wall-street
   titre: Wall Street
@@ -166,8 +166,8 @@ oeuvres:
   titre: Prend le train de la vie
   galerie: peintures
   image: Prend_le_train_de_la_vie__.jpg
-  technique: Acrylique
-  technique_en: Acrylic
+  technique: Acrylique sur papier glacé
+  technique_en: Acrylic on glossy paper
   categorie: lieu
 - id: against-evil
   titre: Against Evil
@@ -269,9 +269,9 @@ oeuvres:
   technique_en: Acrylic
   categorie: portrait
 - id: pere-francois
-  titre: Père François
+  titre: Père François Veranneman, Clerlande
   galerie: peintures
-  image: Père_François.JPG
+  image: Pere_Francois_Clerlande.JPG
   technique: Acrylique
   technique_en: Acrylic
   categorie: portrait
@@ -309,8 +309,15 @@ oeuvres:
   image: Jesus_and_the_bird__Murillo_.jpg
   technique: Acrylique
   technique_en: Acrylic
-  note: D'après le maître sévillan.
-  note_en: After the master of Seville.
+  note: D'après Murillo.
+  note_en: After Murillo.
+  categorie: portrait
+- id: baudouin
+  titre: Baudouin
+  galerie: peintures
+  image: Baudouin.JPG
+  technique: Acrylique
+  technique_en: Acrylic
   categorie: portrait
 - id: elle-brule-il-n-y-a-pas-de-planete-b
   titre: Elle brûle ! Il n'y a pas de planète B
@@ -481,6 +488,19 @@ oeuvres:
   titre: Pilastre
   galerie: ceramiques
   image: Pilastre.jpeg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+- id: ellipse-corail
+  titre: Ellipse corail et son socle
+  galerie: ceramiques
+  image: Ellipse_corail.jpg
+  technique: Grès émaillé
+  technique_en: Glazed stoneware
+  format: double
+- id: vase-blanc-et-rouge-en-plaques
+  titre: Vase blanc et rouge en plaques
+  galerie: ceramiques
+  image: Pot_blanc_plaques.JPG
   technique: Grès émaillé
   technique_en: Glazed stoneware
 - id: la-terre
