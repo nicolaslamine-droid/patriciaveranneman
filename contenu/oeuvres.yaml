@@ -14,6 +14,7 @@ oeuvres:
   technique_en: Acrylic
   categorie: enfance
   format: large
+  vedette: 1
 - id: children
   titre: Children
   galerie: peintures
@@ -21,6 +22,7 @@ oeuvres:
   technique: Acrylique
   technique_en: Acrylic
   categorie: enfance
+  vedette: 5
 - id: le-manege
   titre: Le manège
   galerie: peintures
@@ -42,6 +44,7 @@ oeuvres:
   technique: Acrylique
   technique_en: Acrylic
   categorie: enfance
+  vedette: 15
 - id: hiver-aux-etangs-d-ixelles
   titre: Hiver aux étangs d'Ixelles
   galerie: peintures
@@ -64,6 +67,7 @@ oeuvres:
   technique: Acrylique
   technique_en: Acrylic
   categorie: enfance
+  vedette: 9
 - id: automne-a-l-abbaye-de-la-cambre
   titre: Automne à l'Abbaye de la Cambre
   galerie: peintures
@@ -109,6 +113,7 @@ oeuvres:
   note_en: After Turner
   categorie: lieu
   format: large
+  vedette: 13
 - id: look-d-apres-turner
   titre: Look — d'après Turner
   galerie: peintures
@@ -125,6 +130,7 @@ oeuvres:
   note: D'après E. Hopper.
   note_en: After E. Hopper.
   categorie: lieu
+  vedette: 7
 - id: fenetre
   titre: Fenêtre
   galerie: peintures
@@ -162,6 +168,7 @@ oeuvres:
   note: Cela va mal se terminer !
   note_en: This will end badly!
   categorie: lieu
+  vedette: 3
 - id: prend-le-train-de-la-vie
   titre: Prend le train de la vie
   galerie: peintures
@@ -319,12 +326,14 @@ oeuvres:
   technique: Acrylique
   technique_en: Acrylic
   categorie: portrait
+  vedette: 11
 - id: elle-brule-il-n-y-a-pas-de-planete-b
   titre: Elle brûle ! Il n'y a pas de planète B
   galerie: ceramiques
   image: Elle_brule_planete_B.jpg
   technique: Grès émaillé
   technique_en: Glazed stoneware
+  vedette: 2
 - id: jesus-calme-la-tempete
   titre: Jésus calme la tempête
   galerie: ceramiques
@@ -341,24 +350,28 @@ oeuvres:
   technique_en: Glazed stoneware
   note: D'après Picasso.
   note_en: After Picasso.
+  vedette: 6
 - id: envole-toi
   titre: Envole-toi
   galerie: ceramiques
   image: Envole_toi.jpg
   technique: Grès
   technique_en: Stoneware
+  vedette: 16
 - id: dans-la-lune
   titre: Dans la lune
   galerie: ceramiques
   image: Dans_la_lune.jpg
   technique: Grès émaillé
   technique_en: Glazed stoneware
+  vedette: 4
 - id: le-heaume
   titre: Le Heaume
   galerie: ceramiques
   image: Le_Heaume.jpg
   technique: Céramique, plume, récupération d'un élément ancien de fenêtre
   technique_en: Ceramic, feather, salvaged antique window element
+  vedette: 8
 - id: le-pied
   titre: C'est le pied !
   galerie: ceramiques
@@ -415,6 +428,7 @@ oeuvres:
   image: La_vague.jpg
   technique: Grès émaillé
   technique_en: Glazed stoneware
+  vedette: 14
 - id: boucle-rouge
   titre: Boucle rouge
   galerie: ceramiques
@@ -497,6 +511,7 @@ oeuvres:
   technique: Grès émaillé
   technique_en: Glazed stoneware
   format: double
+  vedette: 10
 - id: vase-blanc-et-rouge-en-plaques
   titre: Vase blanc et rouge en plaques
   galerie: ceramiques
@@ -545,6 +560,7 @@ oeuvres:
   image: Le_Feu.jpg
   technique: Grès émaillé
   technique_en: Glazed stoneware
+  vedette: 12
 - id: le-feu-detail
   titre: Le Feu — détail
   galerie: elements

@@ -162,6 +162,30 @@ def grille(nom):
         out.append(article(o))
     return '\n'.join(out)
 
+# ─────────────────────────────── bande d'œuvres
+def bande(prefixe=''):
+    """Aperçu qui défile sous l'introduction : les œuvres marquées « vedette »
+    dans l'éditeur, dans l'ordre indiqué. Deux fois la même série pour une
+    boucle sans couture."""
+    choisies = sorted([o for o in OEUVRES if o.get('vedette')], key=lambda o: o['vedette'])
+    if len(choisies) < 6:
+        choisies = OEUVRES[:12]
+    def vignette(o, cache):
+        base = o['_vars'][0][0] if o['_vars'] else o['image']
+        av = re.sub(r'\.(jpe?g|png)$', '.avif', base, flags=re.I)
+        wb = re.sub(r'\.(jpe?g|png)$', '.webp', base, flags=re.I)
+        w, h = o['_w'], o['_h']
+        lien_att = ' tabindex="-1" aria-hidden="true"' if cache else ''
+        return (f'<a class="bi" href="{prefixe}oeuvres/{o["id"]}/"{lien_att}>'
+                f'<picture><source type="image/avif" srcset="images/{enc(av)}">'
+                f'<source type="image/webp" srcset="images/{enc(wb)}">'
+                f'<img src="images/{enc(base)}" width="{w}" height="{h}" '
+                f'alt="{att(o.get("alt") or o["titre"])}" loading="lazy" decoding="async"></picture></a>')
+    série = ''.join(vignette(o, False) for o in choisies)
+    copie = ''.join(vignette(o, True) for o in choisies)
+    return ('<div class="bande" aria-label="Aperçu des œuvres">\n'
+            f'  <div class="bande-piste">{série}{copie}</div>\n</div>')
+
 # ─────────────────────────────── JSON-LD
 def jsonld():
     a = SITE['artiste']
@@ -274,6 +298,7 @@ def accueil():
         return (f'<div class="io" data-w="w-{slug}">\n        {balise_image(o, "(max-width:900px) 40vw, 22vw")}\n      </div>\n'
                 f'      <span class="iolab" data-en="{att(lab_en)}">{esc(lab)}</span>')
     s = re.sub(r'<div class="io" data-w="w-[^"]+" data-intro="([^"]+)" data-num="(\d+)"></div>', intro, s)
+    s = s.replace('<!--VEDETTES-->', bande())
     s = s.replace('<!--JSONLD-->', jsonld())
     s = s.replace('var EXPOS = null;', 'var EXPOS = ' + json.dumps(expositions(), ensure_ascii=False) + ';')
     return s

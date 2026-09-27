@@ -268,6 +268,11 @@
     position:relative;overflow:hidden;
     background:var(--deep); /* pas de flash blanc avant chargement de l'image */
   }
+  /* Le héros respire lentement à l'ouverture : l'image avance d'un souffle, une seule fois. */
+  @media(prefers-reduced-motion:no-preference){
+    .hero-bg{animation:respire 28s var(--ease) both;transform-origin:50% 45%}
+    @keyframes respire{from{transform:scale(1.07)}to{transform:scale(1)}}
+  }
   .hero-bg{
     position:absolute;inset:0;
     background:url("images/Le_Feu.jpg") 50% 42%/cover no-repeat;
@@ -419,14 +424,40 @@
   }
 
   /* ── TICKER (gardé, mais sous l'intro) ── */
-  .ticker{
+  /* ── BANDE D'ŒUVRES — un aperçu qui défile doucement ── */
+  .bande{
     border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    overflow:hidden;padding:.85rem 0;background:var(--cream);
-    position:relative;
+    overflow:hidden;background:var(--cream);position:relative;
+    padding:1.75rem 0;
   }
-  .ti{display:flex;gap:3.5rem;white-space:nowrap;animation:tick 40s linear infinite;will-change:transform}
-  .ti span{font-family:var(--S);font-size:.9rem;font-style:italic;color:var(--mid);flex-shrink:0}
-  .ti span.d{font-style:normal;color:var(--line)}
+  .bande::before,.bande::after{
+    content:'';position:absolute;top:0;bottom:0;width:12%;z-index:2;pointer-events:none;
+    background:linear-gradient(to right,var(--cream),rgba(0,0,0,0));
+  }
+  .bande::after{right:0;transform:scaleX(-1)}
+  .bande-piste{display:flex;gap:1.25rem;width:max-content;animation:defile 90s linear infinite;will-change:transform}
+  .bande:hover .bande-piste{animation-play-state:paused}
+  .bi{display:block;height:230px;flex:0 0 auto;overflow:hidden;background:var(--warm);position:relative}
+  .bi img{height:100%;width:auto;display:block;transition:transform .8s var(--ease),opacity .4s}
+  .bi::after{
+    content:'';position:absolute;inset:0;background:var(--k);opacity:0;transition:opacity .4s var(--ease);
+  }
+  @media(hover:hover){
+    .bi:hover img{transform:scale(1.04)}
+    .bande:hover .bi:not(:hover)::after{opacity:.35}
+  }
+  @keyframes defile{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+  @media(max-width:900px){.bi{height:170px}.bande{padding:1.25rem 0}.bande-piste{gap:.75rem;animation-duration:70s}}
+  @media(prefers-reduced-motion:reduce){
+    .bande{overflow-x:auto;scrollbar-width:none}
+    .bande::-webkit-scrollbar{display:none}
+    .bande-piste{animation:none}
+  }
+  /* ── Galerie : l'œuvre survolée passe devant les autres ── */
+  @media(hover:hover) and (pointer:fine){
+    .wgrid:hover .work:not(:hover),.cgrid:hover .cwork:not(:hover){opacity:.72}
+    .work,.cwork{transition:opacity .5s var(--ease),transform .85s var(--ease)}
+  }
 
   /* ── SECTION HEADER ── */
   .sh{
@@ -1213,19 +1244,8 @@
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ti">
-    <span>Portrait</span><span class="d"> · </span><span>Figure humaine</span><span class="d"> · </span>
-    <span>Paysage</span><span class="d"> · </span><span>Scène de vie</span><span class="d"> · </span>
-    <span>Sculpture</span><span class="d"> · </span><span>Céramique émaillée</span><span class="d"> · </span>
-    <span>Bas-relief</span><span class="d"> · </span><span>Dessin au fusain</span><span class="d"> · </span>
-    <span>Portrait</span><span class="d"> · </span><span>Figure humaine</span><span class="d"> · </span>
-    <span>Paysage</span><span class="d"> · </span><span>Scène de vie</span><span class="d"> · </span>
-    <span>Sculpture</span><span class="d"> · </span><span>Céramique émaillée</span><span class="d"> · </span>
-    <span>Bas-relief</span><span class="d"> · </span><span>Dessin au fusain</span><span class="d"> · </span>
-  </div>
-</div>
+<!-- BANDE D'ŒUVRES -->
+<!--VEDETTES-->
 
 <!-- ═══════════════════════════════════════════════════════════
      PEINTURES — Ordre : Enfance · Lieux · Dessins · Portraits
