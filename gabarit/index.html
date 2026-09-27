@@ -1246,16 +1246,16 @@
   </div>
 </div>
 
-<div class="sortbar" id="sb-p">
+<div class="sortbar chroma" id="sb-p">
   <span class="sl" data-en="Order">Ordre</span>
   <span class="sortbtns">
-    <button class="sb on" type="button" data-sort="dom" data-grid="pg" data-en="Gallery">Galerie</button>
-    <button class="sb" type="button" data-sort="chroma" data-grid="pg" data-en="By colour">Par couleur</button>
+    <button class="sb" type="button" data-sort="dom" data-grid="pg" data-en="Gallery">Galerie</button>
+    <button class="sb on" type="button" data-sort="chroma" data-grid="pg" data-en="By colour">Par couleur</button>
   </span>
   <span class="chroma-strip" aria-hidden="true"></span>
 </div>
 
-<div class="wgrid" id="pg">
+<div class="wgrid" id="pg" data-sort="chroma">
 <!--OEUVRES:peintures-->
 
 </div>
@@ -1271,16 +1271,16 @@
   <div class="shint" data-nb="ceramiques"></div>
 </div>
 
-<div class="sortbar" id="sb-c">
+<div class="sortbar chroma" id="sb-c">
   <span class="sl" data-en="Order">Ordre</span>
   <span class="sortbtns">
-    <button class="sb on" type="button" data-sort="dom" data-grid="cg" data-en="Gallery">Galerie</button>
-    <button class="sb" type="button" data-sort="chroma" data-grid="cg" data-en="By colour">Par couleur</button>
+    <button class="sb" type="button" data-sort="dom" data-grid="cg" data-en="Gallery">Galerie</button>
+    <button class="sb on" type="button" data-sort="chroma" data-grid="cg" data-en="By colour">Par couleur</button>
   </span>
   <span class="chroma-strip" aria-hidden="true"></span>
 </div>
 
-<div class="cgrid" id="cg">
+<div class="cgrid" id="cg" data-sort="chroma">
 <!--OEUVRES:ceramiques-->
 
 </div>
@@ -1817,7 +1817,7 @@
       var dh = document.getElementById('ei-horaires');
       if(dh) dh.hidden = !EXPO.horaires;
       var m = document.getElementById('ei-map');
-      if(m) m.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(EXPO.lieu);
+      if(m) m.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(EXPO.adresse || EXPO.lieu);
       var ln2 = document.getElementById('ei-lien');
       if(ln2){ ln2.hidden = !EXPO.lien; if(EXPO.lien) ln2.href = EXPO.lien; }
     }

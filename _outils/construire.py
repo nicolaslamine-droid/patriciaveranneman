@@ -230,7 +230,7 @@ def expositions():
         dts_en = ' and '.join(periode(jour(e['debut']), jour(e.get('fin') or e['debut']), True) for e in es) + f' {an}'
         court = f"{p['titre']} · {p.get('lieu', '').split(',')[0]} · {dts}"
         court_en = f"{p['titre']} · {p.get('lieu', '').split(',')[0]} · {dts_en}"
-        out.append({'titre': p['titre'], 'lieu': p.get('lieu', ''),
+        out.append({'titre': p['titre'], 'lieu': p.get('lieu', ''), 'adresse': p.get('adresse', ''),
                     'debut': deb.isoformat(), 'fin': fin.isoformat(),
                     'dates': p.get('dates') or dts, 'datesEn': p.get('dates_en') or dts_en,
                     'horaires': p.get('horaires', ''), 'horairesEn': p.get('horaires_en') or p.get('horaires', ''),

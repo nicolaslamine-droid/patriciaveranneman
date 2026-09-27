@@ -1252,16 +1252,16 @@
   </div>
 </div>
 
-<div class="sortbar" id="sb-p">
+<div class="sortbar chroma" id="sb-p">
   <span class="sl" data-en="Order" data-fr="Ordre">Order</span>
   <span class="sortbtns">
-    <button class="sb on" type="button" data-sort="dom" data-grid="pg" data-en="Gallery" data-fr="Galerie">Gallery</button>
-    <button class="sb" type="button" data-sort="chroma" data-grid="pg" data-en="By colour" data-fr="Par couleur">By colour</button>
+    <button class="sb" type="button" data-sort="dom" data-grid="pg" data-en="Gallery" data-fr="Galerie">Gallery</button>
+    <button class="sb on" type="button" data-sort="chroma" data-grid="pg" data-en="By colour" data-fr="Par couleur">By colour</button>
   </span>
   <span class="chroma-strip" aria-hidden="true"></span>
 </div>
 
-<div class="wgrid" id="pg">
+<div class="wgrid" id="pg" data-sort="chroma">
 
   <!-- ── ENFANCE & FAMILLE ── -->
   <article id="w-joie-de-la-mer" data-h="0.5507" data-s="0.625" data-l="0.359" class="work" data-c="enfance">
@@ -1460,16 +1460,16 @@
   <div class="shint" data-en="Stoneware &amp; glazed stoneware<br>29 works" data-fr="Grès &amp; grès émaillé<br>29 œuvres">Stoneware & glazed stoneware<br>29 works</div>
 </div>
 
-<div class="sortbar" id="sb-c">
+<div class="sortbar chroma" id="sb-c">
   <span class="sl" data-en="Order" data-fr="Ordre">Order</span>
   <span class="sortbtns">
-    <button class="sb on" type="button" data-sort="dom" data-grid="cg" data-en="Gallery" data-fr="Galerie">Gallery</button>
-    <button class="sb" type="button" data-sort="chroma" data-grid="cg" data-en="By colour" data-fr="Par couleur">By colour</button>
+    <button class="sb" type="button" data-sort="dom" data-grid="cg" data-en="Gallery" data-fr="Galerie">Gallery</button>
+    <button class="sb on" type="button" data-sort="chroma" data-grid="cg" data-en="By colour" data-fr="Par couleur">By colour</button>
   </span>
   <span class="chroma-strip" aria-hidden="true"></span>
 </div>
 
-<div class="cgrid" id="cg">
+<div class="cgrid" id="cg" data-sort="chroma">
   <article id="w-elle-brule-il-n-y-a-pas-de-planete-b" data-h="0.0729" data-s="0.285" data-l="0.877" class="cwork">
     <div class="cwimg"><picture><source type="image/avif" srcset="../images/Elle_brule_planete_B-600.avif 600w, ../images/Elle_brule_planete_B-1200.avif 1200w, ../images/Elle_brule_planete_B.avif 1500w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Elle_brule_planete_B-600.webp 600w, ../images/Elle_brule_planete_B-1200.webp 1200w, ../images/Elle_brule_planete_B.webp 1500w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1500" height="2000" src="../images/Elle_brule_planete_B.jpg" alt="Elle brûle ! Il n'y a pas de planète B" loading="lazy" decoding="async" srcset="../images/Elle_brule_planete_B-600.jpg 600w, ../images/Elle_brule_planete_B-1200.jpg 1200w, ../images/Elle_brule_planete_B.jpg 1500w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Elle_brule_planete_B.jpg"></picture></div>
     <div class="ccap"><span class="wt"><a class="wlien" href="oeuvres/elle-brule-il-n-y-a-pas-de-planete-b/">Elle brûle ! Il n'y a pas de planète B</a></span><span class="wm" data-en="Glazed stoneware" data-fr="Grès émaillé">Glazed stoneware</span></div>
@@ -2114,7 +2114,7 @@
      Une seule ligne à remplir ci-dessous quand les dates sont connues.
      Laisser EXPO = null fait disparaître le bandeau et l'encadré.
      ══════════════════════════════════════════════════════════ */
-  var EXPOS = [{"titre": "Parcours d'artistes de Louvain-la-Neuve", "lieu": "Chez Françoise et Adrien de Wouters, place Horta 88, Bruyères, 1348 Louvain-la-Neuve", "debut": "2026-09-26", "fin": "2026-10-04", "dates": "les 26 et 27 septembre et les 3 et 4 octobre 2026", "datesEn": "26 and 27 September and 3 and 4 October 2026", "horaires": "de 14 h à 18 h", "horairesEn": "2 – 6 pm", "note": "Céramiques de Patricia Veranneman, peintures d'Adrien de Wouters", "noteEn": "Ceramics by Patricia Veranneman, paintings by Adrien de Wouters", "lien": "https://www.facebook.com/events/1615244100200592", "resume": "Parcours d'artistes de Louvain-la-Neuve · place Horta 88 · 26-27 septembre et 3-4 octobre", "resumeEn": "Louvain-la-Neuve artists' trail · place Horta 88 · 26–27 September and 3–4 October"}];
+  var EXPOS = [{"titre": "Parcours d'artistes de Louvain-la-Neuve", "lieu": "Chez Françoise et Adrien de Wouters, place Horta 88, Bruyères, 1348 Louvain-la-Neuve", "adresse": "Place Horta 88, Bruyères, 1348 Louvain-la-Neuve, Belgique", "debut": "2026-09-26", "fin": "2026-10-04", "dates": "les 26 et 27 septembre et les 3 et 4 octobre 2026", "datesEn": "26 and 27 September and 3 and 4 October 2026", "horaires": "de 14 h à 18 h", "horairesEn": "2 – 6 pm", "note": "Céramiques de Patricia Veranneman, peintures d'Adrien de Wouters", "noteEn": "Ceramics by Patricia Veranneman, paintings by Adrien de Wouters", "lien": "https://www.facebook.com/events/1615244100200592", "resume": "Parcours d'artistes de Louvain-la-Neuve · place Horta 88 · 26-27 septembre et 3-4 octobre", "resumeEn": "Louvain-la-Neuve artists' trail · place Horta 88 · 26–27 September and 3–4 October"}];
   /* Le site choisit tout seul, à chaque visite : l'exposition en cours, sinon la
      prochaine à venir, sinon rien du tout. Aucune intervention n'est nécessaire :
      le bandeau apparaît et disparaît aux bonnes dates. Les dates se remplissent
@@ -2155,7 +2155,7 @@
       var dh = document.getElementById('ei-horaires');
       if(dh) dh.hidden = !EXPO.horaires;
       var m = document.getElementById('ei-map');
-      if(m) m.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(EXPO.lieu);
+      if(m) m.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(EXPO.adresse || EXPO.lieu);
       var ln2 = document.getElementById('ei-lien');
       if(ln2){ ln2.hidden = !EXPO.lien; if(EXPO.lien) ln2.href = EXPO.lien; }
     }
