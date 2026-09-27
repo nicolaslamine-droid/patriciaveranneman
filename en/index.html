@@ -183,8 +183,6 @@
   nav.solid{
     background:var(--nav-bg);
     border-bottom-color:var(--line);
-    -webkit-backdrop-filter:saturate(180%) blur(14px);
-    backdrop-filter:saturate(180%) blur(14px);
   }
   nav.solid .nlogo,nav.solid .nlinks a{color:var(--k)}
   nav.solid .nbtn span{background:var(--k)}
@@ -268,11 +266,6 @@
     position:relative;overflow:hidden;
     background:var(--deep); /* pas de flash blanc avant chargement de l'image */
   }
-  /* Le héros respire lentement à l'ouverture : l'image avance d'un souffle, une seule fois. */
-  @media(prefers-reduced-motion:no-preference){
-    .hero-bg{animation:respire 28s var(--ease) both;transform-origin:50% 45%}
-    @keyframes respire{from{transform:scale(1.07)}to{transform:scale(1)}}
-  }
   .hero-bg{
     position:absolute;inset:0;
     background:url("../images/Le_Feu.jpg") 50% 42%/cover no-repeat;
@@ -301,7 +294,6 @@
     margin-bottom:1.6rem;padding:.6rem 1.1rem;
     border:1px solid rgba(255,255,255,.28);
     background:rgba(0,0,0,.25);
-    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
     animation:up .9s var(--ease) .2s both;
     transition:background .25s,border-color .25s;
   }
@@ -453,17 +445,12 @@
     .bande::-webkit-scrollbar{display:none}
     .bande-piste{animation:none}
   }
-  /* ── Galerie : l'œuvre survolée passe devant les autres ── */
-  @media(hover:hover) and (pointer:fine){
-    .wgrid:hover .work:not(:hover),.cgrid:hover .cwork:not(:hover){opacity:.72}
-    .work,.cwork{transition:opacity .5s var(--ease),transform .85s var(--ease)}
-  }
 
   /* ── SECTION HEADER ── */
   .sh{
     position:relative;
     max-width:1620px;margin:0 auto;
-    padding:6rem 2.5rem 0;
+    padding:8rem 3rem 0;
     display:flex;justify-content:space-between;align-items:flex-end;
     flex-wrap:wrap;gap:1rem;
   }
@@ -533,14 +520,14 @@
 
   /* ── GALERIES — maçonnerie, format d'origine respecté ── */
   .wgrid,.cgrid{
-    --cols:3;--gap:2.5rem;
-    max-width:1620px;margin:3.5rem auto 7rem;
-    padding:0 2.5rem;
+    --cols:3;--gap:4rem;
+    max-width:1620px;margin:4.5rem auto 9rem;
+    padding:0 3rem;
     columns:var(--cols);column-gap:var(--gap);
   }
   /* Très grands écrans : une colonne de plus, et on respire plus large */
   @media(min-width:1800px){
-    .wgrid,.cgrid{--cols:4;--gap:2.75rem;max-width:2000px}
+    .wgrid,.cgrid{--cols:3;--gap:5rem;max-width:1900px}
     .sh,.tabs,.sortbar,.cv-wrap{max-width:2000px}
   }
   /* Une fois le JS passé : positionnement calculé, ordre de lecture respecté */
@@ -553,8 +540,8 @@
   .work,.cwork{
     break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;
     display:block;width:100%;margin:0 0 3.25rem;
-    opacity:0;transform:translateY(18px);
-    transition:opacity .85s var(--ease),transform .85s var(--ease);
+    opacity:0;transform:translateY(10px);
+    transition:opacity .45s var(--ease),transform .45s var(--ease);
     position:relative;
   }
   .work.in,.cwork.in{opacity:1;transform:none}
@@ -578,7 +565,7 @@
   }
   .wimg img,.cwimg img{
     width:100%;height:auto;display:block;
-    transition:transform 1.2s var(--ease);
+    transition:transform .5s var(--ease);
   }
   .wimg::after,.cwimg::after{
     content:'';position:absolute;inset:0;
@@ -586,7 +573,7 @@
     transition:opacity .5s var(--ease);pointer-events:none;
   }
   @media(hover:hover){
-    .work:hover .wimg img,.cwork:hover .cwimg img{transform:scale(1.035)}
+    .work:hover .wimg img,.cwork:hover .cwimg img{transform:scale(1.02)}
     .work:hover .wimg::after,.cwork:hover .cwimg::after{opacity:.07}
   }
   .wcap,.ccap{padding:1.15rem .1rem 0}
@@ -943,7 +930,7 @@
   /* ══ FLUIDITÉ ══════════════════════════════════════════════ */
   /* Les œuvres apparaissent en fondu une fois l'image décodée */
   .js .wimg img,.js .cwimg img{
-    opacity:0;transition:opacity .7s var(--ease),transform 1.2s var(--ease);
+    opacity:0;transition:opacity .35s linear,transform .5s var(--ease);
     /* Filet de sécurité purement CSS : quoi qu'il arrive au script, l'image
        devient visible au bout de 3 secondes. Rien ne peut rester noir. */
     animation:secours 0s linear 3s forwards;
@@ -952,7 +939,7 @@
   @keyframes secours{to{opacity:1}}
   /* Écrans tactiles : fond plein, sans flou (défilement plus léger) */
   @media(pointer:coarse){
-    nav.solid{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--w)}
+    nav.solid{background:var(--w)}
   }
   /* Héros : image allégée sur tablette et téléphone */
   @media(max-width:900px){.hero-bg{background-image:url("../images/Le_Feu-1200.jpg");background-image:image-set(url("../images/Le_Feu-1200.avif") type("image/avif"),url("../images/Le_Feu-1200.webp") type("image/webp"),url("../images/Le_Feu-1200.jpg") type("image/jpeg"))}}
@@ -1028,7 +1015,7 @@
 
   /* ══ TABLET ≤900px ══ */
   @media(max-width:1100px){
-    .wgrid,.cgrid{--cols:2;--gap:2rem;padding:0 2rem}
+    .wgrid,.cgrid{--cols:2;--gap:2.75rem;padding:0 2rem}
   }
 
   @media(max-width:900px){
@@ -1250,10 +1237,6 @@
   </div>
 </section>
 
-<!-- BANDE D'ŒUVRES -->
-<div class="bande" aria-label="Aperçu des œuvres">
-  <div class="bande-piste"><a class="bi" href="oeuvres/run/"><picture><source type="image/avif" srcset="../images/Run-600.avif"><source type="image/webp" srcset="../images/Run-600.webp"><img src="../images/Run-600.jpg" width="2000" height="1376" alt="Run" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/elle-brule-il-n-y-a-pas-de-planete-b/"><picture><source type="image/avif" srcset="../images/Elle_brule_planete_B-600.avif"><source type="image/webp" srcset="../images/Elle_brule_planete_B-600.webp"><img src="../images/Elle_brule_planete_B-600.jpg" width="1500" height="2000" alt="Elle brûle ! Il n'y a pas de planète B" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/wall-street/"><picture><source type="image/avif" srcset="../images/Wall_Street-600.avif"><source type="image/webp" srcset="../images/Wall_Street-600.webp"><img src="../images/Wall_Street-600.JPG" width="1383" height="1824" alt="Wall Street" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/dans-la-lune/"><picture><source type="image/avif" srcset="../images/Dans_la_lune-600.avif"><source type="image/webp" srcset="../images/Dans_la_lune-600.webp"><img src="../images/Dans_la_lune-600.jpg" width="1333" height="2000" alt="Dans la lune" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/children/"><picture><source type="image/avif" srcset="../images/1_Children-600.avif"><source type="image/webp" srcset="../images/1_Children-600.webp"><img src="../images/1_Children-600.jpg" width="2000" height="1387" alt="Children" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/guernica-gaza-kharkiv/"><picture><source type="image/avif" srcset="../images/Guernica_Gaza_Kharkiv_noir-600.avif"><source type="image/webp" srcset="../images/Guernica_Gaza_Kharkiv_noir-600.webp"><img src="../images/Guernica_Gaza_Kharkiv_noir-600.jpg" width="1500" height="2000" alt="Guernica, Gaza, Kharkiv" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/vue-sur-mer/"><picture><source type="image/avif" srcset="../images/Vue_sur_mer-600.avif"><source type="image/webp" srcset="../images/Vue_sur_mer-600.webp"><img src="../images/Vue_sur_mer-600.JPG" width="800" height="660" alt="Vue sur mer" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/le-heaume/"><picture><source type="image/avif" srcset="../images/Le_Heaume-600.avif"><source type="image/webp" srcset="../images/Le_Heaume-600.webp"><img src="../images/Le_Heaume-600.jpg" width="1333" height="2000" alt="Le Heaume" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/in-the-arms/"><picture><source type="image/avif" srcset="../images/In_the_arms__-600.avif"><source type="image/webp" srcset="../images/In_the_arms__-600.webp"><img src="../images/In_the_arms__-600.jpg" width="1368" height="1902" alt="In the arms !" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/ellipse-corail/"><picture><source type="image/avif" srcset="../images/Ellipse_corail-600.avif"><source type="image/webp" srcset="../images/Ellipse_corail-600.webp"><img src="../images/Ellipse_corail-600.jpg" width="2000" height="1032" alt="Ellipse corail et son socle" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/baudouin/"><picture><source type="image/avif" srcset="../images/Baudouin-600.avif"><source type="image/webp" srcset="../images/Baudouin-600.webp"><img src="../images/Baudouin-600.JPG" width="1553" height="2000" alt="Baudouin" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/le-feu/"><picture><source type="image/avif" srcset="../images/Le_Feu-600.avif"><source type="image/webp" srcset="../images/Le_Feu-600.webp"><img src="../images/Le_Feu-600.jpg" width="2000" height="1333" alt="Le Feu" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/tempete/"><picture><source type="image/avif" srcset="../images/Temp%C3%AAte-600.avif"><source type="image/webp" srcset="../images/Temp%C3%AAte-600.webp"><img src="../images/Temp%C3%AAte-600.jpg" width="1703" height="1420" alt="Tempête" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/la-vague/"><picture><source type="image/avif" srcset="../images/La_vague-600.avif"><source type="image/webp" srcset="../images/La_vague-600.webp"><img src="../images/La_vague-600.jpg" width="2000" height="1333" alt="La vague" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/where-are-we-going-dad/"><picture><source type="image/avif" srcset="../images/Where_are_we_going_Dad_-600.avif"><source type="image/webp" srcset="../images/Where_are_we_going_Dad_-600.webp"><img src="../images/Where_are_we_going_Dad_-600.jpg" width="1487" height="1888" alt="Where are we going, Dad?" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/envole-toi/"><picture><source type="image/avif" srcset="../images/Envole_toi-600.avif"><source type="image/webp" srcset="../images/Envole_toi-600.webp"><img src="../images/Envole_toi-600.jpg" width="2000" height="1333" alt="Envole-toi" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/run/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/Run-600.avif"><source type="image/webp" srcset="../images/Run-600.webp"><img src="../images/Run-600.jpg" width="2000" height="1376" alt="Run" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/elle-brule-il-n-y-a-pas-de-planete-b/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/Elle_brule_planete_B-600.avif"><source type="image/webp" srcset="../images/Elle_brule_planete_B-600.webp"><img src="../images/Elle_brule_planete_B-600.jpg" width="1500" height="2000" alt="Elle brûle ! Il n'y a pas de planète B" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/wall-street/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/Wall_Street-600.avif"><source type="image/webp" srcset="../images/Wall_Street-600.webp"><img src="../images/Wall_Street-600.JPG" width="1383" height="1824" alt="Wall Street" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/dans-la-lune/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/Dans_la_lune-600.avif"><source type="image/webp" srcset="../images/Dans_la_lune-600.webp"><img src="../images/Dans_la_lune-600.jpg" width="1333" height="2000" alt="Dans la lune" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/children/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/1_Children-600.avif"><source type="image/webp" srcset="../images/1_Children-600.webp"><img src="../images/1_Children-600.jpg" width="2000" height="1387" alt="Children" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/guernica-gaza-kharkiv/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/Guernica_Gaza_Kharkiv_noir-600.avif"><source type="image/webp" srcset="../images/Guernica_Gaza_Kharkiv_noir-600.webp"><img src="../images/Guernica_Gaza_Kharkiv_noir-600.jpg" width="1500" height="2000" alt="Guernica, Gaza, Kharkiv" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/vue-sur-mer/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/Vue_sur_mer-600.avif"><source type="image/webp" srcset="../images/Vue_sur_mer-600.webp"><img src="../images/Vue_sur_mer-600.JPG" width="800" height="660" alt="Vue sur mer" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/le-heaume/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/Le_Heaume-600.avif"><source type="image/webp" srcset="../images/Le_Heaume-600.webp"><img src="../images/Le_Heaume-600.jpg" width="1333" height="2000" alt="Le Heaume" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/in-the-arms/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/In_the_arms__-600.avif"><source type="image/webp" srcset="../images/In_the_arms__-600.webp"><img src="../images/In_the_arms__-600.jpg" width="1368" height="1902" alt="In the arms !" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/ellipse-corail/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/Ellipse_corail-600.avif"><source type="image/webp" srcset="../images/Ellipse_corail-600.webp"><img src="../images/Ellipse_corail-600.jpg" width="2000" height="1032" alt="Ellipse corail et son socle" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/baudouin/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/Baudouin-600.avif"><source type="image/webp" srcset="../images/Baudouin-600.webp"><img src="../images/Baudouin-600.JPG" width="1553" height="2000" alt="Baudouin" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/le-feu/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/Le_Feu-600.avif"><source type="image/webp" srcset="../images/Le_Feu-600.webp"><img src="../images/Le_Feu-600.jpg" width="2000" height="1333" alt="Le Feu" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/tempete/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/Temp%C3%AAte-600.avif"><source type="image/webp" srcset="../images/Temp%C3%AAte-600.webp"><img src="../images/Temp%C3%AAte-600.jpg" width="1703" height="1420" alt="Tempête" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/la-vague/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/La_vague-600.avif"><source type="image/webp" srcset="../images/La_vague-600.webp"><img src="../images/La_vague-600.jpg" width="2000" height="1333" alt="La vague" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/where-are-we-going-dad/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/Where_are_we_going_Dad_-600.avif"><source type="image/webp" srcset="../images/Where_are_we_going_Dad_-600.webp"><img src="../images/Where_are_we_going_Dad_-600.jpg" width="1487" height="1888" alt="Where are we going, Dad?" loading="lazy" decoding="async"></picture></a><a class="bi" href="oeuvres/envole-toi/" tabindex="-1" aria-hidden="true"><picture><source type="image/avif" srcset="../images/Envole_toi-600.avif"><source type="image/webp" srcset="../images/Envole_toi-600.webp"><img src="../images/Envole_toi-600.jpg" width="2000" height="1333" alt="Envole-toi" loading="lazy" decoding="async"></picture></a></div>
-</div>
 
 <!-- ═══════════════════════════════════════════════════════════
      PEINTURES — Ordre : Enfance · Lieux · Dessins · Portraits
@@ -1274,14 +1257,6 @@
   </div>
 </div>
 
-<div class="sortbar chroma" id="sb-p">
-  <span class="sl" data-en="Order" data-fr="Ordre">Order</span>
-  <span class="sortbtns">
-    <button class="sb" type="button" data-sort="dom" data-grid="pg" data-en="Gallery" data-fr="Galerie">Gallery</button>
-    <button class="sb on" type="button" data-sort="chroma" data-grid="pg" data-en="By colour" data-fr="Par couleur">By colour</button>
-  </span>
-  <span class="chroma-strip" aria-hidden="true"></span>
-</div>
 
 <div class="wgrid" id="pg" data-sort="chroma">
 
@@ -1290,11 +1265,11 @@
     <div class="wimg"><picture><source type="image/avif" srcset="../images/Joie_de_la_mer.avif"><source type="image/webp" srcset="../images/Joie_de_la_mer.webp"><img width="530" height="800" src="../images/Joie_de_la_mer.JPG" alt="Joie de la mer" loading="lazy" decoding="async" data-full="../images/Joie_de_la_mer.JPG"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/joie-de-la-mer/">Joie de la mer</a></span><span class="wm" data-en="Acrylic" data-fr="Acrylique">Acrylic</span></div>
   </article>
-  <article id="w-run" data-h="0.5662" data-s="0.392" data-l="0.482" class="work wide" data-c="enfance">
+  <article id="w-run" data-h="0.5662" data-s="0.392" data-l="0.482" class="work wide" data-c="enfance" data-v="1">
     <div class="wimg"><picture><source type="image/avif" srcset="../images/Run-600.avif 600w, ../images/Run-1200.avif 1200w, ../images/Run.avif 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Run-600.webp 600w, ../images/Run-1200.webp 1200w, ../images/Run.webp 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="2000" height="1376" src="../images/Run.jpg" alt="Run" loading="lazy" decoding="async" srcset="../images/Run-600.jpg 600w, ../images/Run-1200.jpg 1200w, ../images/Run.jpg 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Run.jpg"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/run/">Run</a></span><span class="wm" data-en="Acrylic" data-fr="Acrylique">Acrylic</span></div>
   </article>
-  <article id="w-children" data-h="0.5531" data-s="0.547" data-l="0.369" class="work" data-c="enfance">
+  <article id="w-children" data-h="0.5531" data-s="0.547" data-l="0.369" class="work" data-c="enfance" data-v="3">
     <div class="wimg"><picture><source type="image/avif" srcset="../images/1_Children-600.avif 600w, ../images/1_Children-1200.avif 1200w, ../images/1_Children.avif 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/1_Children-600.webp 600w, ../images/1_Children-1200.webp 1200w, ../images/1_Children.webp 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="2000" height="1387" src="../images/1_Children.jpg" alt="Children" loading="lazy" decoding="async" srcset="../images/1_Children-600.jpg 600w, ../images/1_Children-1200.jpg 1200w, ../images/1_Children.jpg 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/1_Children.jpg"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/children/">Children</a></span><span class="wm" data-en="Acrylic" data-fr="Acrylique">Acrylic</span></div>
   </article>
@@ -1306,7 +1281,7 @@
     <div class="wimg"><picture><source type="image/avif" srcset="../images/Papa_et_fils_plage-600.avif 600w, ../images/Papa_et_fils_plage-1200.avif 1200w, ../images/Papa_et_fils_plage.avif 1892w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Papa_et_fils_plage-600.webp 600w, ../images/Papa_et_fils_plage-1200.webp 1200w, ../images/Papa_et_fils_plage.webp 1892w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1892" height="1346" src="../images/Papa_et_fils_plage.jpg" alt="Papa et fils — plage" loading="lazy" decoding="async" srcset="../images/Papa_et_fils_plage-600.jpg 600w, ../images/Papa_et_fils_plage-1200.jpg 1200w, ../images/Papa_et_fils_plage.jpg 1892w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Papa_et_fils_plage.jpg"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/papa-et-fils-plage/">Papa et fils — plage</a></span><span class="wm" data-en="Acrylic" data-fr="Acrylique">Acrylic</span></div>
   </article>
-  <article id="w-where-are-we-going-dad" data-h="0.5621" data-s="0.599" data-l="0.462" class="work" data-c="enfance">
+  <article id="w-where-are-we-going-dad" data-h="0.5621" data-s="0.599" data-l="0.462" class="work" data-c="enfance" data-v="6">
     <div class="wimg"><picture><source type="image/avif" srcset="../images/Where_are_we_going_Dad_-600.avif 600w, ../images/Where_are_we_going_Dad_-1200.avif 1200w, ../images/Where_are_we_going_Dad_.avif 1487w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Where_are_we_going_Dad_-600.webp 600w, ../images/Where_are_we_going_Dad_-1200.webp 1200w, ../images/Where_are_we_going_Dad_.webp 1487w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1487" height="1888" src="../images/Where_are_we_going_Dad_.jpg" alt="Where are we going, Dad?" loading="lazy" decoding="async" srcset="../images/Where_are_we_going_Dad_-600.jpg 600w, ../images/Where_are_we_going_Dad_-1200.jpg 1200w, ../images/Where_are_we_going_Dad_.jpg 1487w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Where_are_we_going_Dad_.jpg"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/where-are-we-going-dad/">Where are we going, Dad?</a></span><span class="wm" data-en="Acrylic" data-fr="Acrylique">Acrylic</span></div>
   </article>
@@ -1318,7 +1293,7 @@
     <div class="wimg"><picture><source type="image/avif" srcset="../images/Hiver_Etangs_d_Ixelles.avif"><source type="image/webp" srcset="../images/Hiver_Etangs_d_Ixelles.webp"><img width="534" height="800" src="../images/Hiver_Etangs_d_Ixelles.JPG" alt="Hiver aux étangs d'Ixelles II" loading="lazy" decoding="async" data-full="../images/Hiver_Etangs_d_Ixelles.JPG"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/hiver-aux-etangs-d-ixelles-ii/">Hiver aux étangs d'Ixelles II</a></span><span class="wm" data-en="Acrylic" data-fr="Acrylique">Acrylic</span></div>
   </article>
-  <article id="w-in-the-arms" data-h="0.5884" data-s="0.423" data-l="0.285" class="work" data-c="enfance">
+  <article id="w-in-the-arms" data-h="0.5884" data-s="0.423" data-l="0.285" class="work" data-c="enfance" data-v="5">
     <div class="wimg"><picture><source type="image/avif" srcset="../images/In_the_arms__-600.avif 600w, ../images/In_the_arms__-1200.avif 1200w, ../images/In_the_arms__.avif 1368w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/In_the_arms__-600.webp 600w, ../images/In_the_arms__-1200.webp 1200w, ../images/In_the_arms__.webp 1368w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1368" height="1902" src="../images/In_the_arms__.jpg" alt="In the arms !" loading="lazy" decoding="async" srcset="../images/In_the_arms__-600.jpg 600w, ../images/In_the_arms__-1200.jpg 1200w, ../images/In_the_arms__.jpg 1368w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/In_the_arms__.jpg"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/in-the-arms/">In the arms !</a></span><span class="wm" data-en="Acrylic" data-fr="Acrylique">Acrylic</span></div>
   </article>
@@ -1344,7 +1319,7 @@
   </article>
 
   <!-- ── LIEUX & LUMIÈRE ── -->
-  <article id="w-tempete" data-h="0.5452" data-s="0.278" data-l="0.595" class="work wide" data-c="lieu">
+  <article id="w-tempete" data-h="0.5452" data-s="0.278" data-l="0.595" class="work wide" data-c="lieu" data-v="7">
     <div class="wimg"><picture><source type="image/avif" srcset="../images/Temp%C3%AAte-600.avif 600w, ../images/Temp%C3%AAte-1200.avif 1200w, ../images/Temp%C3%AAte.avif 1703w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Temp%C3%AAte-600.webp 600w, ../images/Temp%C3%AAte-1200.webp 1200w, ../images/Temp%C3%AAte.webp 1703w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1703" height="1420" src="../images/Temp%C3%AAte.jpg" alt="Tempête" loading="lazy" decoding="async" srcset="../images/Temp%C3%AAte-600.jpg 600w, ../images/Temp%C3%AAte-1200.jpg 1200w, ../images/Temp%C3%AAte.jpg 1703w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Temp%C3%AAte.jpg"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/tempete/">Tempête</a></span><span class="wm" data-en="Acrylic" data-fr="Acrylique">Acrylic</span><span class="wd" data-en="After Turner" data-fr="D'après Turner">After Turner</span></div>
   </article>
@@ -1352,7 +1327,7 @@
     <div class="wimg"><picture><source type="image/avif" srcset="../images/Look____Turner_-600.avif 600w, ../images/Look____Turner_-1200.avif 1200w, ../images/Look____Turner_.avif 1326w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Look____Turner_-600.webp 600w, ../images/Look____Turner_-1200.webp 1200w, ../images/Look____Turner_.webp 1326w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1326" height="2000" src="../images/Look____Turner_.jpg" alt="Look — d'après Turner" loading="lazy" decoding="async" srcset="../images/Look____Turner_-600.jpg 600w, ../images/Look____Turner_-1200.jpg 1200w, ../images/Look____Turner_.jpg 1326w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Look____Turner_.jpg"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/look-d-apres-turner/">Look — d'après Turner</a></span><span class="wm" data-en="Pastel" data-fr="Pastel">Pastel</span></div>
   </article>
-  <article id="w-vue-sur-mer" data-h="0.5575" data-s="0.575" data-l="0.491" class="work" data-c="lieu">
+  <article id="w-vue-sur-mer" data-h="0.5575" data-s="0.575" data-l="0.491" class="work" data-c="lieu" data-v="4">
     <div class="wimg"><picture><source type="image/avif" srcset="../images/Vue_sur_mer-600.avif 600w, ../images/Vue_sur_mer.avif 800w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Vue_sur_mer-600.webp 600w, ../images/Vue_sur_mer.webp 800w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="800" height="660" src="../images/Vue_sur_mer.JPG" alt="Vue sur mer" loading="lazy" decoding="async" srcset="../images/Vue_sur_mer-600.JPG 600w, ../images/Vue_sur_mer.JPG 800w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Vue_sur_mer.JPG"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/vue-sur-mer/">Vue sur mer</a></span><span class="wm" data-en="Acrylic" data-fr="Acrylique">Acrylic</span><span class="wd" data-en="After E. Hopper." data-fr="D'après E. Hopper.">After E. Hopper.</span></div>
   </article>
@@ -1372,7 +1347,7 @@
     <div class="wimg"><picture><source type="image/avif" srcset="../images/In_the_dark-600.avif 600w, ../images/In_the_dark-1200.avif 1200w, ../images/In_the_dark.avif 1350w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/In_the_dark-600.webp 600w, ../images/In_the_dark-1200.webp 1200w, ../images/In_the_dark.webp 1350w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1350" height="2000" src="../images/In_the_dark.jpg" alt="Une lumière dans l'obscurité" loading="lazy" decoding="async" srcset="../images/In_the_dark-600.jpg 600w, ../images/In_the_dark-1200.jpg 1200w, ../images/In_the_dark.jpg 1350w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/In_the_dark.jpg"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/une-lumiere-dans-l-obscurite/">Une lumière dans l'obscurité</a></span><span class="wm" data-en="Acrylic on glossy paper" data-fr="Acrylique sur papier glacé">Acrylic on glossy paper</span></div>
   </article>
-  <article id="w-wall-street" data-h="0.0242" data-s="0.34" data-l="0.367" class="work" data-c="lieu">
+  <article id="w-wall-street" data-h="0.0242" data-s="0.34" data-l="0.367" class="work" data-c="lieu" data-v="2">
     <div class="wimg"><picture><source type="image/avif" srcset="../images/Wall_Street-600.avif 600w, ../images/Wall_Street-1200.avif 1200w, ../images/Wall_Street.avif 1383w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Wall_Street-600.webp 600w, ../images/Wall_Street-1200.webp 1200w, ../images/Wall_Street.webp 1383w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1383" height="1824" src="../images/Wall_Street.JPG" alt="Wall Street" loading="lazy" decoding="async" srcset="../images/Wall_Street-600.JPG 600w, ../images/Wall_Street-1200.JPG 1200w, ../images/Wall_Street.JPG 1383w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Wall_Street.JPG"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/wall-street/">Wall Street</a></span><span class="wm" data-en="Acrylic" data-fr="Acrylique">Acrylic</span><span class="wd" data-en="This will end badly!" data-fr="Cela va mal se terminer !">This will end badly!</span></div>
   </article>
@@ -1464,7 +1439,7 @@
     <div class="wimg"><picture><source type="image/avif" srcset="../images/Jesus_and_the_bird__Murillo_-600.avif 600w, ../images/Jesus_and_the_bird__Murillo_-1200.avif 1200w, ../images/Jesus_and_the_bird__Murillo_.avif 1455w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Jesus_and_the_bird__Murillo_-600.webp 600w, ../images/Jesus_and_the_bird__Murillo_-1200.webp 1200w, ../images/Jesus_and_the_bird__Murillo_.webp 1455w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1455" height="1843" src="../images/Jesus_and_the_bird__Murillo_.jpg" alt="Jésus et l'oiseau" loading="lazy" decoding="async" srcset="../images/Jesus_and_the_bird__Murillo_-600.jpg 600w, ../images/Jesus_and_the_bird__Murillo_-1200.jpg 1200w, ../images/Jesus_and_the_bird__Murillo_.jpg 1455w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Jesus_and_the_bird__Murillo_.jpg"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/jesus-et-l-oiseau/">Jésus et l'oiseau</a></span><span class="wm" data-en="Acrylic" data-fr="Acrylique">Acrylic</span><span class="wd" data-en="After Murillo." data-fr="D'après Murillo.">After Murillo.</span></div>
   </article>
-  <article id="w-baudouin" data-h="0.5774" data-s="0.523" data-l="0.503" class="work" data-c="portrait">
+  <article id="w-baudouin" data-h="0.5774" data-s="0.523" data-l="0.503" class="work" data-c="portrait" data-v="8">
     <div class="wimg"><picture><source type="image/avif" srcset="../images/Baudouin-600.avif 600w, ../images/Baudouin-1200.avif 1200w, ../images/Baudouin.avif 1553w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Baudouin-600.webp 600w, ../images/Baudouin-1200.webp 1200w, ../images/Baudouin.webp 1553w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1553" height="2000" src="../images/Baudouin.JPG" alt="Baudouin" loading="lazy" decoding="async" srcset="../images/Baudouin-600.JPG 600w, ../images/Baudouin-1200.JPG 1200w, ../images/Baudouin.JPG 1553w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Baudouin.JPG"></picture></div>
     <div class="wcap"><span class="wt"><a class="wlien" href="oeuvres/baudouin/">Baudouin</a></span><span class="wm" data-en="Acrylic" data-fr="Acrylique">Acrylic</span></div>
   </article>
@@ -1482,17 +1457,9 @@
   <div class="shint" data-en="Stoneware &amp; glazed stoneware<br>29 works" data-fr="Grès &amp; grès émaillé<br>29 œuvres">Stoneware & glazed stoneware<br>29 works</div>
 </div>
 
-<div class="sortbar chroma" id="sb-c">
-  <span class="sl" data-en="Order" data-fr="Ordre">Order</span>
-  <span class="sortbtns">
-    <button class="sb" type="button" data-sort="dom" data-grid="cg" data-en="Gallery" data-fr="Galerie">Gallery</button>
-    <button class="sb on" type="button" data-sort="chroma" data-grid="cg" data-en="By colour" data-fr="Par couleur">By colour</button>
-  </span>
-  <span class="chroma-strip" aria-hidden="true"></span>
-</div>
 
 <div class="cgrid" id="cg" data-sort="chroma">
-  <article id="w-elle-brule-il-n-y-a-pas-de-planete-b" data-h="0.0729" data-s="0.285" data-l="0.877" class="cwork">
+  <article id="w-elle-brule-il-n-y-a-pas-de-planete-b" data-h="0.0729" data-s="0.285" data-l="0.877" class="cwork" data-v="1">
     <div class="cwimg"><picture><source type="image/avif" srcset="../images/Elle_brule_planete_B-600.avif 600w, ../images/Elle_brule_planete_B-1200.avif 1200w, ../images/Elle_brule_planete_B.avif 1500w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Elle_brule_planete_B-600.webp 600w, ../images/Elle_brule_planete_B-1200.webp 1200w, ../images/Elle_brule_planete_B.webp 1500w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1500" height="2000" src="../images/Elle_brule_planete_B.jpg" alt="Elle brûle ! Il n'y a pas de planète B" loading="lazy" decoding="async" srcset="../images/Elle_brule_planete_B-600.jpg 600w, ../images/Elle_brule_planete_B-1200.jpg 1200w, ../images/Elle_brule_planete_B.jpg 1500w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Elle_brule_planete_B.jpg"></picture></div>
     <div class="ccap"><span class="wt"><a class="wlien" href="oeuvres/elle-brule-il-n-y-a-pas-de-planete-b/">Elle brûle ! Il n'y a pas de planète B</a></span><span class="wm" data-en="Glazed stoneware" data-fr="Grès émaillé">Glazed stoneware</span></div>
   </article>
@@ -1500,19 +1467,19 @@
     <div class="cwimg"><picture><source type="image/avif" srcset="../images/Jesus_calme_la_tempete-600.avif 600w, ../images/Jesus_calme_la_tempete.avif 941w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Jesus_calme_la_tempete-600.webp 600w, ../images/Jesus_calme_la_tempete.webp 941w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="941" height="2000" src="../images/Jesus_calme_la_tempete.jpg" alt="Jésus calme la tempête" loading="lazy" decoding="async" srcset="../images/Jesus_calme_la_tempete-600.jpg 600w, ../images/Jesus_calme_la_tempete.jpg 941w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Jesus_calme_la_tempete.jpg"></picture></div>
     <div class="ccap"><span class="wt"><a class="wlien" href="oeuvres/jesus-calme-la-tempete/">Jésus calme la tempête</a></span><span class="wm" data-en="Glazed stoneware" data-fr="Grès émaillé">Glazed stoneware</span><span class="wd" data-en="Bas-relief: “Be not afraid!”" data-fr="Bas-relief : « N'ayez pas peur ! »">Bas-relief: “Be not afraid!”</span></div>
   </article>
-  <article id="w-guernica-gaza-kharkiv" data-h="0.6287" data-s="0.095" data-l="0.333" class="cwork">
+  <article id="w-guernica-gaza-kharkiv" data-h="0.6287" data-s="0.095" data-l="0.333" class="cwork" data-v="2">
     <div class="cwimg"><picture><source type="image/avif" srcset="../images/Guernica_Gaza_Kharkiv_noir-600.avif 600w, ../images/Guernica_Gaza_Kharkiv_noir-1200.avif 1200w, ../images/Guernica_Gaza_Kharkiv_noir.avif 1500w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Guernica_Gaza_Kharkiv_noir-600.webp 600w, ../images/Guernica_Gaza_Kharkiv_noir-1200.webp 1200w, ../images/Guernica_Gaza_Kharkiv_noir.webp 1500w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1500" height="2000" src="../images/Guernica_Gaza_Kharkiv_noir.jpg" alt="Guernica, Gaza, Kharkiv" loading="lazy" decoding="async" srcset="../images/Guernica_Gaza_Kharkiv_noir-600.jpg 600w, ../images/Guernica_Gaza_Kharkiv_noir-1200.jpg 1200w, ../images/Guernica_Gaza_Kharkiv_noir.jpg 1500w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Guernica_Gaza_Kharkiv_noir.jpg"></picture></div>
     <div class="ccap"><span class="wt"><a class="wlien" href="oeuvres/guernica-gaza-kharkiv/">Guernica, Gaza, Kharkiv</a></span><span class="wm" data-en="Glazed stoneware" data-fr="Grès émaillé">Glazed stoneware</span><span class="wd" data-en="After Picasso." data-fr="D'après Picasso.">After Picasso.</span></div>
   </article>
-  <article id="w-envole-toi" data-h="0.5932" data-s="0.266" data-l="0.902" class="cwork">
+  <article id="w-envole-toi" data-h="0.5932" data-s="0.266" data-l="0.902" class="cwork" data-v="7">
     <div class="cwimg"><picture><source type="image/avif" srcset="../images/Envole_toi-600.avif 600w, ../images/Envole_toi-1200.avif 1200w, ../images/Envole_toi.avif 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Envole_toi-600.webp 600w, ../images/Envole_toi-1200.webp 1200w, ../images/Envole_toi.webp 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="2000" height="1333" src="../images/Envole_toi.jpg" alt="Envole-toi" loading="lazy" decoding="async" srcset="../images/Envole_toi-600.jpg 600w, ../images/Envole_toi-1200.jpg 1200w, ../images/Envole_toi.jpg 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Envole_toi.jpg"></picture></div>
     <div class="ccap"><span class="wt"><a class="wlien" href="oeuvres/envole-toi/">Envole-toi</a></span><span class="wm" data-en="Stoneware" data-fr="Grès">Stoneware</span></div>
   </article>
-  <article id="w-dans-la-lune" data-h="0.1106" data-s="0.721" data-l="0.574" class="cwork">
+  <article id="w-dans-la-lune" data-h="0.1106" data-s="0.721" data-l="0.574" class="cwork" data-v="3">
     <div class="cwimg"><picture><source type="image/avif" srcset="../images/Dans_la_lune-600.avif 600w, ../images/Dans_la_lune-1200.avif 1200w, ../images/Dans_la_lune.avif 1333w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Dans_la_lune-600.webp 600w, ../images/Dans_la_lune-1200.webp 1200w, ../images/Dans_la_lune.webp 1333w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1333" height="2000" src="../images/Dans_la_lune.jpg" alt="Dans la lune" loading="lazy" decoding="async" srcset="../images/Dans_la_lune-600.jpg 600w, ../images/Dans_la_lune-1200.jpg 1200w, ../images/Dans_la_lune.jpg 1333w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Dans_la_lune.jpg"></picture></div>
     <div class="ccap"><span class="wt"><a class="wlien" href="oeuvres/dans-la-lune/">Dans la lune</a></span><span class="wm" data-en="Glazed stoneware" data-fr="Grès émaillé">Glazed stoneware</span></div>
   </article>
-  <article id="w-le-heaume" data-h="0.9765" data-s="0.816" data-l="0.626" class="cwork">
+  <article id="w-le-heaume" data-h="0.9765" data-s="0.816" data-l="0.626" class="cwork" data-v="4">
     <div class="cwimg"><picture><source type="image/avif" srcset="../images/Le_Heaume-600.avif 600w, ../images/Le_Heaume-1200.avif 1200w, ../images/Le_Heaume.avif 1333w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Le_Heaume-600.webp 600w, ../images/Le_Heaume-1200.webp 1200w, ../images/Le_Heaume.webp 1333w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1333" height="2000" src="../images/Le_Heaume.jpg" alt="Le Heaume" loading="lazy" decoding="async" srcset="../images/Le_Heaume-600.jpg 600w, ../images/Le_Heaume-1200.jpg 1200w, ../images/Le_Heaume.jpg 1333w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Le_Heaume.jpg"></picture></div>
     <div class="ccap"><span class="wt"><a class="wlien" href="oeuvres/le-heaume/">Le Heaume</a></span><span class="wm" data-en="Ceramic, feather, salvaged antique window element" data-fr="Céramique, plume, récupération d'un élément ancien de fenêtre">Ceramic, feather, salvaged antique window element</span></div>
   </article>
@@ -1548,7 +1515,7 @@
     <div class="cwimg"><picture><source type="image/avif" srcset="../images/Plat_triangulaire-600.avif 600w, ../images/Plat_triangulaire-1200.avif 1200w, ../images/Plat_triangulaire.avif 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Plat_triangulaire-600.webp 600w, ../images/Plat_triangulaire-1200.webp 1200w, ../images/Plat_triangulaire.webp 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="2000" height="1333" src="../images/Plat_triangulaire.jpg" alt="Plat triangulaire" loading="lazy" decoding="async" srcset="../images/Plat_triangulaire-600.jpg 600w, ../images/Plat_triangulaire-1200.jpg 1200w, ../images/Plat_triangulaire.jpg 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Plat_triangulaire.jpg"></picture></div>
     <div class="ccap"><span class="wt"><a class="wlien" href="oeuvres/plat-triangulaire/">Plat triangulaire</a></span><span class="wm" data-en="Glazed stoneware" data-fr="Grès émaillé">Glazed stoneware</span></div>
   </article>
-  <article id="w-la-vague" data-h="0.0777" data-s="0.302" data-l="0.515" class="cwork">
+  <article id="w-la-vague" data-h="0.0777" data-s="0.302" data-l="0.515" class="cwork" data-v="6">
     <div class="cwimg"><picture><source type="image/avif" srcset="../images/La_vague-600.avif 600w, ../images/La_vague-1200.avif 1200w, ../images/La_vague.avif 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/La_vague-600.webp 600w, ../images/La_vague-1200.webp 1200w, ../images/La_vague.webp 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="2000" height="1333" src="../images/La_vague.jpg" alt="La vague" loading="lazy" decoding="async" srcset="../images/La_vague-600.jpg 600w, ../images/La_vague-1200.jpg 1200w, ../images/La_vague.jpg 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/La_vague.jpg"></picture></div>
     <div class="ccap"><span class="wt"><a class="wlien" href="oeuvres/la-vague/">La vague</a></span><span class="wm" data-en="Glazed stoneware" data-fr="Grès émaillé">Glazed stoneware</span></div>
   </article>
@@ -1600,7 +1567,7 @@
     <div class="cwimg"><picture><source type="image/avif" srcset="../images/Pilastre-600.avif 600w, ../images/Pilastre-1200.avif 1200w, ../images/Pilastre.avif 1500w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Pilastre-600.webp 600w, ../images/Pilastre-1200.webp 1200w, ../images/Pilastre.webp 1500w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="1500" height="2000" src="../images/Pilastre.jpeg" alt="Pilastre" loading="lazy" decoding="async" srcset="../images/Pilastre-600.jpeg 600w, ../images/Pilastre-1200.jpeg 1200w, ../images/Pilastre.jpeg 1500w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Pilastre.jpeg"></picture></div>
     <div class="ccap"><span class="wt"><a class="wlien" href="oeuvres/pilastre/">Pilastre</a></span><span class="wm" data-en="Glazed stoneware" data-fr="Grès émaillé">Glazed stoneware</span></div>
   </article>
-  <article id="w-ellipse-corail" data-h="0.0971" data-s="0.444" data-l="0.801" class="cwork w2">
+  <article id="w-ellipse-corail" data-h="0.0971" data-s="0.444" data-l="0.801" class="cwork w2" data-v="5">
     <div class="cwimg"><picture><source type="image/avif" srcset="../images/Ellipse_corail-600.avif 600w, ../images/Ellipse_corail-1200.avif 1200w, ../images/Ellipse_corail.avif 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><source type="image/webp" srcset="../images/Ellipse_corail-600.webp 600w, ../images/Ellipse_corail-1200.webp 1200w, ../images/Ellipse_corail.webp 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px"><img width="2000" height="1032" src="../images/Ellipse_corail.jpg" alt="Ellipse corail et son socle" loading="lazy" decoding="async" srcset="../images/Ellipse_corail-600.jpg 600w, ../images/Ellipse_corail-1200.jpg 1200w, ../images/Ellipse_corail.jpg 2000w" sizes="(max-width:619px) calc(100vw - 2.5rem), (max-width:1099px) calc((100vw - 5rem)/2), (max-width:1799px) calc((100vw - 8rem)/3), 440px" data-full="../images/Ellipse_corail.jpg"></picture></div>
     <div class="ccap"><span class="wt"><a class="wlien" href="oeuvres/ellipse-corail/">Ellipse corail et son socle</a></span><span class="wm" data-en="Glazed stoneware" data-fr="Grès émaillé">Glazed stoneware</span></div>
   </article>
@@ -1930,8 +1897,15 @@
         if(grid.children[i].nodeType === 1 && grid.children[i].tagName === 'ARTICLE') arr.push(grid.children[i]);
       }
       if(grid.getAttribute('data-sort') !== 'chroma') return arr;
+      /* Les œuvres mises en avant ouvrent la marche, dans l'ordre choisi ;
+         les autres suivent la roue des couleurs. */
       /* Les pièces sans couleur franche (grès brut, fusain) ferment la marche. */
       return arr.slice().sort(function(a,b){
+        var va = parseInt(a.getAttribute('data-v')||0,10), vb = parseInt(b.getAttribute('data-v')||0,10);
+        if(va || vb){
+          if(va && vb) return va - vb;
+          return va ? -1 : 1;
+        }
         var sa = parseFloat(a.getAttribute('data-s')||0), sb = parseFloat(b.getAttribute('data-s')||0);
         var na = sa < .18, nb = sb < .18;
         if(na !== nb) return na ? 1 : -1;
@@ -1962,7 +1936,7 @@
       var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
       var inner = grid.clientWidth - pad;
       var w = (inner - gap*(cols-1)) / cols;
-      var rowGap = cols === 1 ? 44 : 52;
+      var rowGap = cols === 1 ? 56 : 84;
       var heights = [], i;
       for(i=0;i<cols;i++) heights.push(0);
 
@@ -2073,25 +2047,6 @@
     if(petitEcran.addEventListener) petitEcran.addEventListener('change', function(){ tousLesLots(); layoutAll(); });
     tousLesLots(); layoutAll();
 
-    /* Bascule galerie / chromatique, avec réagencement animé */
-    var boutons = document.querySelectorAll('.sb');
-    for(var q=0;q<boutons.length;q++){
-      boutons[q].addEventListener('click', function(){
-        var grid = document.getElementById(this.getAttribute('data-grid'));
-        if(!grid) return;
-        var mode = this.getAttribute('data-sort');
-        if(grid.getAttribute('data-sort') === mode) return;
-        var barre = this.closest('.sortbar');
-        var freres = barre.querySelectorAll('.sb');
-        for(var z=0;z<freres.length;z++) freres[z].classList.remove('on');
-        this.classList.add('on');
-        barre.classList.toggle('chroma', mode === 'chroma');
-        grid.setAttribute('data-sort', mode);
-        grid.classList.add('moving');
-        layout(grid);
-        setTimeout(function(){ grid.classList.remove('moving'); }, 900);
-      });
-    }
 
     var rt;
     window.addEventListener('resize', function(){

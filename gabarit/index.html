@@ -183,8 +183,6 @@
   nav.solid{
     background:var(--nav-bg);
     border-bottom-color:var(--line);
-    -webkit-backdrop-filter:saturate(180%) blur(14px);
-    backdrop-filter:saturate(180%) blur(14px);
   }
   nav.solid .nlogo,nav.solid .nlinks a{color:var(--k)}
   nav.solid .nbtn span{background:var(--k)}
@@ -268,11 +266,6 @@
     position:relative;overflow:hidden;
     background:var(--deep); /* pas de flash blanc avant chargement de l'image */
   }
-  /* Le héros respire lentement à l'ouverture : l'image avance d'un souffle, une seule fois. */
-  @media(prefers-reduced-motion:no-preference){
-    .hero-bg{animation:respire 28s var(--ease) both;transform-origin:50% 45%}
-    @keyframes respire{from{transform:scale(1.07)}to{transform:scale(1)}}
-  }
   .hero-bg{
     position:absolute;inset:0;
     background:url("images/Le_Feu.jpg") 50% 42%/cover no-repeat;
@@ -301,7 +294,6 @@
     margin-bottom:1.6rem;padding:.6rem 1.1rem;
     border:1px solid rgba(255,255,255,.28);
     background:rgba(0,0,0,.25);
-    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
     animation:up .9s var(--ease) .2s both;
     transition:background .25s,border-color .25s;
   }
@@ -453,17 +445,12 @@
     .bande::-webkit-scrollbar{display:none}
     .bande-piste{animation:none}
   }
-  /* ── Galerie : l'œuvre survolée passe devant les autres ── */
-  @media(hover:hover) and (pointer:fine){
-    .wgrid:hover .work:not(:hover),.cgrid:hover .cwork:not(:hover){opacity:.72}
-    .work,.cwork{transition:opacity .5s var(--ease),transform .85s var(--ease)}
-  }
 
   /* ── SECTION HEADER ── */
   .sh{
     position:relative;
     max-width:1620px;margin:0 auto;
-    padding:6rem 2.5rem 0;
+    padding:8rem 3rem 0;
     display:flex;justify-content:space-between;align-items:flex-end;
     flex-wrap:wrap;gap:1rem;
   }
@@ -533,14 +520,14 @@
 
   /* ── GALERIES — maçonnerie, format d'origine respecté ── */
   .wgrid,.cgrid{
-    --cols:3;--gap:2.5rem;
-    max-width:1620px;margin:3.5rem auto 7rem;
-    padding:0 2.5rem;
+    --cols:3;--gap:4rem;
+    max-width:1620px;margin:4.5rem auto 9rem;
+    padding:0 3rem;
     columns:var(--cols);column-gap:var(--gap);
   }
   /* Très grands écrans : une colonne de plus, et on respire plus large */
   @media(min-width:1800px){
-    .wgrid,.cgrid{--cols:4;--gap:2.75rem;max-width:2000px}
+    .wgrid,.cgrid{--cols:3;--gap:5rem;max-width:1900px}
     .sh,.tabs,.sortbar,.cv-wrap{max-width:2000px}
   }
   /* Une fois le JS passé : positionnement calculé, ordre de lecture respecté */
@@ -553,8 +540,8 @@
   .work,.cwork{
     break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;
     display:block;width:100%;margin:0 0 3.25rem;
-    opacity:0;transform:translateY(18px);
-    transition:opacity .85s var(--ease),transform .85s var(--ease);
+    opacity:0;transform:translateY(10px);
+    transition:opacity .45s var(--ease),transform .45s var(--ease);
     position:relative;
   }
   .work.in,.cwork.in{opacity:1;transform:none}
@@ -578,7 +565,7 @@
   }
   .wimg img,.cwimg img{
     width:100%;height:auto;display:block;
-    transition:transform 1.2s var(--ease);
+    transition:transform .5s var(--ease);
   }
   .wimg::after,.cwimg::after{
     content:'';position:absolute;inset:0;
@@ -586,7 +573,7 @@
     transition:opacity .5s var(--ease);pointer-events:none;
   }
   @media(hover:hover){
-    .work:hover .wimg img,.cwork:hover .cwimg img{transform:scale(1.035)}
+    .work:hover .wimg img,.cwork:hover .cwimg img{transform:scale(1.02)}
     .work:hover .wimg::after,.cwork:hover .cwimg::after{opacity:.07}
   }
   .wcap,.ccap{padding:1.15rem .1rem 0}
@@ -943,7 +930,7 @@
   /* ══ FLUIDITÉ ══════════════════════════════════════════════ */
   /* Les œuvres apparaissent en fondu une fois l'image décodée */
   .js .wimg img,.js .cwimg img{
-    opacity:0;transition:opacity .7s var(--ease),transform 1.2s var(--ease);
+    opacity:0;transition:opacity .35s linear,transform .5s var(--ease);
     /* Filet de sécurité purement CSS : quoi qu'il arrive au script, l'image
        devient visible au bout de 3 secondes. Rien ne peut rester noir. */
     animation:secours 0s linear 3s forwards;
@@ -952,7 +939,7 @@
   @keyframes secours{to{opacity:1}}
   /* Écrans tactiles : fond plein, sans flou (défilement plus léger) */
   @media(pointer:coarse){
-    nav.solid{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--w)}
+    nav.solid{background:var(--w)}
   }
   /* Héros : image allégée sur tablette et téléphone */
   @media(max-width:900px){.hero-bg{background-image:url("images/Le_Feu-1200.jpg");background-image:image-set(url("images/Le_Feu-1200.avif") type("image/avif"),url("images/Le_Feu-1200.webp") type("image/webp"),url("images/Le_Feu-1200.jpg") type("image/jpeg"))}}
@@ -1028,7 +1015,7 @@
 
   /* ══ TABLET ≤900px ══ */
   @media(max-width:1100px){
-    .wgrid,.cgrid{--cols:2;--gap:2rem;padding:0 2rem}
+    .wgrid,.cgrid{--cols:2;--gap:2.75rem;padding:0 2rem}
   }
 
   @media(max-width:900px){
@@ -1244,8 +1231,6 @@
   </div>
 </section>
 
-<!-- BANDE D'ŒUVRES -->
-<!--VEDETTES-->
 
 <!-- ═══════════════════════════════════════════════════════════
      PEINTURES — Ordre : Enfance · Lieux · Dessins · Portraits
@@ -1266,14 +1251,6 @@
   </div>
 </div>
 
-<div class="sortbar chroma" id="sb-p">
-  <span class="sl" data-en="Order">Ordre</span>
-  <span class="sortbtns">
-    <button class="sb" type="button" data-sort="dom" data-grid="pg" data-en="Gallery">Galerie</button>
-    <button class="sb on" type="button" data-sort="chroma" data-grid="pg" data-en="By colour">Par couleur</button>
-  </span>
-  <span class="chroma-strip" aria-hidden="true"></span>
-</div>
 
 <div class="wgrid" id="pg" data-sort="chroma">
 <!--OEUVRES:peintures-->
@@ -1291,14 +1268,6 @@
   <div class="shint" data-nb="ceramiques"></div>
 </div>
 
-<div class="sortbar chroma" id="sb-c">
-  <span class="sl" data-en="Order">Ordre</span>
-  <span class="sortbtns">
-    <button class="sb" type="button" data-sort="dom" data-grid="cg" data-en="Gallery">Galerie</button>
-    <button class="sb on" type="button" data-sort="chroma" data-grid="cg" data-en="By colour">Par couleur</button>
-  </span>
-  <span class="chroma-strip" aria-hidden="true"></span>
-</div>
 
 <div class="cgrid" id="cg" data-sort="chroma">
 <!--OEUVRES:ceramiques-->
@@ -1590,8 +1559,15 @@
         if(grid.children[i].nodeType === 1 && grid.children[i].tagName === 'ARTICLE') arr.push(grid.children[i]);
       }
       if(grid.getAttribute('data-sort') !== 'chroma') return arr;
+      /* Les œuvres mises en avant ouvrent la marche, dans l'ordre choisi ;
+         les autres suivent la roue des couleurs. */
       /* Les pièces sans couleur franche (grès brut, fusain) ferment la marche. */
       return arr.slice().sort(function(a,b){
+        var va = parseInt(a.getAttribute('data-v')||0,10), vb = parseInt(b.getAttribute('data-v')||0,10);
+        if(va || vb){
+          if(va && vb) return va - vb;
+          return va ? -1 : 1;
+        }
         var sa = parseFloat(a.getAttribute('data-s')||0), sb = parseFloat(b.getAttribute('data-s')||0);
         var na = sa < .18, nb = sb < .18;
         if(na !== nb) return na ? 1 : -1;
@@ -1622,7 +1598,7 @@
       var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
       var inner = grid.clientWidth - pad;
       var w = (inner - gap*(cols-1)) / cols;
-      var rowGap = cols === 1 ? 44 : 52;
+      var rowGap = cols === 1 ? 56 : 84;
       var heights = [], i;
       for(i=0;i<cols;i++) heights.push(0);
 
@@ -1733,25 +1709,6 @@
     if(petitEcran.addEventListener) petitEcran.addEventListener('change', function(){ tousLesLots(); layoutAll(); });
     tousLesLots(); layoutAll();
 
-    /* Bascule galerie / chromatique, avec réagencement animé */
-    var boutons = document.querySelectorAll('.sb');
-    for(var q=0;q<boutons.length;q++){
-      boutons[q].addEventListener('click', function(){
-        var grid = document.getElementById(this.getAttribute('data-grid'));
-        if(!grid) return;
-        var mode = this.getAttribute('data-sort');
-        if(grid.getAttribute('data-sort') === mode) return;
-        var barre = this.closest('.sortbar');
-        var freres = barre.querySelectorAll('.sb');
-        for(var z=0;z<freres.length;z++) freres[z].classList.remove('on');
-        this.classList.add('on');
-        barre.classList.toggle('chroma', mode === 'chroma');
-        grid.setAttribute('data-sort', mode);
-        grid.classList.add('moving');
-        layout(grid);
-        setTimeout(function(){ grid.classList.remove('moving'); }, 900);
-      });
-    }
 
     var rt;
     window.addEventListener('resize', function(){

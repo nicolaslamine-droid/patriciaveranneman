@@ -136,6 +136,7 @@ def article(o, prefixe=''):
     c = couleur(o['image'], o['id'])
     cls = g['cls'] + {'large': ' wide', 'double': ' w2'}.get(o.get('format', ''), '')
     cat = f' data-c="{o["categorie"]}"' if o.get('categorie') else ''
+    ved = f' data-v="{int(o["vedette"])}"' if o.get('vedette') else ''
     caps = [f'<span class="wt"><a class="wlien" href="{prefixe}oeuvres/{o["id"]}/">{esc(espace(o["titre"]))}</a></span>']
     if o.get('technique'):
         en = f' data-en="{att(o.get("technique_en") or o["technique"])}"'
@@ -145,7 +146,7 @@ def article(o, prefixe=''):
         caps.append(f'<span class="wd"{en}>{esc(espace(o["note"]))}</span>')
     f = fiche(o)
     if f: caps.append(f)
-    return (f'  <article id="w-{o["id"]}" data-h="{c["h"]}" data-s="{c["s"]}" data-l="{c["l"]}" class="{cls}"{cat}>\n'
+    return (f'  <article id="w-{o["id"]}" data-h="{c["h"]}" data-s="{c["s"]}" data-l="{c["l"]}" class="{cls}"{cat}{ved}>\n'
             f'    <div class="{g["img"]}">{balise_image(o, SIZES)}</div>\n'
             f'    <div class="{g["cap"]}">{"".join(caps)}</div>\n'
             f'  </article>')
@@ -298,7 +299,6 @@ def accueil():
         return (f'<div class="io" data-w="w-{slug}">\n        {balise_image(o, "(max-width:900px) 40vw, 22vw")}\n      </div>\n'
                 f'      <span class="iolab" data-en="{att(lab_en)}">{esc(lab)}</span>')
     s = re.sub(r'<div class="io" data-w="w-[^"]+" data-intro="([^"]+)" data-num="(\d+)"></div>', intro, s)
-    s = s.replace('<!--VEDETTES-->', bande())
     s = s.replace('<!--JSONLD-->', jsonld())
     s = s.replace('var EXPOS = null;', 'var EXPOS = ' + json.dumps(expositions(), ensure_ascii=False) + ';')
     return s
