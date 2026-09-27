@@ -534,13 +534,13 @@
     display:flex;justify-content:center;
   }
   .plusbtn{
-    font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
-    min-height:48px;padding:0 2.25rem;
-    border:1px solid var(--line);color:var(--mid);
-    transition:background .25s,color .25s,border-color .25s;
+    font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
+    min-height:52px;padding:0 2.5rem;
+    background:var(--ink);color:var(--w);border:1px solid var(--ink);
+    transition:opacity .25s;
   }
-  .plusbtn:hover{background:var(--ink);color:var(--w);border-color:var(--ink)}
-  .elements .plusbtn{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.55)}
+  .plusbtn:hover{opacity:.85}
+  .elements .plusbtn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:#fff}
   .wimg,.cwimg{
     overflow:hidden;background:var(--warm);
     position:relative;cursor:pointer;
@@ -1667,6 +1667,25 @@
       appliquerLot(grid);
       layout(grid);
     });
+    /* Plus d'interruption : la suite se déplie d'elle-même quand on en approche.
+       Le bouton ne sert que de secours (observateur indisponible, défilement très rapide). */
+    if('IntersectionObserver' in window){
+      var enCours = false;
+      var veille = new IntersectionObserver(function(entrees){
+        entrees.forEach(function(e){
+          if(!e.isIntersecting || e.target.hidden || enCours) return;
+          var b = e.target.querySelector('.plusbtn');
+          if(!b) return;
+          enCours = true;
+          b.click();
+          setTimeout(function(){ enCours = false; }, 200);
+        });
+      }, {rootMargin: '600px 0px'});
+      ['plus-pg','plus-cg'].forEach(function(id){
+        var el = document.getElementById(id);
+        if(el) veille.observe(el);
+      });
+    }
     if(petitEcran.addEventListener) petitEcran.addEventListener('change', function(){ tousLesLots(); layoutAll(); });
     tousLesLots(); layoutAll();
 
