@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Other works"><a href="../automne-a-l-abbaye-de-la-cambre/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Automne_Cambre.avif"><source type="image/webp" srcset="../../../images/Automne_Cambre.webp"><img width="534" height="800" src="../../../images/Automne_Cambre.JPG" alt="Automne à l'Abbaye de la Cambre" loading="lazy" decoding="async" data-full="../../../images/Automne_Cambre.JPG"></picture></span><div><small>Previous</small><span>Automne à l'Abbaye de la Cambre</span></div></a><a href="../confidences/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Confidences.avif"><source type="image/webp" srcset="../../../images/Confidences.webp"><img width="1414" height="1754" src="../../../images/Confidences.jpg" alt="Confidences" loading="lazy" decoding="async" data-full="../../../images/Confidences.jpg"></picture></span><div><small>Next</small><span>Confidences</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

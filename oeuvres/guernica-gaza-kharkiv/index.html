@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Autres œuvres"><a href="../jesus-calme-la-tempete/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../images/Jesus_calme_la_tempete.avif"><source type="image/webp" srcset="../../images/Jesus_calme_la_tempete.webp"><img width="941" height="2000" src="../../images/Jesus_calme_la_tempete.jpg" alt="Jésus calme la tempête" loading="lazy" decoding="async" data-full="../../images/Jesus_calme_la_tempete.jpg"></picture></span><div><small>Précédente</small><span>Jésus calme la tempête</span></div></a><a href="../envole-toi/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../images/Envole_toi.avif"><source type="image/webp" srcset="../../images/Envole_toi.webp"><img width="2000" height="1333" src="../../images/Envole_toi.jpg" alt="Envole-toi" loading="lazy" decoding="async" data-full="../../images/Envole_toi.jpg"></picture></span><div><small>Suivante</small><span>Envole-toi</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Other works"><a href="../wall-street/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Wall_Street.avif"><source type="image/webp" srcset="../../../images/Wall_Street.webp"><img width="1383" height="1824" src="../../../images/Wall_Street.JPG" alt="Wall Street" loading="lazy" decoding="async" data-full="../../../images/Wall_Street.JPG"></picture></span><div><small>Previous</small><span>Wall Street</span></div></a><a href="../against-evil/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Against_Evil.avif"><source type="image/webp" srcset="../../../images/Against_Evil.webp"><img width="1931" height="1366" src="../../../images/Against_Evil.JPG" alt="Against Evil" loading="lazy" decoding="async" data-full="../../../images/Against_Evil.JPG"></picture></span><div><small>Next</small><span>Against Evil</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

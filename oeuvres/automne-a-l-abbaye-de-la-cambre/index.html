@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Autres œuvres"><a href="../in-the-arms/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../images/In_the_arms__.avif"><source type="image/webp" srcset="../../images/In_the_arms__.webp"><img width="1368" height="1902" src="../../images/In_the_arms__.jpg" alt="In the arms !" loading="lazy" decoding="async" data-full="../../images/In_the_arms__.jpg"></picture></span><div><small>Précédente</small><span>In the arms !</span></div></a><a href="../le-transat/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../images/Le_transat.avif"><source type="image/webp" srcset="../../images/Le_transat.webp"><img width="789" height="800" src="../../images/Le_transat.JPG" alt="Le transat" loading="lazy" decoding="async" data-full="../../images/Le_transat.JPG"></picture></span><div><small>Suivante</small><span>Le transat</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

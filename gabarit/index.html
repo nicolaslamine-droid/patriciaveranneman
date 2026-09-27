@@ -733,6 +733,19 @@
   .cf-send:hover{background:var(--gold);border-color:var(--gold)}
   .cf-note{font-size:.78rem;color:var(--mid);font-style:italic;min-height:1.2em}
   .cf-note.err{color:#a33}
+  .cf-secours{
+    border:1px solid var(--line);background:var(--w);
+    padding:1.25rem 1.5rem;text-align:center;
+  }
+  .cf-secours p{font-size:.8rem;color:var(--txt-2);margin-bottom:.35rem}
+  .cf-secours .cf-adr a{font-family:var(--S);font-style:italic;font-size:1.05rem;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  .lien-copie{
+    margin-top:.9rem;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+    min-height:44px;padding:0 1.5rem;border:1px solid var(--line);color:var(--mid);
+    transition:background .25s,color .25s,border-color .25s;
+  }
+  .lien-copie:hover{background:var(--ink);color:var(--w);border-color:var(--ink)}
+  .cf-secours[hidden]{display:none!important}
 
   /* ── LIENS SOCIAUX ── */
   .social{
@@ -898,8 +911,14 @@
 
   /* ══ FLUIDITÉ ══════════════════════════════════════════════ */
   /* Les œuvres apparaissent en fondu une fois l'image décodée */
-  .js .wimg img,.js .cwimg img{opacity:0;transition:opacity .7s var(--ease),transform 1.2s var(--ease)}
-  .js .wimg img.ok,.js .cwimg img.ok{opacity:1}
+  .js .wimg img,.js .cwimg img{
+    opacity:0;transition:opacity .7s var(--ease),transform 1.2s var(--ease);
+    /* Filet de sécurité purement CSS : quoi qu'il arrive au script, l'image
+       devient visible au bout de 3 secondes. Rien ne peut rester noir. */
+    animation:secours 0s linear 3s forwards;
+  }
+  .js .wimg img.ok,.js .cwimg img.ok{opacity:1;animation:none}
+  @keyframes secours{to{opacity:1}}
   /* Écrans tactiles : fond plein, sans flou (défilement plus léger) */
   @media(pointer:coarse){
     nav.solid{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--w)}
@@ -1279,7 +1298,7 @@
       <dl>
         <dt data-en="Where">Lieu</dt><dd id="ei-lieu"></dd>
         <dt data-en="When">Dates</dt><dd id="ei-dates"></dd>
-        <dt data-en="Hours">Horaires</dt><dd id="ei-horaires"></dd>
+        <dt class="ei-l-horaires" data-en="Hours">Horaires</dt><dd id="ei-horaires"></dd>
         <dt class="ei-l-note" data-en="Details" hidden>Détail</dt><dd id="ei-note" hidden></dd>
       </dl>
       <a class="ei-map" id="ei-map" href="#" target="_blank" rel="noopener" data-en="Open in Maps">Ouvrir dans Maps</a>
@@ -1404,6 +1423,11 @@
     </label>
     <button type="submit" class="cf-send" data-en="Send">Envoyer</button>
     <p class="cf-note" id="cf-note" role="status"></p>
+    <div class="cf-secours" id="cf-secours" hidden>
+      <p data-en="If your mail app did not open, write directly to:">Si votre messagerie ne s'est pas ouverte, écrivez directement à&nbsp;:</p>
+      <p class="cf-adr"><a href="mailto:patricia.veranneman@gmail.com">patricia.veranneman@gmail.com</a></p>
+      <button type="button" class="lien-copie" id="cf-copier" data-en="Copy my message">Copier mon message</button>
+    </div>
   </form>
 
 
@@ -1739,6 +1763,11 @@
       window.location.href = 'mailto:patricia.veranneman@gmail.com'
         + '?subject=' + encodeURIComponent('[Site] ' + t[0])
         + '&body=' + encodeURIComponent(t[1]);
+      /* Aucune impasse : l'adresse reste affichée si rien ne s'ouvre. */
+      setTimeout(function(){
+        note.innerHTML = (lang === 'en' ? 'If nothing opened, write to ' : 'Si rien ne s\'est ouvert, écrivez à ')
+          + '<a href="mailto:patricia.veranneman@gmail.com">patricia.veranneman@gmail.com</a>';
+      }, 1500);
     });
   })();
 
@@ -1747,25 +1776,31 @@
      Une seule ligne à remplir ci-dessous quand les dates sont connues.
      Laisser EXPO = null fait disparaître le bandeau et l'encadré.
      ══════════════════════════════════════════════════════════ */
-  var EXPO = null;
-  /* Exemple :
-  var EXPO = {
-    titre:   'Terres et mémoire',
-    lieu:    'Centre culturel de Wavre, place Alphonse Bosch 10, 1300 Wavre',
-    dates:   'du 14 au 30 novembre 2026',
-    datesEn: '14 to 30 November 2026',
-    horaires:'mercredi au dimanche, 14 h – 18 h',
-    horairesEn:'Wednesday to Sunday, 2 – 6 pm',
-    resume:  'Terres et mémoire — Centre culturel de Wavre, du 14 au 30 novembre',
-    resumeEn:'Terres et mémoire — Centre culturel de Wavre, 14–30 November'
-  };
-  */
+  var EXPOS = null;
+  /* Le site choisit tout seul, à chaque visite : l'exposition en cours, sinon la
+     prochaine à venir, sinon rien du tout. Aucune intervention n'est nécessaire :
+     le bandeau apparaît et disparaît aux bonnes dates. Les dates se remplissent
+     dans l'éditeur, rubrique « Contact & expositions ». */
   (function(){
+    if(!EXPOS || !EXPOS.length) return;
+    var auj = new Date(); auj = auj.getFullYear() + '-' +
+      ('0'+(auj.getMonth()+1)).slice(-2) + '-' + ('0'+auj.getDate()).slice(-2);
+    var encours = null, prochaine = null;
+    for(var i=0;i<EXPOS.length;i++){
+      var e = EXPOS[i];
+      if(e.debut <= auj && auj <= e.fin){ encours = e; break; }
+      if(!prochaine && e.debut > auj) prochaine = e;
+    }
+    var EXPO = encours || prochaine;
     if(!EXPO) return;
     var band = document.querySelector('.hexpo');
     var info = document.getElementById('expo-info');
+    var LIB = encours ? ['Exposition en cours','Current exhibition']
+                      : ['Prochaine exposition','Next exhibition'];
     function remplir(){
       var en = document.documentElement.getAttribute('lang') === 'en';
+      var lab = document.querySelector('.hexpo-l');
+      if(lab){ lab.textContent = en ? LIB[1] : LIB[0]; lab.setAttribute('data-en', LIB[1]); lab.setAttribute('data-fr', LIB[0]); }
       var t = document.getElementById('hexpo-t');
       if(t) t.textContent = (en && EXPO.resumeEn) ? EXPO.resumeEn : EXPO.resume;
       var mk = function(id,v){ var el=document.getElementById(id); if(el) el.textContent=v; };
@@ -1777,6 +1812,10 @@
       var dn = document.getElementById('ei-note'), ln = document.querySelector('.ei-l-note');
       if(dn) dn.hidden = !note;
       if(ln) ln.hidden = !note;
+      var hl = document.querySelector('.ei-l-horaires');
+      if(hl) hl.hidden = !EXPO.horaires;
+      var dh = document.getElementById('ei-horaires');
+      if(dh) dh.hidden = !EXPO.horaires;
       var m = document.getElementById('ei-map');
       if(m) m.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(EXPO.lieu);
       var ln2 = document.getElementById('ei-lien');
@@ -1895,8 +1934,21 @@
       var href = 'mailto:patricia.veranneman@gmail.com'
                + '?subject=' + encodeURIComponent('[Site] ' + objet + ' — ' + nom)
                + '&body=' + encodeURIComponent(corps);
-      note.textContent = 'Votre logiciel de messagerie va s\'ouvrir avec le message pré-rempli.';
+      var en = document.documentElement.getAttribute('lang') === 'en';
+      note.textContent = en ? 'Your mail app should open with the message ready to send.'
+                            : 'Votre logiciel de messagerie va s\'ouvrir avec le message pré-rempli.';
+      var sec = document.getElementById('cf-secours');
+      var cop = document.getElementById('cf-copier');
+      if(cop) cop.onclick = function(){
+        var tout = ('[Site] ' + objet + ' — ' + nom) + '\n\n' + corps;
+        var ok = function(){ cop.textContent = en ? 'Message copied' : 'Message copié'; };
+        if(navigator.clipboard) navigator.clipboard.writeText(tout).then(ok, function(){});
+        else { var ta=document.createElement('textarea'); ta.value=tout; document.body.appendChild(ta);
+               ta.select(); try{ document.execCommand('copy'); ok(); }catch(err){} document.body.removeChild(ta); }
+      };
       window.location.href = href;
+      /* Aucune impasse : si rien ne s'ouvre, l'adresse et le message restent à portée de main. */
+      setTimeout(function(){ if(sec) sec.hidden = false; }, 1500);
     });
   })();
 

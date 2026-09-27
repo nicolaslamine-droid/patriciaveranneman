@@ -104,6 +104,7 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   <h2>Photographies</h2>
   <p>Photographies des œuvres&nbsp;: Patricia Veranneman, sauf mention contraire.</p>
 </main>
-<footer>© 2026 Patricia Veranneman · <a href="../">Toutes les œuvres</a></footer>
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../">Toutes les œuvres</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();</script>
 </body>
 </html>

@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Autres œuvres"><a href="../lln-musee-herge/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../images/LLN_Mus%C3%A9e_Herg%C3%A9.avif"><source type="image/webp" srcset="../../images/LLN_Mus%C3%A9e_Herg%C3%A9.webp"><img width="800" height="796" src="../../images/LLN_Mus%C3%A9e_Herg%C3%A9.JPG" alt="LLN — Musée Hergé" loading="lazy" decoding="async" data-full="../../images/LLN_Mus%C3%A9e_Herg%C3%A9.JPG"></picture></span><div><small>Précédente</small><span>LLN — Musée Hergé</span></div></a><a href="../wall-street/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../images/Wall_Street.avif"><source type="image/webp" srcset="../../images/Wall_Street.webp"><img width="1383" height="1824" src="../../images/Wall_Street.JPG" alt="Wall Street" loading="lazy" decoding="async" data-full="../../images/Wall_Street.JPG"></picture></span><div><small>Suivante</small><span>Wall Street</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

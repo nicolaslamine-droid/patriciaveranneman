@@ -79,3 +79,24 @@ puis relancer `construire.py`.
    `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` (chiffré), `ALLOWED_DOMAINS=patricia.veranneman.eu`.
 3. Reporter l'URL du worker dans `admin/config.yml` (`backend.base_url`).
 4. Donner à Patricia un accès en écriture au dépôt (Settings → Collaborators).
+
+## Autonomie du site
+
+Le site continue de fonctionner sans aucune intervention :
+
+- **Hébergement** : GitHub Pages, gratuit, sans échéance ; le certificat HTTPS se renouvelle tout seul.
+- **Aucune dépendance extérieure** au chargement : polices, images, styles et scripts sont servis
+  par le site lui-même. Rien ne peut « tomber » ailleurs.
+- **Expositions** : le bandeau et l'encadré se règlent sur la date du jour. L'exposition en cours
+  s'affiche, sinon la prochaine à venir, sinon rien. Une exposition passée disparaît d'elle-même.
+- **Année du copyright** : calculée à l'affichage.
+- **Galeries** : la suite des œuvres se déplie automatiquement au défilement ; le bouton n'est qu'un secours.
+- **Images** : un filet de sécurité CSS les rend visibles même si le script échoue.
+- **Formulaire et liste de diffusion** : si la messagerie du visiteur ne s'ouvre pas, l'adresse et
+  le message restent affichés, avec un bouton de copie. Aucune impasse.
+- **Sans JavaScript** : le site reste lisible et navigable (galeries en colonnes, tous les textes présents).
+
+Seules actions humaines nécessaires, une fois par an :
+
+1. **Renouveler le nom de domaine** chez Amen (mettre le renouvellement automatique).
+2. Garder le compte GitHub actif (aucune action, il suffit de ne pas le supprimer).

@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Other works"><a href="../collier/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Collier.avif"><source type="image/webp" srcset="../../../images/Collier.webp"><img width="2000" height="1333" src="../../../images/Collier.jpg" alt="Collier" loading="lazy" decoding="async" data-full="../../../images/Collier.jpg"></picture></span><div><small>Previous</small><span>Collier</span></div></a><a href="../applique/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Applique_new.avif"><source type="image/webp" srcset="../../../images/Applique_new.webp"><img width="1333" height="2000" src="../../../images/Applique_new.jpg" alt="Applique" loading="lazy" decoding="async" data-full="../../../images/Applique_new.jpg"></picture></span><div><small>Next</small><span>Applique</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Other works"><a href="../elle-brule-il-n-y-a-pas-de-planete-b/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Elle_brule_planete_B.avif"><source type="image/webp" srcset="../../../images/Elle_brule_planete_B.webp"><img width="1500" height="2000" src="../../../images/Elle_brule_planete_B.jpg" alt="Elle brûle ! Il n'y a pas de planète B" loading="lazy" decoding="async" data-full="../../../images/Elle_brule_planete_B.jpg"></picture></span><div><small>Previous</small><span>Elle brûle ! Il n'y a pas de planète B</span></div></a><a href="../guernica-gaza-kharkiv/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Guernica_Gaza_Kharkiv_noir.avif"><source type="image/webp" srcset="../../../images/Guernica_Gaza_Kharkiv_noir.webp"><img width="1500" height="2000" src="../../../images/Guernica_Gaza_Kharkiv_noir.jpg" alt="Guernica, Gaza, Kharkiv" loading="lazy" decoding="async" data-full="../../../images/Guernica_Gaza_Kharkiv_noir.jpg"></picture></span><div><small>Next</small><span>Guernica, Gaza, Kharkiv</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

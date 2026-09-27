@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Other works"><a href="../jean-charles-veranneman-de-watervliet/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../../images/EAJean-Charles_Veranneman_de_Watervliet.avif"><source type="image/webp" srcset="../../../images/EAJean-Charles_Veranneman_de_Watervliet.webp"><img width="1452" height="2000" src="../../../images/EAJean-Charles_Veranneman_de_Watervliet.JPG" alt="Jean-Charles Veranneman de Watervliet" loading="lazy" decoding="async" data-full="../../../images/EAJean-Charles_Veranneman_de_Watervliet.JPG"></picture></span><div><small>Previous</small><span>Jean-Charles Veranneman de Watervliet</span></div></a><a href="../jesus-et-l-oiseau/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Jesus_and_the_bird__Murillo_.avif"><source type="image/webp" srcset="../../../images/Jesus_and_the_bird__Murillo_.webp"><img width="1455" height="1843" src="../../../images/Jesus_and_the_bird__Murillo_.jpg" alt="Jésus et l'oiseau" loading="lazy" decoding="async" data-full="../../../images/Jesus_and_the_bird__Murillo_.jpg"></picture></span><div><small>Next</small><span>Jésus et l'oiseau</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

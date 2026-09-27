@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Other works"><a href="../le-pied/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Le_pied.avif"><source type="image/webp" srcset="../../../images/Le_pied.webp"><img width="2000" height="1333" src="../../../images/Le_pied.jpg" alt="C'est le pied !" loading="lazy" decoding="async" data-full="../../../images/Le_pied.jpg"></picture></span><div><small>Previous</small><span>C'est le pied !</span></div></a><a href="../trois-points-d-appui/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Trois_points_d_appui.avif"><source type="image/webp" srcset="../../../images/Trois_points_d_appui.webp"><img width="1333" height="2000" src="../../../images/Trois_points_d_appui.jpg" alt="Trois points d'appui" loading="lazy" decoding="async" data-full="../../../images/Trois_points_d_appui.jpg"></picture></span><div><small>Next</small><span>Trois points d'appui</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

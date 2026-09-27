@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Autres œuvres"><a href="../fils-et-vieux-pere/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../images/Fils_et_vieux_p%C3%A8re.avif"><source type="image/webp" srcset="../../images/Fils_et_vieux_p%C3%A8re.webp"><img width="1905" height="1444" src="../../images/Fils_et_vieux_p%C3%A8re.jpg" alt="Fils et vieux père" loading="lazy" decoding="async" data-full="../../images/Fils_et_vieux_p%C3%A8re.jpg"></picture></span><div><small>Précédente</small><span>Fils et vieux père</span></div></a><a href="../raymond-veranneman-de-watervliet/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../images/Raymond_Veranneman_de_Watervliet.avif"><source type="image/webp" srcset="../../images/Raymond_Veranneman_de_Watervliet.webp"><img width="1368" height="1709" src="../../images/Raymond_Veranneman_de_Watervliet.JPG" alt="Raymond Veranneman de Watervliet" loading="lazy" decoding="async" data-full="../../images/Raymond_Veranneman_de_Watervliet.JPG"></picture></span><div><small>Suivante</small><span>Raymond Veranneman de Watervliet</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

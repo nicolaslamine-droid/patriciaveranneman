@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Autres œuvres"><a href="../l-eau-detail/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../images/L_Eau_detail.avif"><source type="image/webp" srcset="../../images/L_Eau_detail.webp"><img width="2000" height="1333" src="../../images/L_Eau_detail.jpg" alt="L'Eau — détail" loading="lazy" decoding="async" data-full="../../images/L_Eau_detail.jpg"></picture></span><div><small>Précédente</small><span>L'Eau — détail</span></div></a><a href="../l-air-detail/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../images/L_Air_detail.avif"><source type="image/webp" srcset="../../images/L_Air_detail.webp"><img width="2000" height="1333" src="../../images/L_Air_detail.jpg" alt="L'Air — détail" loading="lazy" decoding="async" data-full="../../images/L_Air_detail.jpg"></picture></span><div><small>Suivante</small><span>L'Air — détail</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

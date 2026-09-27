@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Autres œuvres"><a href="../danse/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../images/dance.avif"><source type="image/webp" srcset="../../images/dance.webp"><img width="1370" height="2000" src="../../images/dance.jpg" alt="Danse" loading="lazy" decoding="async" data-full="../../images/dance.jpg"></picture></span><div><small>Précédente</small><span>Danse</span></div></a><a href="../pommes/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../images/pommes.avif"><source type="image/webp" srcset="../../images/pommes.webp"><img width="1431" height="1748" src="../../images/pommes.JPG" alt="Pommes" loading="lazy" decoding="async" data-full="../../images/pommes.JPG"></picture></span><div><small>Suivante</small><span>Pommes</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

@@ -188,6 +188,58 @@ def jsonld():
             + json.dumps({"@context": "https://schema.org", "@graph": net(g)}, ensure_ascii=False, separators=(',', ':'))
             + '</script>')
 
+# ─────────────────────────────── expositions (choisies par date au chargement)
+MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août',
+        'septembre', 'octobre', 'novembre', 'décembre']
+MOIS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+           'September', 'October', 'November', 'December']
+
+def jour(d): return datetime.date.fromisoformat(str(d))
+
+def periode(deb, fin, en=False):
+    """« les 26 et 27 septembre », « du 3 au 12 octobre », sans l'année."""
+    m = MOIS_EN if en else MOIS
+    if deb == fin:
+        return f'{deb.day} {m[deb.month-1]}' if en else f'le {deb.day} {m[deb.month-1]}'
+    if fin.toordinal() - deb.toordinal() == 1 and deb.month == fin.month:
+        return f'{deb.day} and {fin.day} {m[deb.month-1]}' if en else f'les {deb.day} et {fin.day} {m[deb.month-1]}'
+    if deb.month == fin.month:
+        return f'{deb.day}–{fin.day} {m[deb.month-1]}' if en else f'du {deb.day} au {fin.day} {m[deb.month-1]}'
+    return (f'{deb.day} {m[deb.month-1]} – {fin.day} {m[fin.month-1]}' if en
+            else f'du {deb.day} {m[deb.month-1]} au {fin.day} {m[fin.month-1]}')
+
+def expositions():
+    """Regroupe les dates d'une même exposition et prépare tout l'affichage.
+    Le site choisit ensuite tout seul, à chaque visite, celle qui est en cours
+    ou la prochaine à venir — et n'affiche rien quand il n'y a plus rien."""
+    groupes = []
+    for e in SITE.get('expositions') or []:
+        cle = (e['titre'], e.get('lieu', ''))
+        g = next((x for x in groupes if x['cle'] == cle), None)
+        if not g:
+            g = {'cle': cle, 'entrees': []}
+            groupes.append(g)
+        g['entrees'].append(e)
+    out = []
+    for g in groupes:
+        es = sorted(g['entrees'], key=lambda e: str(e['debut']))
+        p = es[0]
+        deb, fin = jour(es[0]['debut']), jour(es[-1].get('fin') or es[-1]['debut'])
+        an = fin.year
+        dts = ' et '.join(periode(jour(e['debut']), jour(e.get('fin') or e['debut'])) for e in es) + f' {an}'
+        dts_en = ' and '.join(periode(jour(e['debut']), jour(e.get('fin') or e['debut']), True) for e in es) + f' {an}'
+        court = f"{p['titre']} · {p.get('lieu', '').split(',')[0]} · {dts}"
+        court_en = f"{p['titre']} · {p.get('lieu', '').split(',')[0]} · {dts_en}"
+        out.append({'titre': p['titre'], 'lieu': p.get('lieu', ''),
+                    'debut': deb.isoformat(), 'fin': fin.isoformat(),
+                    'dates': p.get('dates') or dts, 'datesEn': p.get('dates_en') or dts_en,
+                    'horaires': p.get('horaires', ''), 'horairesEn': p.get('horaires_en') or p.get('horaires', ''),
+                    'note': p.get('note', ''), 'noteEn': p.get('note_en') or p.get('note', ''),
+                    'lien': p.get('lien', ''),
+                    'resume': p.get('resume') or court, 'resumeEn': p.get('resume_en') or court_en})
+    out.sort(key=lambda x: x['debut'])
+    return out
+
 # ─────────────────────────────── page d'accueil
 def paragraphes(cle):
     out = []
@@ -223,21 +275,7 @@ def accueil():
                 f'      <span class="iolab" data-en="{att(lab_en)}">{esc(lab)}</span>')
     s = re.sub(r'<div class="io" data-w="w-[^"]+" data-intro="([^"]+)" data-num="(\d+)"></div>', intro, s)
     s = s.replace('<!--JSONLD-->', jsonld())
-    ex = SITE.get('exposition')
-    if ex and ex.get('titre'):
-        s = s.replace('var EXPO = null;', 'var EXPO = ' + json.dumps(
-            {'titre': ex['titre'], 'lieu': ex.get('lieu', ''), 'dates': ex.get('dates', ''),
-             'datesEn': ex.get('dates_en', ex.get('dates', '')), 'horaires': ex.get('horaires', ''),
-             'horairesEn': ex.get('horaires_en', ex.get('horaires', '')),
-             'resume': ex.get('resume', ex['titre']), 'resumeEn': ex.get('resume_en', ex.get('resume', ex['titre'])),
-             'note': ex.get('note', ''), 'noteEn': ex.get('note_en', ex.get('note', '')),
-             'lien': ex.get('lien', '')},
-            ensure_ascii=False) + ';')
-    s = s.replace('<button class="lang" id="lang" type="button" aria-label="Switch to English" title="English">EN</button>',
-                  '<a class="lang" id="lang" href="en/" hreflang="en" aria-label="Switch to English" title="English">EN</a>')
-    s = s.replace('<link rel="canonical" href="%s">' % URL,
-                  f'<link rel="canonical" href="{URL}">\n<link rel="alternate" hreflang="fr" href="{URL}">\n'
-                  f'<link rel="alternate" hreflang="en" href="{URL}en/">\n<link rel="alternate" hreflang="x-default" href="{URL}">')
+    s = s.replace('var EXPOS = null;', 'var EXPOS = ' + json.dumps(expositions(), ensure_ascii=False) + ';')
     return s
 
 PAR_ID = {}
@@ -383,8 +421,8 @@ def page_oeuvre(o, lang='fr'):
   </div>
 </main>
 {nav}
-<footer>© {datetime.date.today().year} Patricia Veranneman · <a href="{racine}">{M['toutes']}</a> · <a href="{racine}#contact">Contact</a> · <a href="{pre}mentions-legales/">{'Mentions légales' if lang == 'fr' else 'Legal notice'}</a></footer>
-<script>{JS_O}</script>
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="{racine}">{M['toutes']}</a> · <a href="{racine}#contact">Contact</a> · <a href="{pre}mentions-legales/">{'Mentions légales' if lang == 'fr' else 'Legal notice'}</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();{JS_O}</script>
 </body>
 </html>
 '''
@@ -436,7 +474,8 @@ def page_mentions():
 <main class="mentions">
   {corps}
 </main>
-<footer>© {datetime.date.today().year} Patricia Veranneman · <a href="../">Toutes les œuvres</a></footer>
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../">Toutes les œuvres</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();</script>
 </body>
 </html>
 '''

@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Autres œuvres"><a href="../papa-et-fils-plage/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../images/Papa_et_fils_plage.avif"><source type="image/webp" srcset="../../images/Papa_et_fils_plage.webp"><img width="1892" height="1346" src="../../images/Papa_et_fils_plage.jpg" alt="Papa et fils — plage" loading="lazy" decoding="async" data-full="../../images/Papa_et_fils_plage.jpg"></picture></span><div><small>Précédente</small><span>Papa et fils — plage</span></div></a><a href="../hiver-aux-etangs-d-ixelles/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../images/Hiver_etangs_d_Ixelles_1.avif"><source type="image/webp" srcset="../../images/Hiver_etangs_d_Ixelles_1.webp"><img width="781" height="800" src="../../images/Hiver_etangs_d_Ixelles_1.JPG" alt="Hiver aux étangs d'Ixelles" loading="lazy" decoding="async" data-full="../../images/Hiver_etangs_d_Ixelles_1.JPG"></picture></span><div><small>Suivante</small><span>Hiver aux étangs d'Ixelles</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

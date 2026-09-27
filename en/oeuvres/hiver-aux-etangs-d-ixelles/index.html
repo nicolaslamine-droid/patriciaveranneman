@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Other works"><a href="../where-are-we-going-dad/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Where_are_we_going_Dad_.avif"><source type="image/webp" srcset="../../../images/Where_are_we_going_Dad_.webp"><img width="1487" height="1888" src="../../../images/Where_are_we_going_Dad_.jpg" alt="Where are we going, Dad?" loading="lazy" decoding="async" data-full="../../../images/Where_are_we_going_Dad_.jpg"></picture></span><div><small>Previous</small><span>Where are we going, Dad?</span></div></a><a href="../hiver-aux-etangs-d-ixelles-ii/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Hiver_Etangs_d_Ixelles.avif"><source type="image/webp" srcset="../../../images/Hiver_Etangs_d_Ixelles.webp"><img width="534" height="800" src="../../../images/Hiver_Etangs_d_Ixelles.JPG" alt="Hiver aux étangs d'Ixelles II" loading="lazy" decoding="async" data-full="../../../images/Hiver_Etangs_d_Ixelles.JPG"></picture></span><div><small>Next</small><span>Hiver aux étangs d'Ixelles II</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

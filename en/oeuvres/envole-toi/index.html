@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Other works"><a href="../guernica-gaza-kharkiv/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Guernica_Gaza_Kharkiv_noir.avif"><source type="image/webp" srcset="../../../images/Guernica_Gaza_Kharkiv_noir.webp"><img width="1500" height="2000" src="../../../images/Guernica_Gaza_Kharkiv_noir.jpg" alt="Guernica, Gaza, Kharkiv" loading="lazy" decoding="async" data-full="../../../images/Guernica_Gaza_Kharkiv_noir.jpg"></picture></span><div><small>Previous</small><span>Guernica, Gaza, Kharkiv</span></div></a><a href="../dans-la-lune/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Dans_la_lune.avif"><source type="image/webp" srcset="../../../images/Dans_la_lune.webp"><img width="1333" height="2000" src="../../../images/Dans_la_lune.jpg" alt="Dans la lune" loading="lazy" decoding="async" data-full="../../../images/Dans_la_lune.jpg"></picture></span><div><small>Next</small><span>Dans la lune</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

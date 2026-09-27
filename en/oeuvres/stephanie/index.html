@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Other works"><a href="../johanna/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Johanna.avif"><source type="image/webp" srcset="../../../images/Johanna.webp"><img width="735" height="960" src="../../../images/Johanna.jpg" alt="Johanna" loading="lazy" decoding="async" data-full="../../../images/Johanna.jpg"></picture></span><div><small>Previous</small><span>Johanna</span></div></a><a href="../patricia-et-stephanie/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Patricia_et_St%C3%A9phanie.avif"><source type="image/webp" srcset="../../../images/Patricia_et_St%C3%A9phanie.webp"><img width="1827" height="1444" src="../../../images/Patricia_et_St%C3%A9phanie.jpg" alt="Patricia et Stéphanie" loading="lazy" decoding="async" data-full="../../../images/Patricia_et_St%C3%A9phanie.jpg"></picture></span><div><small>Next</small><span>Patricia et Stéphanie</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

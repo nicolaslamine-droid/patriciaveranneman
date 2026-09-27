@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Other works"><a href="../tempete/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Temp%C3%AAte.avif"><source type="image/webp" srcset="../../../images/Temp%C3%AAte.webp"><img width="1703" height="1420" src="../../../images/Temp%C3%AAte.jpg" alt="Tempête" loading="lazy" decoding="async" data-full="../../../images/Temp%C3%AAte.jpg"></picture></span><div><small>Previous</small><span>Tempête</span></div></a><a href="../vue-sur-mer/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Vue_sur_mer.avif"><source type="image/webp" srcset="../../../images/Vue_sur_mer.webp"><img width="800" height="660" src="../../../images/Vue_sur_mer.JPG" alt="Vue sur mer" loading="lazy" decoding="async" data-full="../../../images/Vue_sur_mer.JPG"></picture></span><div><small>Next</small><span>Vue sur mer</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

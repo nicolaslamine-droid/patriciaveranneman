@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Other works"><a href="../envole-toi/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Envole_toi.avif"><source type="image/webp" srcset="../../../images/Envole_toi.webp"><img width="2000" height="1333" src="../../../images/Envole_toi.jpg" alt="Envole-toi" loading="lazy" decoding="async" data-full="../../../images/Envole_toi.jpg"></picture></span><div><small>Previous</small><span>Envole-toi</span></div></a><a href="../le-heaume/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Le_Heaume.avif"><source type="image/webp" srcset="../../../images/Le_Heaume.webp"><img width="1333" height="2000" src="../../../images/Le_Heaume.jpg" alt="Le Heaume" loading="lazy" decoding="async" data-full="../../../images/Le_Heaume.jpg"></picture></span><div><small>Next</small><span>Le Heaume</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

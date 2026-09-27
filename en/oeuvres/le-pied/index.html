@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Other works"><a href="../le-heaume/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Le_Heaume.avif"><source type="image/webp" srcset="../../../images/Le_Heaume.webp"><img width="1333" height="2000" src="../../../images/Le_Heaume.jpg" alt="Le Heaume" loading="lazy" decoding="async" data-full="../../../images/Le_Heaume.jpg"></picture></span><div><small>Previous</small><span>Le Heaume</span></div></a><a href="../lutte-de-pouvoir/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Lutte_de_pouvoir_1.avif"><source type="image/webp" srcset="../../../images/Lutte_de_pouvoir_1.webp"><img width="1615" height="2000" src="../../../images/Lutte_de_pouvoir_1.jpg" alt="Lutte de pouvoir" loading="lazy" decoding="async" data-full="../../../images/Lutte_de_pouvoir_1.jpg"></picture></span><div><small>Next</small><span>Lutte de pouvoir</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

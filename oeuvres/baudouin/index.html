@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Autres œuvres"><a href="../jesus-et-l-oiseau/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../images/Jesus_and_the_bird__Murillo_.avif"><source type="image/webp" srcset="../../images/Jesus_and_the_bird__Murillo_.webp"><img width="1455" height="1843" src="../../images/Jesus_and_the_bird__Murillo_.jpg" alt="Jésus et l'oiseau" loading="lazy" decoding="async" data-full="../../images/Jesus_and_the_bird__Murillo_.jpg"></picture></span><div><small>Précédente</small><span>Jésus et l'oiseau</span></div></a><a href="../joie-de-la-mer/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../images/Joie_de_la_mer.avif"><source type="image/webp" srcset="../../images/Joie_de_la_mer.webp"><img width="530" height="800" src="../../images/Joie_de_la_mer.JPG" alt="Joie de la mer" loading="lazy" decoding="async" data-full="../../images/Joie_de_la_mer.JPG"></picture></span><div><small>Suivante</small><span>Joie de la mer</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

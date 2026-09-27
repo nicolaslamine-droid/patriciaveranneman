@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Autres œuvres"><a href="../serre-livres/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../images/Serre_livres.avif"><source type="image/webp" srcset="../../images/Serre_livres.webp"><img width="1484" height="1644" src="../../images/Serre_livres.jpg" alt="Serre-livres" loading="lazy" decoding="async" data-full="../../images/Serre_livres.jpg"></picture></span><div><small>Précédente</small><span>Serre-livres</span></div></a><a href="../l-enfant-qui-dort/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../images/L_enfant_qui_dort.avif"><source type="image/webp" srcset="../../images/L_enfant_qui_dort.webp"><img width="2000" height="1333" src="../../images/L_enfant_qui_dort.JPG" alt="L'enfant qui dort" loading="lazy" decoding="async" data-full="../../images/L_enfant_qui_dort.JPG"></picture></span><div><small>Suivante</small><span>L'enfant qui dort</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

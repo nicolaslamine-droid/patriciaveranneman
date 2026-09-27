@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Autres œuvres"><a href="../stephanie/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../images/St%C3%A9phanie1.avif"><source type="image/webp" srcset="../../images/St%C3%A9phanie1.webp"><img width="2000" height="1326" src="../../images/St%C3%A9phanie1.jpg" alt="Stéphanie" loading="lazy" decoding="async" data-full="../../images/St%C3%A9phanie1.jpg"></picture></span><div><small>Précédente</small><span>Stéphanie</span></div></a><a href="../nicolas/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../images/Nicolas.avif"><source type="image/webp" srcset="../../images/Nicolas.webp"><img width="2000" height="1326" src="../../images/Nicolas.jpg" alt="Nicolas" loading="lazy" decoding="async" data-full="../../images/Nicolas.jpg"></picture></span><div><small>Suivante</small><span>Nicolas</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">Toutes les œuvres</a> · <a href="../../#contact">Contact</a> · <a href="../../mentions-legales/">Mentions légales</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';

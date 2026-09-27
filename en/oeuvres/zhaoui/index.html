@@ -114,8 +114,8 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
   </div>
 </main>
 <nav class="suite" aria-label="Other works"><a href="../pommes/" rel="prev"><span class="mini"><picture><source type="image/avif" srcset="../../../images/pommes.avif"><source type="image/webp" srcset="../../../images/pommes.webp"><img width="1431" height="1748" src="../../../images/pommes.JPG" alt="Pommes" loading="lazy" decoding="async" data-full="../../../images/pommes.JPG"></picture></span><div><small>Previous</small><span>Pommes</span></div></a><a href="../le-fils-de-zhaoui/" rel="next"><span class="mini"><picture><source type="image/avif" srcset="../../../images/Fils_de_Zhaoui.avif"><source type="image/webp" srcset="../../../images/Fils_de_Zhaoui.webp"><img width="1326" height="2000" src="../../../images/Fils_de_Zhaoui.jpg" alt="Le fils de Zhaoui" loading="lazy" decoding="async" data-full="../../../images/Fils_de_Zhaoui.jpg"></picture></span><div><small>Next</small><span>Le fils de Zhaoui</span></div></a></nav>
-<footer>© 2026 Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
-<script>(function(){
+<footer>© <span id="an"></span> Patricia Veranneman · <a href="../../">All works</a> · <a href="../../#contact">Contact</a> · <a href="../../../mentions-legales/">Legal notice</a></footer>
+<script>document.getElementById('an').textContent=new Date().getFullYear();(function(){
   var b=document.getElementById('partager');
   if(!b) return;
   var en=document.documentElement.lang==='en';
